@@ -1,0 +1,12 @@
+{
+  "suggest.noselect": false,
+  "suggest.autoTrigger": "always",
+  "python.jediEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pep8Enabled": true,
+  "solargraph.diagnostics": true,
+  "explorer.icon.enableNerdfont": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "explorer.file.column.indent.indentLine": false,
+  "explorer.width": 30
+}
