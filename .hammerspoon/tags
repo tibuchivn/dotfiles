@@ -1,0 +1,675 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+) hs.json.decode	Spoons/BingDaily.spoon/init.lua	/^            if pcall(function() hs.json.decode(body) end) then$/;"	f
+) hs.json.decode	Spoons/HSearch.spoon/hs_datamuse.lua	/^                if pcall(function() hs.json.decode(data) end) then$/;"	f
+) hs.json.decode	Spoons/HSearch.spoon/hs_emoji.lua	/^                if pcall(function() hs.json.decode(data) end) then$/;"	f
+) hs.json.decode	Spoons/HSearch.spoon/hs_v2ex.lua	/^            if pcall(function() hs.json.decode(data) end) then$/;"	f
+) hs.json.decode	Spoons/HSearch.spoon/hs_yddict.lua	/^                if pcall(function() hs.json.decode(data) end) then$/;"	f
+) hs.reload	init.lua	/^    hs.hotkey.bind(hsreload_keys[1], hsreload_keys[2], "Reload Configuration", function() hs.reload() end)$/;"	f
+) hs.toggleConsole	init.lua	/^    spoon.ModalMgr.supervisor:bind(hsconsole_keys[1], hsconsole_keys[2], "Toggle Hammerspoon Console", function() hs.toggleConsole() end)$/;"	f
+) obj.supervisor:exit	Spoons/ModalMgr.spoon/init.lua	/^    obj.supervisor:bind(hsupervisor_keys[1], hsupervisor_keys[2], "Reset Modal Environment", function() obj.supervisor:exit() end)$/;"	f
+) self:exit	Spoons/VimMode.spoon/lib/vim.lua	/^  return hs.timer.doAfter(seconds, function() self:exit() end)$/;"	f
+) self:exitAllModals	Spoons/VimMode.spoon/lib/vim.lua	/^  hs.timer.doAfter(seconds, function() self:exitAllModals() end)$/;"	f
+) spoon.AClock:toggleShow	init.lua	/^        spoon.ModalMgr.supervisor:bind(hsaclock_keys[1], hsaclock_keys[2], "Toggle Floating Clock", function() spoon.AClock:toggleShow() end)$/;"	f
+) spoon.HSaria2:togglePanel	init.lua	/^        spoon.ModalMgr.supervisor:bind(hsaria2_keys[1], hsaria2_keys[2], 'Toggle aria2 Panel', function() spoon.HSaria2:togglePanel() end)$/;"	f
+) spoon.HSearch:toggleShow	init.lua	/^        spoon.ModalMgr.supervisor:bind(hsearch_keys[1], hsearch_keys[2], 'Launch Hammerspoon Search', function() spoon.HSearch:toggleShow() end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^    cmodal:bind('', 'Q', 'Deactivate countdownM', function() spoon.ModalMgr:deactivate({"countdownM"}) end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^    cmodal:bind('', 'Q', 'Deactivate resizeM', function() spoon.ModalMgr:deactivate({"resizeM"}) end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^    cmodal:bind('', 'escape', 'Deactivate countdownM', function() spoon.ModalMgr:deactivate({"countdownM"}) end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^    cmodal:bind('', 'escape', 'Deactivate resizeM', function() spoon.ModalMgr:deactivate({"resizeM"}) end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^cmodal:bind('', 'Q', 'Deactivate appM', function() spoon.ModalMgr:deactivate({"appM"}) end)$/;"	f
+) spoon.ModalMgr:deactivate	init.lua	/^cmodal:bind('', 'escape', 'Deactivate appM', function() spoon.ModalMgr:deactivate({"appM"}) end)$/;"	f
+) spoon.ModalMgr:toggleCheatsheet	init.lua	/^    cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)$/;"	f
+) spoon.ModalMgr:toggleCheatsheet	init.lua	/^cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)$/;"	f
+) spoon.WinWin:centerCursor	init.lua	/^    cmodal:bind('', '`', 'Center Cursor', function() spoon.WinWin:centerCursor() end)$/;"	f
+) spoon.WinWin:moveAndResize	init.lua	/^    cmodal:bind('', '-', 'Shrink Inward', function() spoon.WinWin:moveAndResize("shrink") end, nil, function() spoon.WinWin:moveAndResize("shrink") end)$/;"	f
+) spoon.WinWin:redo	init.lua	/^    cmodal:bind('', ']', 'Redo Window Manipulation', function() spoon.WinWin:redo() end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'C', 'Center Window', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("center") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'F', 'Fullscreen', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("fullscreen") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'H', 'Lefthalf of Screen', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("halfleft") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'I', 'SouthEast Corner', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("cornerSE") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'J', 'Downhalf of Screen', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("halfdown") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'K', 'Uphalf of Screen', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("halfup") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'L', 'Righthalf of Screen', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("halfright") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'O', 'NorthEast Corner', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("cornerNE") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'U', 'SouthWest Corner', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("cornerSW") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'Y', 'NorthWest Corner', function() spoon.WinWin:stash() spoon.WinWin:moveAndResize("cornerNW") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'down', 'Move to Below Monitor', function() spoon.WinWin:stash() spoon.WinWin:moveToScreen("down") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'left', 'Move to Left Monitor', function() spoon.WinWin:stash() spoon.WinWin:moveToScreen("left") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'right', 'Move to Right Monitor', function() spoon.WinWin:stash() spoon.WinWin:moveToScreen("right") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'space', 'Move to Next Monitor', function() spoon.WinWin:stash() spoon.WinWin:moveToScreen("next") end)$/;"	f
+) spoon.WinWin:stash	init.lua	/^    cmodal:bind('', 'up', 'Move to Above Monitor', function() spoon.WinWin:stash() spoon.WinWin:moveToScreen("up") end)$/;"	f
+) spoon.WinWin:stepMove	init.lua	/^    cmodal:bind('', 'A', 'Move Leftward', function() spoon.WinWin:stepMove("left") end, nil, function() spoon.WinWin:stepMove("left") end)$/;"	f
+) spoon.WinWin:stepMove	init.lua	/^    cmodal:bind('', 'D', 'Move Rightward', function() spoon.WinWin:stepMove("right") end, nil, function() spoon.WinWin:stepMove("right") end)$/;"	f
+) spoon.WinWin:stepMove	init.lua	/^    cmodal:bind('', 'S', 'Move Downward', function() spoon.WinWin:stepMove("down") end, nil, function() spoon.WinWin:stepMove("down") end)$/;"	f
+) spoon.WinWin:stepMove	init.lua	/^    cmodal:bind('', 'W', 'Move Upward', function() spoon.WinWin:stepMove("up") end, nil, function() spoon.WinWin:stepMove("up") end)$/;"	f
+) spoon.WinWin:stepResize	init.lua	/^    cmodal:bind('shift', 'H', 'Move Leftward', function() spoon.WinWin:stepResize("left") end, nil, function() spoon.WinWin:stepResize("left") end)$/;"	f
+) spoon.WinWin:stepResize	init.lua	/^    cmodal:bind('shift', 'J', 'Move Downward', function() spoon.WinWin:stepResize("down") end, nil, function() spoon.WinWin:stepResize("down") end)$/;"	f
+) spoon.WinWin:stepResize	init.lua	/^    cmodal:bind('shift', 'K', 'Move Upward', function() spoon.WinWin:stepResize("up") end, nil, function() spoon.WinWin:stepResize("up") end)$/;"	f
+) spoon.WinWin:stepResize	init.lua	/^    cmodal:bind('shift', 'L', 'Move Rightward', function() spoon.WinWin:stepResize("right") end, nil, function() spoon.WinWin:stepResize("right") end)$/;"	f
+) spoon.WinWin:undo	init.lua	/^    cmodal:bind('', '[', 'Undo Window Manipulation', function() spoon.WinWin:undo() end)$/;"	f
+) vim:cancel	Spoons/VimMode.spoon/lib/modal.lua	/^    :bind({}, 'escape', function() vim:cancel() end)$/;"	f
+) vim:enterModal	Spoons/VimMode.spoon/lib/modal.lua	/^      :bind({}, 'g', function() vim:enterModal('g') end)$/;"	f
+) vim:enterMotion	Spoons/VimMode.spoon/lib/modal.lua	/^          hs.timer.doAfter(5 \/ 1000, function() vim:enterMotion(motion) end)$/;"	f
+) vim:enterMotion	Spoons/VimMode.spoon/lib/modal.lua	/^    return function() vim:enterMotion(type:new()) end$/;"	f
+) vim:enterOperator	Spoons/VimMode.spoon/lib/modal.lua	/^    return function() vim:enterOperator(type:new()) end$/;"	f
+) vim:exit	Spoons/VimMode.spoon/lib/focus_watcher.lua	/^      :callback(function() vim:exit() end)$/;"	f
+) vim:exitAsync	Spoons/VimMode.spoon/lib/modal.lua	/^    :bind({}, 'escape', function() vim:exitAsync() end)$/;"	f
+) vim:exitAsync	Spoons/VimMode.spoon/lib/modal.lua	/^    :bind({}, 'i', function() vim:exitAsync() end)$/;"	f
+) vim:pushDigitTo	Spoons/VimMode.spoon/lib/modal.lua	/^    return function() vim:pushDigitTo(name, digit) end$/;"	f
+AccessibilityBuffer.getClass	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer.getClass()$/;"	f
+AccessibilityBuffer.getCurrentApplication	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer.getCurrentApplication()$/;"	f
+AccessibilityBuffer:enableLiveApplicationPatches	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:enableLiveApplicationPatches()$/;"	f
+AccessibilityBuffer:getCurrentElement	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getCurrentElement()$/;"	f
+AccessibilityBuffer:getCurrentLine	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getCurrentLine()$/;"	f
+AccessibilityBuffer:getCurrentLineNumber	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getCurrentLineNumber()$/;"	f
+AccessibilityBuffer:getCurrentLineRange	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getCurrentLineRange()$/;"	f
+AccessibilityBuffer:getLineCount	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getLineCount()$/;"	f
+AccessibilityBuffer:getRangeForLineNumber	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getRangeForLineNumber(lineNumber)$/;"	f
+AccessibilityBuffer:getSelectionRange	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getSelectionRange()$/;"	f
+AccessibilityBuffer:getValue	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:getValue()$/;"	f
+AccessibilityBuffer:isBannedApp	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:isBannedApp()$/;"	f
+AccessibilityBuffer:isInTextField	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:isInTextField()$/;"	f
+AccessibilityBuffer:isRichTextField	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:isRichTextField()$/;"	f
+AccessibilityBuffer:isValid	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:isValid()$/;"	f
+AccessibilityBuffer:new	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:new()$/;"	f
+AccessibilityBuffer:resetToBeginningOfLineForIndex	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:resetToBeginningOfLineForIndex()$/;"	f
+AccessibilityBuffer:setSelectionRange	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:setSelectionRange(location, length)$/;"	f
+AccessibilityBuffer:setValue	Spoons/VimMode.spoon/lib/accessibility_buffer.lua	/^function AccessibilityBuffer:setValue(value)$/;"	f
+AccessibilityStrategy:fire	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:fire()$/;"	f
+AccessibilityStrategy:getCurrentElement	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:getCurrentElement()$/;"	f
+AccessibilityStrategy:getSelection	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:getSelection()$/;"	f
+AccessibilityStrategy:getUIRole	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:getUIRole()$/;"	f
+AccessibilityStrategy:getValue	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:getValue()$/;"	f
+AccessibilityStrategy:isInTextField	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:isInTextField()$/;"	f
+AccessibilityStrategy:isValid	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:isValid()$/;"	f
+AccessibilityStrategy:new	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:new(vim)$/;"	f
+AccessibilityStrategy:setSelection	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:setSelection(location, length)$/;"	f
+AccessibilityStrategy:setSelectionRange	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:setSelectionRange(selection)$/;"	f
+AccessibilityStrategy:setValue	Spoons/VimMode.spoon/lib/strategies/accessibility_strategy.lua	/^function AccessibilityStrategy:setValue(value)$/;"	f
+AppWatcher:createWatcher	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:createWatcher()$/;"	f
+AppWatcher:disableApp	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:disableApp(name)$/;"	f
+AppWatcher:disableVim	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:disableVim()$/;"	f
+AppWatcher:enableVim	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:enableVim()$/;"	f
+AppWatcher:new	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:new(vim)$/;"	f
+AppWatcher:start	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:start()$/;"	f
+AppWatcher:stop	Spoons/VimMode.spoon/lib/app_watcher.lua	/^function AppWatcher:stop()$/;"	f
+BackWord.getMovements	Spoons/VimMode.spoon/lib/motions/back_word.lua	/^function BackWord.getMovements()$/;"	f
+BackWord.getRange	Spoons/VimMode.spoon/lib/motions/back_word.lua	/^function BackWord.getRange(_, buffer)$/;"	f
+BackwardSearch.getMovements	Spoons/VimMode.spoon/lib/motions/backward_search.lua	/^function BackwardSearch.getMovements()$/;"	f
+BackwardSearch:getRange	Spoons/VimMode.spoon/lib/motions/backward_search.lua	/^function BackwardSearch:getRange(buffer)$/;"	f
+BigWord.getMovements	Spoons/VimMode.spoon/lib/motions/big_word.lua	/^function BigWord.getMovements()$/;"	f
+BigWord.getRange	Spoons/VimMode.spoon/lib/motions/big_word.lua	/^function BigWord.getRange(_, buffer)$/;"	f
+Buffer.getClass	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer.getClass()$/;"	f
+Buffer:charAt	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:charAt(position)$/;"	f
+Buffer:createNew	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:createNew(value, rangeLocation, rangeLength)$/;"	f
+Buffer:getCaretPosition	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getCaretPosition()$/;"	f
+Buffer:getContentsAfterSelection	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getContentsAfterSelection()$/;"	f
+Buffer:getContentsBeforeSelection	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getContentsBeforeSelection()$/;"	f
+Buffer:getCurrentColumn	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getCurrentColumn()$/;"	f
+Buffer:getCurrentLine	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getCurrentLine()$/;"	f
+Buffer:getCurrentLineNumber	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getCurrentLineNumber()$/;"	f
+Buffer:getCurrentLineRange	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getCurrentLineRange()$/;"	f
+Buffer:getLastIndex	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getLastIndex()$/;"	f
+Buffer:getLength	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getLength()$/;"	f
+Buffer:getLineCount	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getLineCount()$/;"	f
+Buffer:getLines	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getLines()$/;"	f
+Buffer:getPositionForLineAndColumn	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getPositionForLineAndColumn(line, column)$/;"	f
+Buffer:getRangeForLineNumber	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getRangeForLineNumber(lineNumber)$/;"	f
+Buffer:getSelectionRange	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getSelectionRange()$/;"	f
+Buffer:getValue	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:getValue()$/;"	f
+Buffer:isOnLastLine	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:isOnLastLine()$/;"	f
+Buffer:lastValueIndex	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:lastValueIndex()$/;"	f
+Buffer:new	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:new()$/;"	f
+Buffer:setCaretPosition	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:setCaretPosition(caretPosition)$/;"	f
+Buffer:setSelectionRange	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:setSelectionRange(location, length)$/;"	f
+Buffer:setSelectionRangeFromSelection	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:setSelectionRangeFromSelection(selection)$/;"	f
+Buffer:setValue	Spoons/VimMode.spoon/lib/buffer.lua	/^function Buffer:setValue(value)$/;"	f
+Change.getModeForTransition	Spoons/VimMode.spoon/lib/operators/change.lua	/^function Change.getModeForTransition()$/;"	f
+CommandState:getCharsEntered	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:getCharsEntered()$/;"	f
+CommandState:getCount	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:getCount(type)$/;"	f
+CommandState:getPendingInput	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:getPendingInput()$/;"	f
+CommandState:getRepeatTimes	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:getRepeatTimes()$/;"	f
+CommandState:new	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:new()$/;"	f
+CommandState:pushChar	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:pushChar(char)$/;"	f
+CommandState:pushCountDigit	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:pushCountDigit(type, digit)$/;"	f
+CommandState:resetCharsEntered	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:resetCharsEntered()$/;"	f
+CommandState:setPendingInput	Spoons/VimMode.spoon/lib/command_state.lua	/^function CommandState:setPendingInput(value)$/;"	f
+Config:new	Spoons/VimMode.spoon/lib/config.lua	/^function Config:new(options)$/;"	f
+Config:setOptions	Spoons/VimMode.spoon/lib/config.lua	/^function Config:setOptions(options)$/;"	f
+ContextualModal:bind	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:bind(mods, key, pressedfn, releasedfn, repeatfn)$/;"	f
+ContextualModal:bindWithRepeat	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:bindWithRepeat(mods, key, fn)$/;"	f
+ContextualModal:enterContext	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:enterContext(contextKey)$/;"	f
+ContextualModal:exit	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:exit()$/;"	f
+ContextualModal:handlePress	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:handlePress(mods, key, eventType)$/;"	f
+ContextualModal:hasBinding	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:hasBinding(mods, key)$/;"	f
+ContextualModal:new	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:new()$/;"	f
+ContextualModal:registerBinding	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:registerBinding(mods, key)$/;"	f
+ContextualModal:setOnBeforePress	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:setOnBeforePress(fn)$/;"	f
+ContextualModal:withContext	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^function ContextualModal:withContext(contextKey)$/;"	f
+CurrentSelection.getMovements	Spoons/VimMode.spoon/lib/motions/current_selection.lua	/^function CurrentSelection.getMovements()$/;"	f
+CurrentSelection.getRange	Spoons/VimMode.spoon/lib/motions/current_selection.lua	/^function CurrentSelection.getRange(_, buffer)$/;"	f
+Delete.getKeys	Spoons/VimMode.spoon/lib/operators/delete.lua	/^function Delete.getKeys()$/;"	f
+Delete.getModifiedBuffer	Spoons/VimMode.spoon/lib/operators/delete.lua	/^function Delete.getModifiedBuffer(_, buffer, rangeStart, rangeFinish)$/;"	f
+Delete.modifySelection	Spoons/VimMode.spoon/lib/operators/delete.lua	/^function Delete.modifySelection()$/;"	f
+Down.getMovements	Spoons/VimMode.spoon/lib/motions/down.lua	/^function Down.getMovements()$/;"	f
+Down.getRange	Spoons/VimMode.spoon/lib/motions/down.lua	/^function Down.getRange(_, buffer)$/;"	f
+EndOfWord.getMovements	Spoons/VimMode.spoon/lib/motions/end_of_word.lua	/^function EndOfWord.getMovements()$/;"	f
+EndOfWord.getRange	Spoons/VimMode.spoon/lib/motions/end_of_word.lua	/^function EndOfWord.getRange(_, buffer)$/;"	f
+EntireLine.getMovements	Spoons/VimMode.spoon/lib/motions/entire_line.lua	/^function EntireLine.getMovements()$/;"	f
+EntireLine.getRange	Spoons/VimMode.spoon/lib/motions/entire_line.lua	/^function EntireLine.getRange(_, buffer)$/;"	f
+FirstLine.getMovements	Spoons/VimMode.spoon/lib/motions/first_line.lua	/^function FirstLine.getMovements()$/;"	f
+FirstLine.getRange	Spoons/VimMode.spoon/lib/motions/first_line.lua	/^function FirstLine.getRange(_, buffer)$/;"	f
+FirstNonBlank.getMovements	Spoons/VimMode.spoon/lib/motions/first_non_blank.lua	/^function FirstNonBlank.getMovements()$/;"	f
+FirstNonBlank.getRange	Spoons/VimMode.spoon/lib/motions/first_non_blank.lua	/^function FirstNonBlank.getRange(_, buffer)$/;"	f
+ForwardSearch.getMovements	Spoons/VimMode.spoon/lib/motions/forward_search.lua	/^function ForwardSearch.getMovements()$/;"	f
+ForwardSearch:getRange	Spoons/VimMode.spoon/lib/motions/forward_search.lua	/^function ForwardSearch:getRange(buffer)$/;"	f
+Inspector:alreadyVisited	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:alreadyVisited(v)$/;"	f
+Inspector:down	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:down(f)$/;"	f
+Inspector:getId	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:getId(v)$/;"	f
+Inspector:putKey	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:putKey(k)$/;"	f
+Inspector:putTable	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:putTable(t)$/;"	f
+Inspector:putValue	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:putValue(v)$/;"	f
+Inspector:puts	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:puts(...)$/;"	f
+Inspector:tabify	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function Inspector:tabify()$/;"	f
+KeySequence:buildEventHandler	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:buildEventHandler()$/;"	f
+KeySequence:cancelTimer	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:cancelTimer()$/;"	f
+KeySequence:disable	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:disable()$/;"	f
+KeySequence:enable	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:enable()$/;"	f
+KeySequence:new	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:new(keys, onSequencePressed)$/;"	f
+KeySequence:recordEvent	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:recordEvent(event)$/;"	f
+KeySequence:recordKey	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:recordKey(key)$/;"	f
+KeySequence:reset	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:reset()$/;"	f
+KeySequence:resetEvents	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:resetEvents()$/;"	f
+KeySequence:resetTap	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:resetTap()$/;"	f
+KeySequence:startTimer	Spoons/VimMode.spoon/lib/key_sequence.lua	/^function KeySequence:startTimer(fn)$/;"	f
+KeyboardStrategy:fire	Spoons/VimMode.spoon/lib/strategies/keyboard_strategy.lua	/^function KeyboardStrategy:fire()$/;"	f
+KeyboardStrategy:fireMovement	Spoons/VimMode.spoon/lib/strategies/keyboard_strategy.lua	/^function KeyboardStrategy:fireMovement()$/;"	f
+KeyboardStrategy:fireOperator	Spoons/VimMode.spoon/lib/strategies/keyboard_strategy.lua	/^function KeyboardStrategy:fireOperator()$/;"	f
+KeyboardStrategy:new	Spoons/VimMode.spoon/lib/strategies/keyboard_strategy.lua	/^function KeyboardStrategy:new(vim)$/;"	f
+Keycode	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  class Keycode$/;"	c
+Keystroke	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  class Keystroke$/;"	c
+LastLine.getMovements	Spoons/VimMode.spoon/lib/motions/last_line.lua	/^function LastLine.getMovements()$/;"	f
+LastLine.getRange	Spoons/VimMode.spoon/lib/motions/last_line.lua	/^function LastLine.getRange(_, buffer)$/;"	f
+Left.getMovements	Spoons/VimMode.spoon/lib/motions/left.lua	/^function Left.getMovements()$/;"	f
+Left.getRange	Spoons/VimMode.spoon/lib/motions/left.lua	/^function Left.getRange(_, buffer)$/;"	f
+LineBeginning.getMovements	Spoons/VimMode.spoon/lib/motions/line_beginning.lua	/^function LineBeginning.getMovements()$/;"	f
+LineBeginning.getRange	Spoons/VimMode.spoon/lib/motions/line_beginning.lua	/^function LineBeginning.getRange(_, buffer)$/;"	f
+LineEnd.getMovements	Spoons/VimMode.spoon/lib/motions/line_end.lua	/^function LineEnd.getMovements()$/;"	f
+LineEnd.getRange	Spoons/VimMode.spoon/lib/motions/line_end.lua	/^function LineEnd.getRange(_, buffer)$/;"	f
+ModeHelpers	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^module ModeHelpers$/;"	m
+Motion.getModeForTransition	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion.getModeForTransition()$/;"	f
+Motion:getExtraChar	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion:getExtraChar()$/;"	f
+Motion:getMovements	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion:getMovements()$/;"	f
+Motion:getRange	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion:getRange(buffer)$/;"	f
+Motion:new	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion:new(fields)$/;"	f
+Motion:setExtraChar	Spoons/VimMode.spoon/lib/motion.lua	/^function Motion:setExtraChar(char)$/;"	f
+Operator.getKeys	Spoons/VimMode.spoon/lib/operator.lua	/^function Operator.getKeys()$/;"	f
+Operator.getModeForTransition	Spoons/VimMode.spoon/lib/operator.lua	/^function Operator.getModeForTransition()$/;"	f
+Operator:getExtraChar	Spoons/VimMode.spoon/lib/operator.lua	/^function Operator:getExtraChar()$/;"	f
+Operator:new	Spoons/VimMode.spoon/lib/operator.lua	/^function Operator:new(fields)$/;"	f
+Operator:setExtraChar	Spoons/VimMode.spoon/lib/operator.lua	/^function Operator:setExtraChar(char)$/;"	f
+Registry:getHandler	Spoons/VimMode.spoon/lib/contextual_modal/registry.lua	/^function Registry:getHandler(contextKey, mods, key, eventType)$/;"	f
+Registry:new	Spoons/VimMode.spoon/lib/contextual_modal/registry.lua	/^function Registry:new()$/;"	f
+Registry:registerHandler	Spoons/VimMode.spoon/lib/contextual_modal/registry.lua	/^function Registry:registerHandler(contextKey, mods, key, pressedfn, releasedfn, repeatfn)$/;"	f
+Replace:getKeys	Spoons/VimMode.spoon/lib/operators/replace.lua	/^function Replace:getKeys()$/;"	f
+Replace:getModifiedBuffer	Spoons/VimMode.spoon/lib/operators/replace.lua	/^function Replace:getModifiedBuffer(buffer, rangeStart, rangeFinish)$/;"	f
+Replace:modifySelection	Spoons/VimMode.spoon/lib/operators/replace.lua	/^function Replace:modifySelection(_, rangeStart, rangeFinish)$/;"	f
+RestrictedModal:bind	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:bind(mods, key, ...)$/;"	f
+RestrictedModal:bindWithRepeat	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:bindWithRepeat(mods, key, fn)$/;"	f
+RestrictedModal:enter	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:enter()$/;"	f
+RestrictedModal:exit	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:exit()$/;"	f
+RestrictedModal:handleKeyPress	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:handleKeyPress(event)$/;"	f
+RestrictedModal:new	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^function RestrictedModal:new(...)$/;"	f
+Right.getMovements	Spoons/VimMode.spoon/lib/motions/right.lua	/^function Right.getMovements()$/;"	f
+Right.getRange	Spoons/VimMode.spoon/lib/motions/right.lua	/^function Right.getRange(_, buffer)$/;"	f
+ScreenDimmer.dimScreen	Spoons/VimMode.spoon/lib/screen_dimmer.lua	/^function ScreenDimmer.dimScreen()$/;"	f
+ScreenDimmer.restoreScreen	Spoons/VimMode.spoon/lib/screen_dimmer.lua	/^function ScreenDimmer.restoreScreen()$/;"	f
+Selection:getCharRange	Spoons/VimMode.spoon/lib/selection.lua	/^function Selection:getCharRange()$/;"	f
+Selection:isSelected	Spoons/VimMode.spoon/lib/selection.lua	/^function Selection:isSelected()$/;"	f
+Selection:new	Spoons/VimMode.spoon/lib/selection.lua	/^function Selection:new(location, length)$/;"	f
+Selection:positionEnd	Spoons/VimMode.spoon/lib/selection.lua	/^function Selection:positionEnd()$/;"	f
+Set	Spoons/VimMode.spoon/lib/utils/set.lua	/^local function Set(list)$/;"	f
+StateIndicator:getBoxText	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:getBoxText()$/;"	f
+StateIndicator:getConfig	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:getConfig()$/;"	f
+StateIndicator:getElementPosition	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:getElementPosition(canvasWidth)$/;"	f
+StateIndicator:getIndicatorMode	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:getIndicatorMode()$/;"	f
+StateIndicator:new	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:new(vim)$/;"	f
+StateIndicator:render	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:render()$/;"	f
+StateIndicator:update	Spoons/VimMode.spoon/lib/state_indicator.lua	/^function StateIndicator:update()$/;"	f
+Strategy.fire	Spoons/VimMode.spoon/lib/strategy.lua	/^function Strategy.fire(_)$/;"	f
+Strategy.isValid	Spoons/VimMode.spoon/lib/strategy.lua	/^function Strategy.isValid(_)$/;"	f
+Strategy:new	Spoons/VimMode.spoon/lib/strategy.lua	/^function Strategy:new(vim)$/;"	f
+TextHelpers	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^module TextHelpers$/;"	m
+TillAfterSearch.getMovements	Spoons/VimMode.spoon/lib/motions/till_after_search.lua	/^function TillAfterSearch.getMovements()$/;"	f
+TillAfterSearch:getRange	Spoons/VimMode.spoon/lib/motions/till_after_search.lua	/^function TillAfterSearch:getRange(buffer, ...)$/;"	f
+TillBeforeSearch.getMovements	Spoons/VimMode.spoon/lib/motions/till_before_search.lua	/^function TillBeforeSearch.getMovements()$/;"	f
+TillBeforeSearch:getRange	Spoons/VimMode.spoon/lib/motions/till_before_search.lua	/^function TillBeforeSearch:getRange(buffer, ...)$/;"	f
+Up.getMovements	Spoons/VimMode.spoon/lib/motions/up.lua	/^function Up.getMovements()$/;"	f
+Up.getRange	Spoons/VimMode.spoon/lib/motions/up.lua	/^function Up.getRange(_, buffer)$/;"	f
+VimMode:bindHotKeys	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:bindHotKeys(keyTable)$/;"	f
+VimMode:canUseAdvancedMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:canUseAdvancedMode()$/;"	f
+VimMode:cancel	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:cancel()$/;"	f
+VimMode:collapseSelection	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:collapseSelection()$/;"	f
+VimMode:disable	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:disable()$/;"	f
+VimMode:disableForApp	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:disableForApp(appName)$/;"	f
+VimMode:disableHotPatcher	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:disableHotPatcher()$/;"	f
+VimMode:disableSequence	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:disableSequence()$/;"	f
+VimMode:enable	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enable()$/;"	f
+VimMode:enableKeySequence	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enableKeySequence(key1, key2)$/;"	f
+VimMode:enableSequence	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enableSequence()$/;"	f
+VimMode:enter	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enter()$/;"	f
+VimMode:enterModal	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enterModal(name)$/;"	f
+VimMode:enterMotion	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enterMotion(motion)$/;"	f
+VimMode:enterOperator	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enterOperator(operator)$/;"	f
+VimMode:enterWithSequence	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:enterWithSequence(keys)$/;"	f
+VimMode:exit	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:exit()$/;"	f
+VimMode:exitAllModals	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:exitAllModals()$/;"	f
+VimMode:exitAsync	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:exitAsync()$/;"	f
+VimMode:exitModalAsync	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:exitModalAsync()$/;"	f
+VimMode:fireCommandState	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:fireCommandState()$/;"	f
+VimMode:isMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:isMode(name)$/;"	f
+VimMode:new	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:new()$/;"	f
+VimMode:pushDigitTo	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:pushDigitTo(type, digit)$/;"	f
+VimMode:resetCommandState	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:resetCommandState()$/;"	f
+VimMode:setAlertFont	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setAlertFont(name)$/;"	f
+VimMode:setInsertMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setInsertMode()$/;"	f
+VimMode:setNormalMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setNormalMode()$/;"	f
+VimMode:setPendingInput	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setPendingInput(value)$/;"	f
+VimMode:setVisualCaretPosition	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setVisualCaretPosition(position)$/;"	f
+VimMode:setVisualMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:setVisualMode()$/;"	f
+VimMode:shouldDimScreen	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:shouldDimScreen()$/;"	f
+VimMode:shouldDimScreenInNormalMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:shouldDimScreenInNormalMode(shouldDimScreen)$/;"	f
+VimMode:shouldShowAlertInNormalMode	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:shouldShowAlertInNormalMode(showAlert)$/;"	f
+VimMode:updateStateIndicator	Spoons/VimMode.spoon/lib/vim.lua	/^function VimMode:updateStateIndicator()$/;"	f
+WaitForChar:new	Spoons/VimMode.spoon/lib/wait_for_char.lua	/^function WaitForChar:new(options)$/;"	f
+WaitForChar:start	Spoons/VimMode.spoon/lib/wait_for_char.lua	/^function WaitForChar:start()$/;"	f
+Word.getMovements	Spoons/VimMode.spoon/lib/motions/word.lua	/^function Word.getMovements()$/;"	f
+Word.getRange	Spoons/VimMode.spoon/lib/motions/word.lua	/^function Word.getRange(_, buffer, operator)$/;"	f
+Yank.getKeys	Spoons/VimMode.spoon/lib/operators/yank.lua	/^function Yank.getKeys()$/;"	f
+Yank.getModifiedBuffer	Spoons/VimMode.spoon/lib/operators/yank.lua	/^function Yank.getModifiedBuffer(_, buffer, rangeStart, rangeFinish)$/;"	f
+Yank:modifySelection	Spoons/VimMode.spoon/lib/operators/yank.lua	/^function Yank:modifySelection(buffer, rangeStart, rangeFinish)$/;"	f
+['function'] 	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^  ['function'] = 5, ['userdata'] = 6, ['thread'] = 7$/;"	f
+_colorized	Spoons/VimMode.spoon/bin/installer	/^_colorized() {$/;"	f
+_kMetaTable.__index 	hs/_asm/undocumented/spaces/init.lua	/^_kMetaTable.__index = function(obj, key)$/;"	f
+_kMetaTable.__newindex 	hs/_asm/undocumented/spaces/init.lua	/^_kMetaTable.__newindex = function(obj, key, value)$/;"	f
+_kMetaTable.__pairs 	hs/_asm/undocumented/spaces/init.lua	/^_kMetaTable.__pairs = function(obj) return pairs(_kMetaTable._k[obj]) end$/;"	f
+_kMetaTable.__tostring 	hs/_asm/undocumented/spaces/init.lua	/^_kMetaTable.__tostring = function(obj)$/;"	f
+_x	Spoons/SpoonInstall.spoon/init.lua	/^local function _x(cmd, errfmt, ...)$/;"	f
+acquireText	Spoons/ClipShow.spoon/init.lua	/^local function acquireText()$/;"	f
+add_to_map	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^local function add_to_map(map, event)$/;"	f
+advanced_mode	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def advanced_mode(&block)$/;"	f
+alertDeprecation	Spoons/VimMode.spoon/lib/vim.lua	/^local function alertDeprecation(msg)$/;"	f
+ask	Spoons/VimMode.spoon/bin/installer	/^ask() {$/;"	f
+axUtils.isRichTextField 	Spoons/VimMode.spoon/lib/utils/ax.lua	/^axUtils.isRichTextField = function(element)$/;"	f
+axUtils.isTextField 	Spoons/VimMode.spoon/lib/utils/ax.lua	/^axUtils.isTextField = function(element)$/;"	f
+axUtils.patchCurrentApplication 	Spoons/VimMode.spoon/lib/utils/ax.lua	/^axUtils.patchCurrentApplication = function()$/;"	f
+basic_extract	Spoons/HSearch.spoon/hs_yddict.lua	/^local function basic_extract(arg)$/;"	f
+batteryChangedCallback	modes/battery.lua	/^function batteryChangedCallback()$/;"	f
+batteryChangedCallback	private/config.lua	/^function batteryChangedCallback()$/;"	f
+bingRequest	Spoons/BingDaily.spoon/init.lua	/^local function bingRequest()$/;"	f
+bootstrap_hammerspoon_directory	Spoons/VimMode.spoon/bin/installer	/^function bootstrap_hammerspoon_directory() {$/;"	f
+bootstrap_init_lua	Spoons/VimMode.spoon/bin/installer	/^function bootstrap_init_lua() {$/;"	f
+bootstrap_spoon_install	Spoons/VimMode.spoon/bin/installer	/^function bootstrap_spoon_install() {$/;"	f
+bootstrap_spoons_dir	Spoons/VimMode.spoon/bin/installer	/^function bootstrap_spoons_dir() {$/;"	f
+bootstrap_vim_mode_spoon	Spoons/VimMode.spoon/bin/installer	/^function bootstrap_vim_mode_spoon() {$/;"	f
+brew_cask_install	Spoons/VimMode.spoon/bin/dev-setup	/^function brew_cask_install() {$/;"	f
+brew_install	Spoons/VimMode.spoon/bin/dev-setup	/^function brew_install() {$/;"	f
+browserTabsRequest	Spoons/HSearch.spoon/hs_btabs.lua	/^local function browserTabsRequest()$/;"	f
+call_handler	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^local function call_handler(handler, params)$/;"	f
+canvasCleanup	Spoons/CountDown.spoon/init.lua	/^local function canvasCleanup()$/;"	f
+catcher	Spoons/FnMate.spoon/init.lua	/^    local function catcher(event)$/;"	f
+check_for_brew	Spoons/VimMode.spoon/bin/installer	/^function check_for_brew() {$/;"	f
+chooser_data 	Spoons/HSearch.spoon/hs_btabs.lua	/^            chooser_data = hs.fnutils.imap(data, function(item)$/;"	f
+cmodal:bind('', '	init.lua	/^    cmodal:bind('', '=', 'Stretch Outward', function() spoon.WinWin:moveAndResize("expand") end, nil, function() spoon.WinWin:moveAndResize("expand") end)$/;"	f
+command_exists	Spoons/VimMode.spoon/bin/installer	/^function command_exists() {$/;"	f
+copyToClipboard	Spoons/HSearch.spoon/init.lua	/^    local function copyToClipboard(arg)$/;"	f
+countTableAppearances	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function countTableAppearances(t, tableAppearances)$/;"	f
+createApplicationWatcher	Spoons/VimMode.spoon/lib/focus_watcher.lua	/^local function createApplicationWatcher(application, vim)$/;"	f
+createFocusWatcher	Spoons/VimMode.spoon/lib/focus_watcher.lua	/^local function createFocusWatcher(vim)$/;"	f
+createHotPatcher	Spoons/VimMode.spoon/lib/hot_patcher.lua	/^local function createHotPatcher()$/;"	f
+createStateMachine	Spoons/VimMode.spoon/lib/state.lua	/^local function createStateMachine(vim)$/;"	f
+createVimModal	Spoons/VimMode.spoon/lib/modal.lua	/^local function createVimModal(vim)$/;"	f
+create_transition	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^local function create_transition(name)$/;"	f
+curl_callback	Spoons/BingDaily.spoon/init.lua	/^local function curl_callback(exitCode, stdOut, stdErr)$/;"	f
+curl_callback	Spoons/UnsplashZ.spoon/init.lua	/^local function curl_callback(exitCode, stdOut, stdErr)$/;"	f
+current_selection	Spoons/PopupTranslateSelection.spoon/init.lua	/^function current_selection()$/;"	f
+current_value_with_selection_range	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def current_value_with_selection_range$/;"	f	class:TextHelpers
+data_diff	Spoons/SpeedMenu.spoon/init.lua	/^local function data_diff()$/;"	f
+def[action] 	Spoons/BrewInfo.spoon/init.lua	/^         def[action] = function() self:openBrewURLCurSel(subcommand_open) end$/;"	f
+def[action] 	Spoons/BrewInfo.spoon/init.lua	/^         def[action] = function() self:showBrewInfoCurSel(subcommand_show) end$/;"	f
+dmTips	Spoons/HSearch.spoon/hs_datamuse.lua	/^local function dmTips()$/;"	f
+dotheader	Spoons/VimMode.spoon/bin/installer	/^dotheader() {$/;"	f
+dotsay	Spoons/VimMode.spoon/bin/installer	/^dotsay() {$/;"	f
+emojiRequest	Spoons/HSearch.spoon/hs_emoji.lua	/^local function emojiRequest(querystr)$/;"	f
+emojiTips	Spoons/HSearch.spoon/hs_emoji.lua	/^local function emojiTips()$/;"	f
+escape	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function escape(str)$/;"	f
+expect_textarea_change_in_normal_mode	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def expect_textarea_change_in_normal_mode(from:, to:, &block)$/;"	f	class:TextHelpers
+expect_textarea_to_have_value	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def expect_textarea_to_have_value(text)$/;"	f	class:TextHelpers
+expect_textarea_to_have_value_and_selection	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def expect_textarea_to_have_value_and_selection(range)$/;"	f	class:TextHelpers
+expect_to_have_selection_range	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def expect_to_have_selection_range(string)$/;"	f	class:TextHelpers
+extensionoffile	Spoons/HSaria2.spoon/init.lua	/^                    local function extensionoffile(path)$/;"	f
+fallback_mode	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def fallback_mode(&block)$/;"	f	class:ModeHelpers
+findFirst	Spoons/VimMode.spoon/lib/utils/find_first.lua	/^local function findFirst(list, fn)$/;"	f
+find_textarea	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def find_textarea$/;"	f	class:TextHelpers
+fire	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def fire(key_strokes)$/;"	f	class:TextHelpers
+fn 	Spoons/SpeedMenu.spoon/init.lua	/^                fn = function() hs.pasteboard.setContents(ipv4) end$/;"	f
+fn 	Spoons/SpeedMenu.spoon/init.lua	/^                fn = function() hs.pasteboard.setContents(ipv6) end$/;"	f
+fn 	Spoons/SpeedMenu.spoon/init.lua	/^                fn = function() hs.pasteboard.setContents(ssid) end$/;"	f
+fn 	Spoons/SpeedMenu.spoon/init.lua	/^            fn = function() hs.pasteboard.setContents(macaddr) end$/;"	f
+fn 	Spoons/SpeedMenu.spoon/init.lua	/^        fn = function() obj:rescan() end$/;"	f
+formatNumber	Spoons/HSaria2.spoon/init.lua	/^    local function formatNumber(fnumber)$/;"	f
+formatTime	Spoons/HSaria2.spoon/init.lua	/^    local function formatTime(secnum)$/;"	f
+generateHtml	Spoons/KSheet.spoon/init.lua	/^local function generateHtml(application)$/;"	f
+getEmojiDesc	Spoons/HSearch.spoon/hs_emoji.lua	/^local function getEmojiDesc(arg)$/;"	f
+getFocusedElementPosition	Spoons/VimMode.spoon/lib/state_indicator.lua	/^local function getFocusedElementPosition()$/;"	f
+getNonSequentialKeys	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function getNonSequentialKeys(t)$/;"	f
+getSequenceLength	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function getSequenceLength(t)$/;"	f
+getTableSize	Spoons/VimMode.spoon/lib/key_sequence.lua	/^local function getTableSize(t)$/;"	f
+get_answer	Spoons/VimMode.spoon/bin/installer	/^get_answer() {$/;"	f
+get_indexes_of	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def get_indexes_of(string, char)$/;"	f	class:TextHelpers
+get_range_from_string	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def get_range_from_string(string)$/;"	f	class:TextHelpers
+get_selection_range	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def get_selection_range$/;"	f	class:TextHelpers
+hs.http.asyncGet(json_req_url, {["User-Agent"]	Spoons/BingDaily.spoon/init.lua	/^    hs.http.asyncGet(json_req_url, {["User-Agent"]=user_agent_str}, function(stat,body,header)$/;"	f
+if type(val) 	modes/music/_interface.lua	/^        if type(val) == "function" then$/;"	f
+indent	Spoons/VimMode.spoon/bin/installer	/^indent() {$/;"	f
+initialize	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^    def initialize(code)$/;"	f	class:Keycode
+initialize	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^    def initialize(strokes)$/;"	f	class:Keystroke
+inspect.KEY       	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^inspect.KEY       = setmetatable({}, {__tostring = function() return 'inspect.KEY' end})$/;"	f
+inspect.METATABLE 	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^inspect.METATABLE = setmetatable({}, {__tostring = function() return 'inspect.METATABLE' end})$/;"	f
+inspect.inspect	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^function inspect.inspect(root, options)$/;"	f
+install_hammerspoon	Spoons/VimMode.spoon/bin/installer	/^function install_hammerspoon() {$/;"	f
+install_lua_package	Spoons/VimMode.spoon/bin/dev-setup	/^function install_lua_package() {$/;"	f
+interface:currentTrack	modes/music/_interface.lua	/^function interface:currentTrack()$/;"	f
+interface:extend	modes/music/_interface.lua	/^function interface:extend(map)$/;"	f
+interface:next	modes/music/_interface.lua	/^function interface:next()$/;"	f
+interface:pause	modes/music/_interface.lua	/^function interface:pause()$/;"	f
+interface:play	modes/music/_interface.lua	/^function interface:play()$/;"	f
+interface:playpause	modes/music/_interface.lua	/^function interface:playpause()$/;"	f
+interface:previous	modes/music/_interface.lua	/^function interface:previous()$/;"	f
+interface:tell	modes/music/_interface.lua	/^function interface:tell(cmd)$/;"	f
+isFileKinds	Spoons/ClipShow.spoon/init.lua	/^local function isFileKinds(val, tbl)$/;"	f
+isIdentifier	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function isIdentifier(str)$/;"	f
+isInHistory	Spoons/WinWin.spoon/init.lua	/^local function isInHistory(windowid)$/;"	f
+isInNoteHistory	Spoons/HSearch.spoon/hs_note.lua	/^local function isInNoteHistory(value, tbl)$/;"	f
+isInStoppedQueue	Spoons/HSaria2.spoon/init.lua	/^                    local function isInStoppedQueue(value, tbl)$/;"	f
+isRangeEqual	Spoons/VimMode.spoon/lib/utils/visual.lua	/^local function isRangeEqual(range1, range2)$/;"	f
+isSequenceKey	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function isSequenceKey(k, sequenceLength)$/;"	f
+it("is not selected if length 	Spoons/VimMode.spoon/spec/selection_spec.lua	/^    it("is not selected if length == 0", function()$/;"	f
+justNoteRequest	Spoons/HSearch.spoon/hs_note.lua	/^local function justNoteRequest()$/;"	f
+justNoteStore	Spoons/HSearch.spoon/hs_note.lua	/^local function justNoteStore()$/;"	f
+keyUtils.getRealChar 	Spoons/VimMode.spoon/lib/utils/keys.lua	/^keyUtils.getRealChar = function(mods, key)$/;"	f
+leftDoubleClick	Spoons/BrewInfo.spoon/init.lua	/^function leftDoubleClick(modifiers)$/;"	f
+local _makeConstantsTable 	hs/_asm/undocumented/spaces/init.lua	/^local _makeConstantsTable = function(theTable)$/;"	f
+local addv_before 	Spoons/HSearch.spoon/hs_time.lua	/^            local addv_before = hs.fnutils.imap(valid_inputs, function(item)$/;"	f
+local advancedModeOnly 	Spoons/VimMode.spoon/lib/modal.lua	/^  local advancedModeOnly = function(fn)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_datamuse.lua	/^                        local chooser_data = hs.fnutils.imap(decoded_data, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_emoji.lua	/^                        local chooser_data = hs.fnutils.imap(decoded_data.results, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_note.lua	/^        local chooser_data = hs.fnutils.imap(note_history, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_time.lua	/^            local chooser_data = hs.fnutils.imap(obj.exec_args, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_time.lua	/^    local chooser_data = hs.fnutils.imap(obj.exec_args, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_v2ex.lua	/^                    local chooser_data = hs.fnutils.imap(decoded_data, function(item)$/;"	f
+local chooser_data 	Spoons/HSearch.spoon/hs_yddict.lua	/^                            local chooser_data = hs.fnutils.imap(dictpool, function(item)$/;"	f
+local copySequence 	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local copySequence = function(s)$/;"	f
+local creator 	Spoons/VimMode.spoon/lib/focus_watcher.lua	/^  local creator = function ()$/;"	f
+local fireMotion 	Spoons/VimMode.spoon/lib/modal.lua	/^  local fireMotion = function(type)$/;"	f
+local fireOperator 	Spoons/VimMode.spoon/lib/modal.lua	/^  local fireOperator = function(type)$/;"	f
+local isSpaceSafe 	hs/_asm/undocumented/spaces/init.lua	/^local isSpaceSafe = function(spaceID, func)$/;"	f
+local load_and_config 	Spoons/SpoonInstall.spoon/init.lua	/^            local load_and_config = function(_, success)$/;"	f
+local motion 	Spoons/VimMode.spoon/lib/modal.lua	/^  local motion = function(type)$/;"	f
+local motionNeedingChar 	Spoons/VimMode.spoon/lib/modal.lua	/^  local motionNeedingChar = function(type)$/;"	f
+local operator 	Spoons/VimMode.spoon/lib/modal.lua	/^  local operator = function(type)$/;"	f
+local operatorNeedingChar 	Spoons/VimMode.spoon/lib/modal.lua	/^  local operatorNeedingChar = function(type, optionalMotion)$/;"	f
+local pushDigitTo 	Spoons/VimMode.spoon/lib/modal.lua	/^  local pushDigitTo = function(name, digit)$/;"	f
+local reverseWithoutSystemSpaces 	hs/_asm/undocumented/spaces/init.lua	/^local reverseWithoutSystemSpaces = function(list)$/;"	f
+local round 	Spoons/VimMode.spoon/lib/utils/log.lua	/^local round = function(x, increment)$/;"	f
+local stat, body 	Spoons/HSearch.spoon/hs_v2ex.lua	/^    local stat, body = hs.http.asyncGet(query_url, nil, function(status, data)$/;"	f
+local store_trigger 	Spoons/HSearch.spoon/hs_note.lua	/^local store_trigger = hs.hotkey.new("", "return", nil, function()$/;"	f
+local strategy 	Spoons/VimMode.spoon/lib/vim.lua	/^  local strategy = findFirst(strategies, function(strategy)$/;"	f
+local tostring 	Spoons/VimMode.spoon/lib/utils/log.lua	/^local tostring = function(...)$/;"	f
+local transition 	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^  local transition = function(event,from,to)$/;"	f
+local update_repo_and_continue 	Spoons/SpoonInstall.spoon/init.lua	/^            local update_repo_and_continue = function(_, success)$/;"	f
+local value 	Spoons/HSearch.spoon/hs_yddict.lua	/^        local value = hs.fnutils.imap(arg, function(item)$/;"	f
+local visualOperator 	Spoons/VimMode.spoon/lib/modal.lua	/^  local visualOperator = function(type)$/;"	f
+local watcher 	Spoons/VimMode.spoon/lib/focus_watcher.lua	/^  local watcher = hs.application.watcher.new(function(_, eventType, application)$/;"	f
+log[x.name] 	Spoons/VimMode.spoon/lib/utils/log.lua	/^  log[x.name] = function(...)$/;"	f
+machine.create	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine.create(options)$/;"	f
+machine:can	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:can(e)$/;"	f
+machine:cancelTransition	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:cancelTransition(event)$/;"	f
+machine:cannot	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:cannot(e)$/;"	f
+machine:is	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:is(state)$/;"	f
+machine:todot	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:todot(filename)$/;"	f
+machine:transition	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^function machine:transition(event)$/;"	f
+makePath	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function makePath(path, ...)$/;"	f
+minutesToHours	modes/battery.lua	/^function minutesToHours(minutes)$/;"	f
+minutesToHours	private/config.lua	/^function minutesToHours(minutes)$/;"	f
+mod:bindHotkeys	Spoons/BrewInfo.spoon/init.lua	/^function mod:bindHotkeys(mapping)$/;"	f
+mod:current_selection	Spoons/BrewInfo.spoon/init.lua	/^function mod:current_selection()$/;"	f
+mod:openBrewURL	Spoons/BrewInfo.spoon/init.lua	/^function mod:openBrewURL(pkg, subcommand)$/;"	f
+mod:openBrewURLCurSel	Spoons/BrewInfo.spoon/init.lua	/^function mod:openBrewURLCurSel(subcommand)$/;"	f
+mod:show	Spoons/BrewInfo.spoon/init.lua	/^function mod:show(text)$/;"	f
+mod:showBrewInfo	Spoons/BrewInfo.spoon/init.lua	/^function mod:showBrewInfo(pkg, subcommand)$/;"	f
+mod:showBrewInfoCurSel	Spoons/BrewInfo.spoon/init.lua	/^function mod:showBrewInfoCurSel(subcommand)$/;"	f
+modal.bindCountsToModal 	Spoons/VimMode.spoon/lib/modal.lua	/^  modal.bindCountsToModal = function(mdl, name)$/;"	f
+modal.bindMotionsToModal 	Spoons/VimMode.spoon/lib/modal.lua	/^  modal.bindMotionsToModal = function(mdl, type)$/;"	f
+module.allWindowsForSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.allWindowsForSpace = function(...)$/;"	f
+module.changeToSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.changeToSpace = function(...)$/;"	f
+module.count 	hs/_asm/undocumented/spaces/init.lua	/^module.count = function()$/;"	f
+module.createSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.createSpace = function(...)$/;"	f
+module.currentSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.currentSpace = function()$/;"	f
+module.debug.layout 	hs/_asm/undocumented/spaces/init.lua	/^module.debug.layout = function(...) return inspect(internal.details(...)) end$/;"	f
+module.debug.report 	hs/_asm/undocumented/spaces/init.lua	/^module.debug.report = function(...)$/;"	f
+module.debug.spaceInfo 	hs/_asm/undocumented/spaces/init.lua	/^module.debug.spaceInfo = function(v)$/;"	f
+module.isAnimating 	hs/_asm/undocumented/spaces/init.lua	/^module.isAnimating = function(...)$/;"	f
+module.layout 	hs/_asm/undocumented/spaces/init.lua	/^module.layout = function()$/;"	f
+module.mainScreenUUID 	hs/_asm/undocumented/spaces/init.lua	/^module.mainScreenUUID = function(...)$/;"	f
+module.moveToSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.moveToSpace = function(whichIndex)$/;"	f
+module.moveWindowToSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.moveWindowToSpace = function(...)$/;"	f
+module.query 	hs/_asm/undocumented/spaces/init.lua	/^module.query = function(...)$/;"	f
+module.raw.allWindowsForSpace 	hs/_asm/undocumented/spaces/init.lua	/^    module.raw.allWindowsForSpace = function(...)$/;"	f
+module.raw.changeToSpace 	hs/_asm/undocumented/spaces/init.lua	/^    module.raw.changeToSpace = function(...)$/;"	f
+module.raw.removeSpace 	hs/_asm/undocumented/spaces/init.lua	/^    module.raw.removeSpace = function(...)$/;"	f
+module.removeSpace 	hs/_asm/undocumented/spaces/init.lua	/^module.removeSpace = function(...)$/;"	f
+module.spacesByScreenUUID 	hs/_asm/undocumented/spaces/init.lua	/^module.spacesByScreenUUID = function(...)$/;"	f
+module.windowOnSpaces 	hs/_asm/undocumented/spaces/init.lua	/^module.windowOnSpaces = function(...)$/;"	f
+normal_mode	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def normal_mode$/;"	f	class:TextHelpers
+numberUtils.pushDigit	Spoons/VimMode.spoon/lib/utils/number_utils.lua	/^function numberUtils.pushDigit(number, digit)$/;"	f
+obj.chooser 	Spoons/HSearch.spoon/init.lua	/^    obj.chooser = hs.chooser.new(function(chosen)$/;"	f
+obj.supervisor:bind(hshelp_keys[1], hshelp_keys[2], "Toggle Help Panel", function() obj:toggleCheatsheet({all	Spoons/ModalMgr.spoon/init.lua	/^    obj.supervisor:bind(hshelp_keys[1], hshelp_keys[2], "Toggle Help Panel", function() obj:toggleCheatsheet({all=obj.supervisor}) end)$/;"	f
+obj.timer 	Spoons/BingDaily.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(3*60*60, function() bingRequest() end)$/;"	f
+obj.timer 	Spoons/Calendar.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(1800, function() updateCalCanvas() end)$/;"	f
+obj.timer 	Spoons/CircleClock.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(1, function() updateClock() end)$/;"	f
+obj.timer 	Spoons/CountDown.spoon/init.lua	/^            obj.timer = hs.timer.doEvery(1, function()$/;"	f
+obj.timer 	Spoons/CountDown.spoon/init.lua	/^            obj.timer = hs.timer.doEvery(interval, function()$/;"	f
+obj.timer 	Spoons/HCalendar.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(1800, function() updateHcalCanvas() end)$/;"	f
+obj.timer 	Spoons/HSaria2.spoon/init.lua	/^                    obj.timer = hs.timer.doEvery(obj.refresh_interval, function() obj:intervalRequest() end)$/;"	f
+obj.timer 	Spoons/HSaria2.spoon/init.lua	/^                obj.timer = hs.timer.doEvery(obj.refresh_interval, function() obj:intervalRequest() end)$/;"	f
+obj.timer 	Spoons/TimeFlow.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(1, function() updateElapsedCanvas() end)$/;"	f
+obj.timer 	Spoons/UnsplashZ.spoon/init.lua	/^        obj.timer = hs.timer.doEvery(3*60*60, function() unsplashRequest() end)$/;"	f
+obj.trigger 	Spoons/HSearch.spoon/init.lua	/^            obj.trigger = hs.hotkey.bind("", "tab", nil, function() obj:switchSource() end)$/;"	f
+obj:_build_repo_json_url	Spoons/SpoonInstall.spoon/init.lua	/^function obj:_build_repo_json_url(repo)$/;"	f
+obj:_installSpoonFromZipURLgetCallback	Spoons/SpoonInstall.spoon/init.lua	/^function obj:_installSpoonFromZipURLgetCallback(urlparts, callback, status, body, headers)$/;"	f
+obj:_is_valid_spoon	Spoons/SpoonInstall.spoon/init.lua	/^function obj:_is_valid_spoon(name, repo)$/;"	f
+obj:_storeRepoJSON	Spoons/SpoonInstall.spoon/init.lua	/^function obj:_storeRepoJSON(repo, callback, status, body, hdrs)$/;"	f
+obj:activate	Spoons/ModalMgr.spoon/init.lua	/^function obj:activate(idList, trayColor, showKeys)$/;"	f
+obj:adjustCanvas	Spoons/ClipShow.spoon/init.lua	/^function obj:adjustCanvas()$/;"	f
+obj:andUse	Spoons/SpoonInstall.spoon/init.lua	/^function obj:andUse(name, arg)$/;"	f
+obj:asyncInstallSpoonFromRepo	Spoons/SpoonInstall.spoon/init.lua	/^function obj:asyncInstallSpoonFromRepo(name, repo, callback)$/;"	f
+obj:asyncInstallSpoonFromZipURL	Spoons/SpoonInstall.spoon/init.lua	/^function obj:asyncInstallSpoonFromZipURL(url, callback)$/;"	f
+obj:asyncUpdateAllRepos	Spoons/SpoonInstall.spoon/init.lua	/^function obj:asyncUpdateAllRepos()$/;"	f
+obj:asyncUpdateRepo	Spoons/SpoonInstall.spoon/init.lua	/^function obj:asyncUpdateRepo(repo, callback)$/;"	f
+obj:bindHotkeys	Spoons/PopupTranslateSelection.spoon/init.lua	/^function obj:bindHotkeys(mapping)$/;"	f
+obj:centerCursor	Spoons/WinWin.spoon/init.lua	/^function obj:centerCursor()$/;"	f
+obj:connectToHost	Spoons/HSaria2.spoon/init.lua	/^function obj:connectToHost(hostaddr, secret)$/;"	f
+obj:createAndRefreshPanel	Spoons/HSaria2.spoon/init.lua	/^function obj:createAndRefreshPanel()$/;"	f
+obj:deactivate	Spoons/ModalMgr.spoon/init.lua	/^function obj:deactivate(idList)$/;"	f
+obj:deactivateAll	Spoons/ModalMgr.spoon/init.lua	/^function obj:deactivateAll()$/;"	f
+obj:drawToolbar	Spoons/HSaria2.spoon/init.lua	/^function obj:drawToolbar()$/;"	f
+obj:fillModalKeys	Spoons/ClipShow.spoon/init.lua	/^function obj:fillModalKeys()$/;"	f
+obj:hide	Spoons/KSheet.spoon/init.lua	/^function obj:hide()$/;"	f
+obj:init	Spoons/AClock.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/BingDaily.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/Calendar.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/CircleClock.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/ClipShow.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/CountDown.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/FnMate.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/HCalendar.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/HSearch.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/KSheet.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/ModalMgr.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/SpeedMenu.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/TimeFlow.spoon/init.lua	/^function obj:init()$/;"	f
+obj:init	Spoons/UnsplashZ.spoon/init.lua	/^function obj:init()$/;"	f
+obj:installSpoonFromRepo	Spoons/SpoonInstall.spoon/init.lua	/^function obj:installSpoonFromRepo(name, repo, callback)$/;"	f
+obj:installSpoonFromZipURL	Spoons/SpoonInstall.spoon/init.lua	/^function obj:installSpoonFromZipURL(url)$/;"	f
+obj:intervalRequest	Spoons/HSaria2.spoon/init.lua	/^function obj:intervalRequest()$/;"	f
+obj:loadSources	Spoons/HSearch.spoon/init.lua	/^function obj:loadSources()$/;"	f
+obj:moveAndResize	Spoons/WinWin.spoon/init.lua	/^function obj:moveAndResize(option)$/;"	f
+obj:moveToScreen	Spoons/WinWin.spoon/init.lua	/^function obj:moveToScreen(direction)$/;"	f
+obj:new	Spoons/ModalMgr.spoon/init.lua	/^function obj:new(id)$/;"	f
+obj:newTask	Spoons/HSaria2.spoon/init.lua	/^function obj:newTask(tasktype, urls, hostaddr, secret)$/;"	f
+obj:openInBrowserWithRef	Spoons/ClipShow.spoon/init.lua	/^function obj:openInBrowserWithRef(refstr)$/;"	f
+obj:openWithCommand	Spoons/ClipShow.spoon/init.lua	/^function obj:openWithCommand(command)$/;"	f
+obj:pauseOrResume	Spoons/CountDown.spoon/init.lua	/^function obj:pauseOrResume()$/;"	f
+obj:processClipboard	Spoons/ClipShow.spoon/init.lua	/^function obj:processClipboard()$/;"	f
+obj:redo	Spoons/WinWin.spoon/init.lua	/^function obj:redo()$/;"	f
+obj:repolist	Spoons/SpoonInstall.spoon/init.lua	/^function obj:repolist()$/;"	f
+obj:rescan	Spoons/SpeedMenu.spoon/init.lua	/^function obj:rescan()$/;"	f
+obj:restoreLastSession	Spoons/ClipShow.spoon/init.lua	/^function obj:restoreLastSession()$/;"	f
+obj:restoreOutput	Spoons/HSearch.spoon/init.lua	/^function obj:restoreOutput()$/;"	f
+obj:saveToFile	Spoons/ClipShow.spoon/init.lua	/^function obj:saveToFile()$/;"	f
+obj:saveToSession	Spoons/ClipShow.spoon/init.lua	/^function obj:saveToSession()$/;"	f
+obj:search	Spoons/SpoonInstall.spoon/init.lua	/^function obj:search(pat)$/;"	f
+obj:sendCommand	Spoons/HSaria2.spoon/init.lua	/^function obj:sendCommand(command, gid, hostaddr, secret)$/;"	f
+obj:setProgress	Spoons/CountDown.spoon/init.lua	/^function obj:setProgress(progress, notifystr)$/;"	f
+obj:show	Spoons/KSheet.spoon/init.lua	/^function obj:show()$/;"	f
+obj:startFor	Spoons/CountDown.spoon/init.lua	/^function obj:startFor(minutes)$/;"	f
+obj:stash	Spoons/WinWin.spoon/init.lua	/^function obj:stash()$/;"	f
+obj:stepMove	Spoons/WinWin.spoon/init.lua	/^function obj:stepMove(direction)$/;"	f
+obj:stepResize	Spoons/WinWin.spoon/init.lua	/^function obj:stepResize(direction)$/;"	f
+obj:switchSource	Spoons/HSearch.spoon/init.lua	/^function obj:switchSource()$/;"	f
+obj:toggleCheatsheet	Spoons/ModalMgr.spoon/init.lua	/^function obj:toggleCheatsheet(iterList, force)$/;"	f
+obj:togglePanel	Spoons/HSaria2.spoon/init.lua	/^function obj:togglePanel()$/;"	f
+obj:toggleShow	Spoons/AClock.spoon/init.lua	/^function obj:toggleShow()$/;"	f
+obj:toggleShow	Spoons/ClipShow.spoon/init.lua	/^function obj:toggleShow()$/;"	f
+obj:toggleShow	Spoons/HSearch.spoon/init.lua	/^function obj:toggleShow()$/;"	f
+obj:translatePopup	Spoons/PopupTranslateSelection.spoon/init.lua	/^function obj:translatePopup(text, to, from)$/;"	f
+obj:translateSelectionPopup	Spoons/PopupTranslateSelection.spoon/init.lua	/^function obj:translateSelectionPopup(to,from)$/;"	f
+obj:undo	Spoons/WinWin.spoon/init.lua	/^function obj:undo()$/;"	f
+obj:updateAllRepos	Spoons/SpoonInstall.spoon/init.lua	/^function obj:updateAllRepos()$/;"	f
+obj:updateRepo	Spoons/SpoonInstall.spoon/init.lua	/^function obj:updateRepo(repo)$/;"	f
+onBeforePress 	Spoons/VimMode.spoon/lib/contextual_modal.lua	/^    onBeforePress = function() end,$/;"	f
+onCancel 	Spoons/VimMode.spoon/lib/modal.lua	/^        onCancel = function()$/;"	f
+onCancel 	Spoons/VimMode.spoon/lib/wait_for_char.lua	/^    onCancel = options.onCancel or function() end,$/;"	f
+onChar 	Spoons/VimMode.spoon/lib/modal.lua	/^        onChar = function(character)$/;"	f
+onChar 	Spoons/VimMode.spoon/lib/wait_for_char.lua	/^    onChar = options.onChar or function() end,$/;"	f
+onenterInsert 	Spoons/VimMode.spoon/lib/state.lua	/^      onenterInsert = function()$/;"	f
+onenterMotion 	Spoons/VimMode.spoon/lib/state.lua	/^      onenterMotion = function(self, _, _, _, motion)$/;"	f
+onenterNormal 	Spoons/VimMode.spoon/lib/state.lua	/^      onenterNormal = function()$/;"	f
+onenterOperator 	Spoons/VimMode.spoon/lib/state.lua	/^      onenterOperator = function(_, _, _, _, operator)$/;"	f
+onenterVisual 	Spoons/VimMode.spoon/lib/state.lua	/^      onenterVisual = function()$/;"	f
+onfire 	Spoons/VimMode.spoon/lib/state.lua	/^      onfire = function(self)$/;"	f
+onstatechange 	Spoons/VimMode.spoon/lib/state.lua	/^      onstatechange = function()$/;"	f
+openWithBrowser	Spoons/HSearch.spoon/init.lua	/^    local function openWithBrowser(arg)$/;"	f
+openWithChrome	Spoons/HSearch.spoon/init.lua	/^    local function openWithChrome(arg)$/;"	f
+openWithFirefox	Spoons/HSearch.spoon/init.lua	/^    local function openWithFirefox(arg)$/;"	f
+openWithSafari	Spoons/HSearch.spoon/init.lua	/^    local function openWithSafari(arg)$/;"	f
+open_and_focus_page!	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def open_and_focus_page!(mode: "advanced")$/;"	f	class:TextHelpers
+open_brew_url 	Spoons/BrewInfo.spoon/init.lua	/^      open_brew_url = function() self:openBrewURLCurSel() end,$/;"	f
+patchChromiumWithAccessibilityFlag	Spoons/VimMode.spoon/lib/utils/ax.lua	/^local function patchChromiumWithAccessibilityFlag(axApp)$/;"	f
+patchElectronAppsWithAccessibilityFlag	Spoons/VimMode.spoon/lib/utils/ax.lua	/^local function patchElectronAppsWithAccessibilityFlag(axApp)$/;"	f
+ping	private/config.lua	/^function ping()$/;"	f
+pingResult	private/config.lua	/^function pingResult(object, message, seqnum, error)$/;"	f
+pn.toggleFullScreen	private/config.lua	/^function pn.toggleFullScreen()$/;"	f
+print_question	Spoons/VimMode.spoon/bin/installer	/^print_question() {$/;"	f
+processData	Spoons/HSaria2.spoon/init.lua	/^local function processData(ptype, pnumber, status)$/;"	f
+processDownloadProgress	Spoons/HSaria2.spoon/init.lua	/^local function processDownloadProgress(completed, total)$/;"	f
+processMenuItems	Spoons/KSheet.spoon/init.lua	/^local function processMenuItems(menustru)$/;"	f
+processPath	Spoons/HSaria2.spoon/init.lua	/^local function processPath(files)$/;"	f
+processRecursive	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function processRecursive(process, item, path, visited)$/;"	f
+processRemainTime	Spoons/HSaria2.spoon/init.lua	/^local function processRemainTime(completed, total, speed, status)$/;"	f
+processURLS	Spoons/HSaria2.spoon/init.lua	/^local function processURLS(str)$/;"	f
+rawpairs	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function rawpairs(t)$/;"	f
+removeCaffeine	private/config.lua	/^function removeCaffeine()$/;"	f
+removeNote	Spoons/HSearch.spoon/hs_note.lua	/^local function removeNote(arg)$/;"	f
+remove_range_chars	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def remove_range_chars(string)$/;"	f	class:TextHelpers
+restart_hammerspoon	Spoons/VimMode.spoon/bin/installer	/^function restart_hammerspoon() {$/;"	f
+restricted.modal.entered 	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^  restricted.modal.entered = function()$/;"	f
+restricted.modal.exited 	Spoons/VimMode.spoon/lib/restricted_modal.lua	/^  restricted.modal.exited = function()$/;"	f
+rgba	Spoons/VimMode.spoon/lib/state_indicator.lua	/^local function rgba(r, g, b, a)$/;"	f
+sayinfo	Spoons/VimMode.spoon/bin/installer	/^sayinfo() {$/;"	f
+saysuccess	Spoons/VimMode.spoon/bin/installer	/^saysuccess() {$/;"	f
+screenMT.__index.spaces          	hs/_asm/undocumented/spaces/init.lua	/^screenMT.__index.spaces          = function(obj) return module.spacesByScreenUUID()[internal.UUIDforScreen(obj)] end$/;"	f
+screenMT.__index.spacesAnimating 	hs/_asm/undocumented/spaces/init.lua	/^screenMT.__index.spacesAnimating = function(obj) return internal.screenUUIDisAnimating(internal.UUIDforScreen(obj)) end$/;"	f
+scriptPath	Spoons/VimMode.spoon/init.lua	/^local function scriptPath()$/;"	f
+script_path	Spoons/CircleClock.spoon/init.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_btabs.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_datamuse.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_emoji.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_note.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_time.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_v2ex.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/hs_yddict.lua	/^local function script_path()$/;"	f
+script_path	Spoons/HSearch.spoon/init.lua	/^local function script_path()$/;"	f
+script_path	Spoons/TimeFlow.spoon/init.lua	/^local function script_path()$/;"	f
+self.sequence 	Spoons/VimMode.spoon/lib/vim.lua	/^  self.sequence = KeySequence:new(keys, function()$/;"	f
+self.timer 	Spoons/AClock.spoon/init.lua	/^        self.timer = hs.timer.doAfter(4, function()$/;"	f
+self[name] 	modes/music/_interface.lua	/^            self[name] = function()$/;"	f
+sendKeyStrokes	Spoons/HSearch.spoon/init.lua	/^    local function sendKeyStrokes(arg)$/;"	f
+send_os_keys	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def send_os_keys(*keys)$/;"	f
+set_chrome_accessibility!	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def set_chrome_accessibility!(value = true)$/;"	f	class:TextHelpers
+set_selection_range	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def set_selection_range(start, finish)$/;"	f	class:TextHelpers
+set_textarea_value_and_selection	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def set_textarea_value_and_selection(value)$/;"	f	class:TextHelpers
+setmetatable(inspect, { __call 	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^setmetatable(inspect, { __call = function(_, ...) return inspect.inspect(...) end })$/;"	f
+showBatteryStatus	modes/battery.lua	/^function showBatteryStatus()$/;"	f
+showBatteryStatus	private/config.lua	/^function showBatteryStatus()$/;"	f
+showWifiNetwork	private/config.lua	/^function showWifiNetwork()$/;"	f
+show_brew_info 	Spoons/BrewInfo.spoon/init.lua	/^      show_brew_info = function() self:showBrewInfoCurSel() end,$/;"	f
+smartQuote	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function smartQuote(str)$/;"	f
+sortKeys	Spoons/VimMode.spoon/lib/utils/inspect.lua	/^local function sortKeys(a, b)$/;"	f
+sourceFunc	Spoons/HSearch.spoon/init.lua	/^                    local function sourceFunc()$/;"	f
+splitBySpace	Spoons/HSearch.spoon/hs_time.lua	/^local function splitBySpace(str)$/;"	f
+spotifyNext	private/config.lua	/^function spotifyNext()$/;"	f
+ssidChangedCallback	private/config.lua	/^function ssidChangedCallback()$/;"	f
+stringUtils.findNextIndex	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.findNextIndex(str, searchChar, startPos)$/;"	f
+stringUtils.findPrevIndex	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.findPrevIndex(str, searchChar, startPos)$/;"	f
+stringUtils.isNonAlphanumeric	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.isNonAlphanumeric(str)$/;"	f
+stringUtils.isPrintableChar	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.isPrintableChar(char)$/;"	f
+stringUtils.isPunctuation	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.isPunctuation(char)$/;"	f
+stringUtils.isWhitespace	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.isWhitespace(char)$/;"	f
+stringUtils.lastChar	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.lastChar(text)$/;"	f
+stringUtils.split	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.split(delimiter, text, includeDelimiter)$/;"	f
+stringUtils.toChars	Spoons/VimMode.spoon/lib/utils/string_utils.lua	/^function stringUtils.toChars(str)$/;"	f
+tableUtils.matches 	Spoons/VimMode.spoon/lib/utils/table.lua	/^tableUtils.matches = function(table1, table2)$/;"	f
+thesaurusRequest	Spoons/HSearch.spoon/hs_datamuse.lua	/^local function thesaurusRequest(querystr)$/;"	f
+timeDeltaRequest	Spoons/HSearch.spoon/hs_time.lua	/^local function timeDeltaRequest(querystr)$/;"	f
+timeRequest	Spoons/HSearch.spoon/hs_time.lua	/^local function timeRequest()$/;"	f
+times	Spoons/VimMode.spoon/lib/utils/times.lua	/^local function times(n, fn)$/;"	f
+to_applescript	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^    def to_applescript$/;"	f	class:Keycode
+to_applescript	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^    def to_applescript$/;"	f	class:Keystroke
+toggleCaffeine	private/config.lua	/^function toggleCaffeine()$/;"	f
+transition	Spoons/VimMode.spoon/lib/utils/statemachine.lua	/^  local function transition(self, ...)$/;"	f
+trim_content	Spoons/HSearch.spoon/hs_v2ex.lua	/^                        local function trim_content()$/;"	f
+unsplashRequest	Spoons/UnsplashZ.spoon/init.lua	/^local function unsplashRequest()$/;"	f
+updateCaffeineDisplay	private/config.lua	/^local function updateCaffeineDisplay(state)$/;"	f
+updateCalCanvas	Spoons/Calendar.spoon/init.lua	/^local function updateCalCanvas()$/;"	f
+updateClock	Spoons/CircleClock.spoon/init.lua	/^local function updateClock()$/;"	f
+updateElapsedCanvas	Spoons/TimeFlow.spoon/init.lua	/^local function updateElapsedCanvas()$/;"	f
+updateHcalCanvas	Spoons/HCalendar.spoon/init.lua	/^local function updateHcalCanvas()$/;"	f
+v2exRequest	Spoons/HSearch.spoon/hs_v2ex.lua	/^local function v2exRequest()$/;"	f
+vim.modal 	Spoons/VimMode.spoon/lib/vim.lua	/^  vim.modal = createVimModal(vim):setOnBeforePress(function(mods, key)$/;"	f
+vimBenchmark	Spoons/VimMode.spoon/lib/utils/benchmark.lua	/^function vimBenchmark(name, fn)$/;"	f
+visualUtils.getNewRange 	Spoons/VimMode.spoon/lib/utils/visual.lua	/^visualUtils.getNewRange = function (currentRange, motionRange, caretPosition)$/;"	f
+visual_mode	Spoons/VimMode.spoon/spec/features/visual_mode_spec.rb	/^  def visual_mode$/;"	f
+wait_for	Spoons/VimMode.spoon/spec/support/text_helpers.rb	/^  def wait_for(&block)$/;"	f	class:TextHelpers
+warn_about_xcode_tools	Spoons/VimMode.spoon/bin/installer	/^function warn_about_xcode_tools() {$/;"	f
+web_extract	Spoons/HSearch.spoon/hs_yddict.lua	/^local function web_extract(arg)$/;"	f
+windowMT.__index.spaces          	hs/_asm/undocumented/spaces/init.lua	/^windowMT.__index.spaces          = function(obj) return obj:id() and internal.windowsOnSpaces(obj:id()) or nil end$/;"	f
+windowMT.__index.spacesMoveTo    	hs/_asm/undocumented/spaces/init.lua	/^windowMT.__index.spacesMoveTo    = function(obj, ...)$/;"	f
+youdaoInstantTrans	Spoons/HSearch.spoon/hs_yddict.lua	/^local function youdaoInstantTrans(querystr)$/;"	f
+youdaoTips	Spoons/HSearch.spoon/hs_yddict.lua	/^local function youdaoTips()$/;"	f
