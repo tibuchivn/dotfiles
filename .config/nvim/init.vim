@@ -147,8 +147,9 @@ map <leader>e :CocCommand explorer<CR>
 map <leader>y "+y<cr>
 map <leader>p "+p<cr>
 let $FZF_DEFAULT_OPTS="--reverse --bind up:preview-up,down:preview-down"
-let $FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore node_modules --ignore .git -g ""'
+"let $FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore node_modules --ignore .git -g ""'
 
+let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules" --glob "!node_modules" --glob "!tmp/*" --glob "!**/*.min.js" --glob "!**/*.min.css"'
 nnoremap <silent> <C-p> :FZF<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true } }
 
