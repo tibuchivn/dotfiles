@@ -16,6 +16,8 @@ set foldmethod=indent
 set foldnestmax=10
 set foldlevelstart=30
 
+set scrolloff=50
+
 set updatetime=1000
 " number line show
 set nu
@@ -68,11 +70,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rvm'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-rails'
-Plug 'vim-scripts/The-NERD-Commenter'
+Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'Yggdroot/indentLine'
-" Plug 'scrooloose/nerdtree'
 Plug 'JulesWang/css.vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'isRuslan/vim-es6'
