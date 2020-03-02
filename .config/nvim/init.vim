@@ -104,6 +104,7 @@ Plug 'yssl/QFEnter'
 Plug 'vimlab/split-term.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -282,6 +283,10 @@ endfunction
 
 noremap <Leader>tn :tabnew %<CR>
 nnoremap <Leader>bl :<C-u>call gitblame#echo()<CR>
+
+let g:goyo_linenr=1
+let g:goyo_width=120
+noremap <Leader>z :Goyo<CR>
 
 " edit init.vim
 nnoremap <Leader>ev :e ~/.config/nvim/init.vim<CR>
