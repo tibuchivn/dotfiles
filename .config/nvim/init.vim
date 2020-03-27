@@ -105,6 +105,7 @@ Plug 'vimlab/split-term.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
+"Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -289,7 +290,7 @@ let g:goyo_width=120
 noremap <Leader>z :Goyo<CR>
 
 " edit init.vim
-nnoremap <Leader>ev :e ~/.config/nvim/init.vim<CR>
+nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
 
 " source init.vim
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
