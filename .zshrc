@@ -15,7 +15,8 @@ export ZSH=/Users/tungtram/.oh-my-zsh
 ZSH_THEME="spaceship"
 
 SPACESHIP_EXEC_TIME_SHOW="false"
-
+SPACESHIP_TIME_SHOW="true"
+SPACESHIP_TIME_PREFIX=""
 SPACESHIP_PROMPT_ADD_NEWLINE="true"
 SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
@@ -47,6 +48,41 @@ SPACESHIP_RUBY_SYMBOL=""
 
 SPACESHIP_DOCKER_SHOW="false"
 SPACESHIP_PACKAGE_SHOW="false"
+
+SPACESHIP_PROMPT_ORDER=(
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  elixir        # Elixir section
+  xcode         # Xcode section
+  swift         # Swift section
+  golang        # Go section
+  php           # PHP section
+  rust          # Rust section
+  haskell       # Haskell Stack section
+  julia         # Julia section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
+  dotnet        # .NET section
+  ember         # Ember.js section
+  terraform     # Terraform workspace section
+  exec_time     # Execution time
+  time          # Time stamps section
+  line_sep      # Line break
+  battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -196,10 +232,11 @@ alias sps='spotify share'
 alias start_sa='eval "$(ssh-agent -s)"'
 alias reswag='RAILS_ENV=test rake rswag:specs:swaggerize'
 alias rmorig="find . -type f -name '*.orig' -delete"
-#alias nvim="~/nvim-osx64/bin/nvim"
 alias gfco="git fco"
 alias gfm="git fmerge"
 alias tx="tmuxinator"
+alias ls="exa"
+alias cat="bat"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 export BUNDLE_GITHUB__COM="774d411bb83702d9cd2f8f7c9ab1c301668ec618"
 

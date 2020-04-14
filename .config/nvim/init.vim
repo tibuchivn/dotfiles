@@ -61,14 +61,24 @@ let mapleader= " "
 set completefunc=syntaxcomplete#Complete
 
 call plug#begin('~/.vim/plugged')
+
+if !&diff
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+endif
+
+Plug 'vim-ruby/vim-ruby'
+Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-haml'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rvm'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
@@ -91,21 +101,15 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-grepper'
 Plug 'luochen1990/rainbow'
 Plug 'janko/vim-test'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kremso/vim-spectator'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'zivyangll/git-blame.vim'
-Plug 'tpope/vim-haml'
 Plug 'yssl/QFEnter'
 Plug 'vimlab/split-term.vim'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
-"Plug 'mhinz/vim-startify'
 
 call plug#end()
 
@@ -241,12 +245,12 @@ set updatetime=300
 set signcolumn=yes
 set cmdheight=2
 " inoremap <silent><expr> <TAB>
-      " \ pumvisible() ? "\<C-n>" :
-      " \ <SID>check_back_space() ? "\<TAB>" :
-      " \ coc#refresh()
+" \ pumvisible() ? "\<C-n>" :
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-                                           \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -310,9 +314,5 @@ nnoremap <C-w><C-l> <C-w>l<C-w>_<C-w><Bar>
 " quocle
 vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
 xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/g<left><left>
-
-" browse quickfix
-nnoremap <expr> <Leader>j   (&diff ? "]c" : ":cnext\<CR>")
-nnoremap <expr> <Leader>k (&diff ? "[c" : ":cprev\<CR>")
 
 map <leader>bd :%bd\|e#\|bd#<cr>
