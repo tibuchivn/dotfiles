@@ -5,9 +5,13 @@
   "python.linting.enabled": true,
   "python.linting.pep8Enabled": true,
   "solargraph.diagnostics": true,
+  "solargraph.useBundler": false,
+  "solargraph.promptDownload": false,
+  "solargraph.trace.server": "verbose",
   "explorer.icon.enableNerdfont": true,
   "coc.preferences.extensionUpdateCheck": "daily",
   "explorer.file.column.indent.indentLine": false,
   "explorer.width": 40,
-  "explorer.previewAction.onHover": false
+  "explorer.previewAction.onHover": false,
+  "snippets.priority": 1
 }

@@ -30,6 +30,7 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
       \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+command! -buffer -bar -nargs=? FormatJSON :%!jq -e -M <args> .
 set ignorecase
 set smartcase
 set hlsearch
@@ -47,9 +48,6 @@ syntax on
 " support css word with -
 autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
 autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
-
-" If more than one window and previous buffer was NERDTree, go back to it.
-autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
 " set t_Co=256
 autocmd BufWritePre * :%s/\s\+$//e
@@ -69,6 +67,7 @@ if !&diff
   Plug 'honza/vim-snippets'
 endif
 
+" Plug 'brooth/far.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-sensible'
@@ -82,19 +81,14 @@ Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'Yggdroot/indentLine'
-Plug 'JulesWang/css.vim'
-Plug 'cakebaker/scss-syntax.vim'
-Plug 'isRuslan/vim-es6'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
-Plug 'kana/vim-textobj-user'
-Plug 'michaeljsmith/vim-indent-object'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
@@ -110,10 +104,14 @@ Plug 'zivyangll/git-blame.vim'
 Plug 'yssl/QFEnter'
 Plug 'vimlab/split-term.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'kana/vim-textobj-user'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'andrewradev/switch.vim'
 
 call plug#end()
 
 set background=dark
+" set background=light
 
 let g:solarized_use16=1
 
@@ -130,33 +128,20 @@ let g:airline_skip_empty_sections = 1
 " let g:airline_section_z = '%3p%% %3l/%L:%3v'
 let g:airline_section_z = ''
 
-
-" let g:lightline = { \ 'active': { \   'left': [ [ 'mode', 'paste' ], \
-" [ 'gitbranch', 'readonly', 'filename', 'modified', 'cocstatus' ] ] \ }, \
-" 'component_function': { \   'gitbranch': 'fugitive#head', \   'filename':
-" 'FilenameForLightline', \   'cocstatus': 'coc#status' \ }, \ }
-
-" function! FilenameForLightline() return expand('%') endfunction
+let g:rainbow_active = 0
 
 let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 let g:coc_node_path = '/Users/tungtram/.asdf/installs/nodejs/12.13.0/bin/node'
 
-" map <silent><F8> :NERDTreeFocus<CR>
-" map <leader>r :NERDTreeFind<cr>
-" map <leader>e :NERDTreeToggle<cr>
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
-" let NERDSpaceDelims=1
+let NERDDefaultAlign='left'
+let NERDSpaceDelims=1
 map <leader>e :CocCommand explorer<CR>
 
 map <leader>y "+y<cr>
 map <leader>p "+p<cr>
-let $FZF_DEFAULT_OPTS="--reverse --bind up:preview-up,down:preview-down"
-"let $FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore node_modules --ignore .git -g ""'
 
-let $FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules" --glob "!node_modules" --glob "!tmp/*" --glob "!**/*.min.js" --glob "!**/*.min.css"'
 nnoremap <silent> <C-p> :FZF<CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true } }
 
@@ -168,22 +153,18 @@ nnoremap <C-_> <C-w>s<C-w>j
 nnoremap <leader>G :Grepper<cr>
 nnoremap <leader>g :Grepper -quickfix -open<cr>
 
-nmap gs <plug>(GrepperOperator)
-nmap gu viw<plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-
-nmap gis viw<plug>(GrepperOperator)
+" nmap gv <plug>(GrepperOperator)
+" nmap gu viw<plug>(GrepperOperator)
+" xmap gv <plug>(GrepperOperator)
+" nmap gis viw<plug>(GrepperOperator)
 
 " Optional. The default behaviour should work for most users.
-let g:grepper               = {}
-let g:grepper.tools         = ['rg', 'git', 'ag']
-let g:grepper.jump          = 0
-let g:grepper.quickfix          = 1
-let g:grepper.next_tool     = '<leader>g'
+let g:grepper           = {}
+let g:grepper.tools     = ['rg', 'git']
+let g:grepper.jump      = 0
+let g:grepper.quickfix  = 1
+let g:grepper.next_tool = '<leader>g'
 let g:grepper.open      = 1
-
-let g:rainbow_active = 1
-
 
 " COMPLETER
 "set completeopt=longest,menuone,noinsert
@@ -215,6 +196,7 @@ let g:tmux_navigator_disable_when_zoomed = 1
 
 let g:ruby_indent_block_style = 'do'
 let g:ruby_indent_assignment_style = 'variable'
+" let g:ruby_indent_assignment_style = 'hanging'
 
 nmap <Leader>f :TestFile<CR>
 nmap <Leader>s :TestNearest<CR>
@@ -244,10 +226,6 @@ set nowritebackup
 set updatetime=300
 set signcolumn=yes
 set cmdheight=2
-" inoremap <silent><expr> <TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ <SID>check_back_space() ? "\<TAB>" :
-" \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
       \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -262,11 +240,14 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+" let g:coc_snippet_next = '<tab>'
+" " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+" let g:coc_snippet_next = '<C-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<C-k>'
 
 inoremap <silent><expr> <C-Space> coc#refresh()
-
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -275,7 +256,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
 nnoremap <silent> gh :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -300,19 +280,21 @@ nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 
 " zoom
-set winminheight=0
-set winminwidth=0
-nnoremap <C-w>h     <C-w>h<C-w>=
-nnoremap <C-w>j     <C-w>j<C-w>=
-nnoremap <C-w>k     <C-w>k<C-w>=
-nnoremap <C-w>l     <C-w>l<C-w>=
-nnoremap <C-w><C-h> <C-w>h<C-w>_<C-w><Bar>
-nnoremap <C-w><C-j> <C-w>j<C-w>_<C-w><Bar>
-nnoremap <C-w><C-k> <C-w>k<C-w>_<C-w><Bar>
-nnoremap <C-w><C-l> <C-w>l<C-w>_<C-w><Bar>
+" set winminheight=0
+" set winminwidth=0
+" nnoremap <C-w>h     <C-w>h<C-w>=
+" nnoremap <C-w>j     <C-w>j<C-w>=
+" nnoremap <C-w>k     <C-w>k<C-w>=
+" nnoremap <C-w>l     <C-w>l<C-w>=
+" nnoremap <C-w><C-h> <C-w>h<C-w>_<C-w><Bar>
+" nnoremap <C-w><C-j> <C-w>j<C-w>_<C-w><Bar>
+" nnoremap <C-w><C-k> <C-w>k<C-w>_<C-w><Bar>
+" nnoremap <C-w><C-l> <C-w>l<C-w>_<C-w><Bar>
 
 " quocle
-vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
-xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/g<left><left>
+" vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
+" xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/g<left><left>
 
 map <leader>bd :%bd\|e#\|bd#<cr>
+
+nnoremap p p=`]
