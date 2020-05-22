@@ -199,7 +199,7 @@ alias vi="vim"
 alias ci="circleci-cli"
 alias rsp="bundle exec rails s -b 0.0.0.0"
 alias rc="bundle exec rails console"
-alias rj="QUEUE=* JOBS_PER_FORK=100 bundle exec rake resque:work"
+alias rj="QUEUE=* COUNT=1 bin/rake resque:work"
 alias rsc="bundle exec rake resque:scheduler"
 alias b="bundle install"
 alias c="bundle exec cucumber"
@@ -271,10 +271,41 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.
 alias tngl="bundle exec tiny_golem"
 
 export FZF_BASE="/Users/tungtram/.fzf/bin/fzf"
-export FZF_DEFAULT_OPTS="--reverse --bind up:preview-up,down:preview-down"
-export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore node_modules --ignore .git -g ""'
-# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!node_modules" --glob "!node_modules" --glob "!tmp/*" --glob "!**/*.min.js" --glob "!**/*.min.css"'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
+_gen_fzf_default_opts() {
+  local base03="234"
+  local base02="235"
+  local base01="240"
+  local base00="241"
+  local base0="244"
+  local base1="245"
+  local base2="254"
+  local base3="230"
+  local yellow="136"
+  local orange="166"
+  local red="160"
+  local magenta="125"
+  local violet="61"
+  local blue="33"
+  local cyan="37"
+  local green="64"
 
+  # Comment and uncomment below for the light theme.
+
+  # Solarized Dark color scheme for fzf
+  export FZF_DEFAULT_OPTS="
+  --reverse --bind up:preview-up,down:preview-down
+  --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
+  --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
+  "
+  # Solarized Light color scheme for fzf
+  # export FZF_DEFAULT_OPTS="
+  #  --reverse --bind up:preview-up,down:preview-down
+  #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
+  #  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
+  # "
+}
+_gen_fzf_default_opts
 export EDITOR='nvim'
 
 export FZF_COMPLETION_TRIGGER='~~'
