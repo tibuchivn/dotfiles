@@ -234,6 +234,7 @@ alias reswag='RAILS_ENV=test rake rswag:specs:swaggerize'
 alias rmorig="find . -type f -name '*.orig' -delete"
 alias gfco="git fco"
 alias gfm="git fmerge"
+alias gfrs="git freset"
 alias tx="tmuxinator"
 alias ls="exa"
 alias cat="bat"
