@@ -30,7 +30,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
       \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
-command! -buffer -bar -nargs=? FormatJSON :%!jq -e -M <args> .
 set ignorecase
 set smartcase
 set hlsearch
@@ -107,6 +106,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'andrewradev/switch.vim'
+Plug 'lifepillar/vim-cheat40'
 
 call plug#end()
 
@@ -195,8 +195,8 @@ let g:SuperTabLongestHighlight = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
 let g:ruby_indent_block_style = 'do'
-let g:ruby_indent_assignment_style = 'variable'
-" let g:ruby_indent_assignment_style = 'hanging'
+" let g:ruby_indent_assignment_style = 'variable'
+let g:ruby_indent_assignment_style = 'hanging'
 
 nmap <Leader>f :TestFile<CR>
 nmap <Leader>s :TestNearest<CR>
@@ -298,3 +298,6 @@ nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 map <leader>bd :%bd\|e#\|bd#<cr>
 
 nnoremap p p=`]
+autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
+command! -buffer -bar -nargs=? FormatJSON :%!jq -e -M <args> .
+nmap =j :%!python -m json.tool<CR>

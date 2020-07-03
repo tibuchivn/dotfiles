@@ -3,7 +3,7 @@
   editor = vim
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 #[mergetool "sourcetree"]
 #	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 #	trustExitCode = true
@@ -36,4 +36,5 @@
 	current = rev-parse --abbrev-ref HEAD
 	recent = !git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads/ | head -n 100
 	fco= !BRANCH=`git recent | fzf` && git checkout ${BRANCH}
+  freset= !BRANCH=`git recent | fzf` && git checkout ${BRANCH} && git fetch origin && git reset --hard FETCH_HEAD
 	fmerge= !BRANCH=`git recent | fzf` && git merge ${BRANCH}

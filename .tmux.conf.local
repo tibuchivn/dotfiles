@@ -186,7 +186,7 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username_ssh}
 tmux_conf_theme_status_left=''
 #tmux_conf_theme_status_left=' ❐ #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},} , %d %b '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},} , %d %b %R '
 #tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_vbar, #{battery_vbar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
@@ -315,7 +315,7 @@ bind -r Z select-pane -t .+1 \;  resize-pane -Z
 #bind C-a send-prefix -2
 
 # split panes using | and -
-bind \ split-window -h
+bind '\' split-window -h
 bind - split-window -v
 
 unbind C-c
@@ -326,7 +326,7 @@ bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iq v
 bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-j) || tmux select-pane -D"
 bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
 bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
-bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys 'C-\\') || tmux select-pane -l"
+bind -n 'C-\' run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys 'C-\\') || tmux select-pane -l"
 
 # vim tmux fzf together
 is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
@@ -349,7 +349,7 @@ bind -n C-k run "($is_vim && tmux send-keys C-k) || \
 bind -n C-l run  "($is_vim && tmux send-keys C-l) || \
                           tmux select-pane -R"
 
-bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+bind-key -n 'C-\' if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
