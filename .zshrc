@@ -397,3 +397,9 @@ unset -f bind-git-helper
 # zprof
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# workaround to disable bold promt for spaceship theme
+() {
+  local z=$'\0'
+  PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
+}
