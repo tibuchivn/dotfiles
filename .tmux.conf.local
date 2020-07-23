@@ -186,7 +186,7 @@ tmux_conf_theme_right_separator_sub='|'
 #     - #{username_ssh}
 tmux_conf_theme_status_left=''
 #tmux_conf_theme_status_left=' ❐ #S '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},} , %d %b %R '
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_percentage, #{battery_percentage},}, %d %b %R '
 #tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_vbar, #{battery_vbar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 
 # status left style
@@ -354,15 +354,7 @@ bind-key -n 'C-\' if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 # Use vim keybindings in copy mode
 setw -g mode-keys vi
 
-
-# -- plugins -------------------------------------------------------------------
-#
-# List of plugins
-#set -g @plugin 'tmux-plugins/tpm'
-#set -g @plugin 'tmux-plugins/tmux-resurrect'
-#
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-#run -b '~/.tmux/plugins/tpm/tpm'
+# run-shell ~/.tmux/plugins/tmux-spotify/music.tmux
 run-shell ~/.tmux/plugins/tmux-resurrect/resurrect.tmux
 # end Tung customize
 

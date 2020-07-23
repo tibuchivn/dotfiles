@@ -5,7 +5,7 @@ set fillchars=diff:⣿,vert:│
 :noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " Press Space to turn off highlighting and clear any message already displayed
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+:nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
 " 1 tab to 2 space for ruby
 set tabstop=2
 set softtabstop=2
@@ -66,7 +66,6 @@ if !&diff
   Plug 'honza/vim-snippets'
 endif
 
-" Plug 'brooth/far.vim'
 Plug 'vim-ruby/vim-ruby'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'tpope/vim-sensible'
@@ -80,8 +79,6 @@ Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -100,13 +97,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kremso/vim-spectator'
 Plug 'zivyangll/git-blame.vim'
-Plug 'yssl/QFEnter'
 Plug 'vimlab/split-term.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'andrewradev/switch.vim'
-Plug 'lifepillar/vim-cheat40'
 
 call plug#end()
 
@@ -117,15 +112,11 @@ let g:solarized_use16=1
 
 colorscheme solarized8
 
-"set rtp+=/usr/local/opt/fzf
-
-
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections = 1
-" let g:airline_section_z = '%3p%% %3l/%L:%3v'
 let g:airline_section_z = ''
 
 let g:rainbow_active = 0
@@ -153,12 +144,6 @@ nnoremap <C-_> <C-w>s<C-w>j
 nnoremap <leader>G :Grepper<cr>
 nnoremap <leader>g :Grepper -quickfix -open<cr>
 
-" nmap gv <plug>(GrepperOperator)
-" nmap gu viw<plug>(GrepperOperator)
-" xmap gv <plug>(GrepperOperator)
-" nmap gis viw<plug>(GrepperOperator)
-
-" Optional. The default behaviour should work for most users.
 let g:grepper           = {}
 let g:grepper.tools     = ['rg', 'git']
 let g:grepper.jump      = 0
@@ -195,8 +180,8 @@ let g:SuperTabLongestHighlight = 1
 let g:tmux_navigator_disable_when_zoomed = 1
 
 let g:ruby_indent_block_style = 'do'
-" let g:ruby_indent_assignment_style = 'variable'
-let g:ruby_indent_assignment_style = 'hanging'
+let g:ruby_indent_assignment_style = 'variable'
+" let g:ruby_indent_assignment_style = 'hanging'
 
 nmap <Leader>f :TestFile<CR>
 nmap <Leader>s :TestNearest<CR>
@@ -279,19 +264,10 @@ nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
 " source init.vim
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 
-" zoom
-" set winminheight=0
-" set winminwidth=0
-" nnoremap <C-w>h     <C-w>h<C-w>=
-" nnoremap <C-w>j     <C-w>j<C-w>=
-" nnoremap <C-w>k     <C-w>k<C-w>=
-" nnoremap <C-w>l     <C-w>l<C-w>=
-" nnoremap <C-w><C-h> <C-w>h<C-w>_<C-w><Bar>
-" nnoremap <C-w><C-j> <C-w>j<C-w>_<C-w><Bar>
-" nnoremap <C-w><C-k> <C-w>k<C-w>_<C-w><Bar>
-" nnoremap <C-w><C-l> <C-w>l<C-w>_<C-w><Bar>
+" edit alacritty
+nnoremap <Leader>ea :tabnew ~/.config/alacritty/alacritty.yml<CR>
 
-" quocle
+" quocle map cfdo
 " vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
 " xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/g<left><left>
 
@@ -299,5 +275,6 @@ map <leader>bd :%bd\|e#\|bd#<cr>
 
 nnoremap p p=`]
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
-command! -buffer -bar -nargs=? FormatJSON :%!jq -e -M <args> .
 nmap =j :%!python -m json.tool<CR>
+nnoremap H gT
+nnoremap L gt
