@@ -15,6 +15,20 @@ fi
 # Update homebrew recipes
 brew update
 
+# tap tap tap
+brew tap elastic/tap
+brew tap github/gh
+brew tap heroku/brew
+brew tap homebrew/bundle
+brew tap homebrew/cask
+brew tap homebrew/cask-fonts
+brew tap homebrew/core
+brew tap homebrew/services
+brew tap neovim/neovim
+brew tap rockymadden/rockymadden
+brew tap universal-ctags/universal-ctags
+
+
 # restore from Brewfile
 brew tap Homebrew/bundle
 brew bundle
