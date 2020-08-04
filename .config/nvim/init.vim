@@ -260,12 +260,15 @@ noremap <Leader>z :Goyo<CR>
 
 " edit init.vim
 nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
-
 " source init.vim
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 
+" edit kitty
+nnoremap <Leader>ek :tabnew ~/.config/kitty/kitty.conf<CR>
 " edit alacritty
 nnoremap <Leader>ea :tabnew ~/.config/alacritty/alacritty.yml<CR>
+" edit zshrc
+nnoremap <Leader>ez :tabnew ~/.zshrc<CR>
 
 " quocle map cfdo
 " vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>

@@ -403,3 +403,28 @@ unset -f bind-git-helper
   local z=$'\0'
   PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
 }
+
+merge_test() {
+  current_branch=$(git symbolic-ref HEAD --short)
+  upper_branch=$1
+  if [ -z "$1" ]
+  then
+    upper_branch=staging
+  fi
+
+  git checkout $upper_branch
+  git fetch origin
+  git reset --hard FETCH_HEAD
+  git merge --no-ff $current_branch
+  git checkout $current_branch
+
+  read -p "Push $upper_branch to origin? (y/N) " push_upper
+  if [ "$push_upper" = "y" ]; then
+    git push origin $upper_branch
+
+    echo
+    echo All done.
+  fi
+
+  return
+}
