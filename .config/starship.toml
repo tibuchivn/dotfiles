@@ -1,0 +1,30 @@
+# Replace the "❯" symbol in the prompt with "➜"
+[character]
+success_symbol = "[➜ ](green)"
+
+[aws]
+disabled = true
+
+[ruby]
+format = ' [ruby:\($version\)]($style)'
+# style = 'red'
+
+[nodejs]
+format = '[node:\($version\)]($style)'
+# style = 'green'
+
+[package]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = ''
+style = 'bold blue'
+
+[git_status]
+# style = 'red'
+
+[time]
+disabled = true

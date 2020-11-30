@@ -51,9 +51,6 @@ autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
 " set t_Co=256
 autocmd BufWritePre * :%s/\s\+$//e
 
-" filetype on           " Enable filetype detection
-" filetype indent on    " Enable filetype-specific indenting
-" filetype plugin on    " Enable filetype-specific plugins
 let mapleader= " "
 set completefunc=syntaxcomplete#Complete
 
@@ -73,35 +70,29 @@ Plug 'tpope/vim-haml'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-cucumber'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rvm'
 Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
 Plug 'godlygeek/tabular'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
-Plug 'joshdick/onedark.vim'
-Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-grepper'
-Plug 'luochen1990/rainbow'
 Plug 'janko/vim-test'
 Plug 'sheerun/vim-polyglot'
-Plug 'mhinz/vim-signify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'kremso/vim-spectator'
 Plug 'zivyangll/git-blame.vim'
 Plug 'vimlab/split-term.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'andrewradev/switch.vim'
+" Plug 'andrewradev/switch.vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -112,23 +103,63 @@ let g:solarized_use16=1
 
 colorscheme solarized8
 
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_powerline_fonts = 0
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline_skip_empty_sections = 1
-let g:airline_section_z = ''
+" nerdcommenter to give extra space after #
+let NERDSpaceDelims=1
 
-let g:rainbow_active = 0
+" let g:airline#extensions#coc#enabled = 1
+" let g:airline#extensions#tabline#enabled = 0
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline_powerline_fonts = 1
+" let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+" let g:airline_skip_empty_sections = 1
+" let g:airline_section_z = ''
+" let g:airline_solarized_bg='dark'
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#right_sep = ' '
+" let g:airline#extensions#tabline#right_alt_sep = '|'
 
 let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 let g:coc_node_path = '/Users/tungtram/.asdf/installs/nodejs/12.13.0/bin/node'
 
-let NERDDefaultAlign='left'
-let NERDSpaceDelims=1
-map <leader>e :CocCommand explorer<CR>
+" coc-explorer
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\     'floating-width': '120',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+map <leader>e :CocCommand explorer --preset floating<CR>
 
 map <leader>y "+y<cr>
 map <leader>p "+p<cr>
@@ -139,8 +170,6 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true 
 inoremap jj <ESC>
 nnoremap <leader>\ <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
-nnoremap <C-\> <C-w>v<C-w>l
-nnoremap <C-_> <C-w>s<C-w>j
 nnoremap <leader>G :Grepper<cr>
 nnoremap <leader>g :Grepper -quickfix -open<cr>
 
@@ -167,15 +196,10 @@ let test#strategy = "neovim"
 let test#ruby#use_binstubs = 0
 
 let g:python_highlight_all = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_max_num_candidates = 20
 
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_fileTypeExclude = ['coc-explorer']
-
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabLongestHighlight = 1
 
 let g:tmux_navigator_disable_when_zoomed = 1
 
@@ -219,6 +243,7 @@ inoremap <silent><expr> <TAB>
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -232,7 +257,6 @@ endfunction
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<C-k>'
 
-inoremap <silent><expr> <C-Space> coc#refresh()
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -250,6 +274,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" kill coc.nvim after quit vim
+autocmd VimLeavePre * :call coc#rpc#kill()
+autocmd VimLeave * if get(g:, 'coc_process_pid', 0) | call system('kill -9 -'.g:coc_process_pid) | endif
 
 noremap <Leader>tn :tabnew %<CR>
 nnoremap <Leader>bl :<C-u>call gitblame#echo()<CR>
@@ -277,7 +305,12 @@ nnoremap <Leader>ez :tabnew ~/.zshrc<CR>
 map <leader>bd :%bd\|e#\|bd#<cr>
 
 nnoremap p p=`]
+nnoremap j gj
+nnoremap k gk
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 nmap =j :%!python -m json.tool<CR>
 nnoremap H gT
 nnoremap L gt
+
+" vim as curl client
+map <leader>cc vipyPgvO<Esc>O<Esc>gv:!curl --config -<CR>
