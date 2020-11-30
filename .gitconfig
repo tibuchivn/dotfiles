@@ -40,3 +40,5 @@
 	fmerge= !BRANCH=`git recent | fzf` && git merge ${BRANCH}
 [mergetool]
 	keepBackup = false
+[pull]
+	rebase = false

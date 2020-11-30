@@ -12,77 +12,78 @@ export ZSH=/Users/tungtram/.oh-my-zsh
 # ZSH_THEME="honukai"
 
 
-ZSH_THEME="spaceship"
+# ZSH_THEME="spaceship"
 
-SPACESHIP_EXEC_TIME_SHOW="false"
-SPACESHIP_TIME_SHOW="true"
-SPACESHIP_TIME_PREFIX=""
-SPACESHIP_PROMPT_ADD_NEWLINE="true"
-SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
-SPACESHIP_USER_SHOW="false"
-SPACESHIP_DIR_PREFIX=""
-# SPACESHIP_RUBY_SYMBOL="♦️"
-# GIT
-# Disable git symbol
-SPACESHIP_GIT_SYMBOL="" # disable git prefix
-# SPACESHIP_GIT_BRANCH_PREFIX="" # disable branch prefix too
-# Wrap git in `git:(...)`
-SPACESHIP_GIT_PREFIX='git:('
-SPACESHIP_GIT_SUFFIX=") "
-# SPACESHIP_GIT_BRANCH_SUFFIX="" # remove space after branch name
-# Unwrap git status from `[...]`
-# SPACESHIP_GIT_STATUS_PREFIX=""
-# SPACESHIP_GIT_STATUS_SUFFIX=""
-SPACESHIP_GIT_BRANCH_COLOR="blue"
+# # SPACESHIP_CHAR_SYMBOL="➜  "
+# SPACESHIP_EXEC_TIME_SHOW="false"
+# SPACESHIP_TIME_SHOW="true"
+# SPACESHIP_TIME_PREFIX=""
+# SPACESHIP_PROMPT_ADD_NEWLINE="true"
+# SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
+# SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
+# SPACESHIP_USER_SHOW="false"
+# SPACESHIP_DIR_PREFIX=""
+# # SPACESHIP_RUBY_SYMBOL="♦️"
+# # GIT
+# # Disable git symbol
+# SPACESHIP_GIT_SYMBOL="" # disable git prefix
+# # SPACESHIP_GIT_BRANCH_PREFIX="" # disable branch prefix too
+# # Wrap git in `git:(...)`
+# SPACESHIP_GIT_PREFIX='git:('
+# SPACESHIP_GIT_SUFFIX=") "
+# # SPACESHIP_GIT_BRANCH_SUFFIX="" # remove space after branch name
+# # Unwrap git status from `[...]`
+# # SPACESHIP_GIT_STATUS_PREFIX=""
+# # SPACESHIP_GIT_STATUS_SUFFIX=""
+# SPACESHIP_GIT_BRANCH_COLOR="blue"
 
-# NODE
-SPACESHIP_NODE_PREFIX="node:("
-SPACESHIP_NODE_SUFFIX=") "
-SPACESHIP_NODE_SYMBOL=""
+# # NODE
+# SPACESHIP_NODE_PREFIX="node:("
+# SPACESHIP_NODE_SUFFIX=") "
+# SPACESHIP_NODE_SYMBOL=""
 
-# RUBY
-SPACESHIP_RUBY_PREFIX="ruby:("
-SPACESHIP_RUBY_SUFFIX=") "
-SPACESHIP_RUBY_SYMBOL=""
+# # RUBY
+# SPACESHIP_RUBY_PREFIX="ruby:("
+# SPACESHIP_RUBY_SUFFIX=") "
+# SPACESHIP_RUBY_SYMBOL=""
 
-SPACESHIP_DOCKER_SHOW="false"
-SPACESHIP_PACKAGE_SHOW="false"
+# SPACESHIP_DOCKER_SHOW="false"
+# SPACESHIP_PACKAGE_SHOW="false"
 
-SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  dotnet        # .NET section
-  ember         # Ember.js section
-  terraform     # Terraform workspace section
-  exec_time     # Execution time
-  time          # Time stamps section
-  line_sep      # Line break
-  battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
+# SPACESHIP_PROMPT_ORDER=(
+  # user          # Username section
+  # dir           # Current directory section
+  # host          # Hostname section
+  # git           # Git section (git_branch + git_status)
+  # hg            # Mercurial section (hg_branch  + hg_status)
+  # package       # Package version
+  # node          # Node.js section
+  # ruby          # Ruby section
+  # elixir        # Elixir section
+  # xcode         # Xcode section
+  # swift         # Swift section
+  # golang        # Go section
+  # php           # PHP section
+  # rust          # Rust section
+  # haskell       # Haskell Stack section
+  # julia         # Julia section
+  # docker        # Docker section
+  # aws           # Amazon Web Services section
+  # venv          # virtualenv section
+  # conda         # conda virtualenv section
+  # pyenv         # Pyenv section
+  # dotnet        # .NET section
+  # ember         # Ember.js section
+  # terraform     # Terraform workspace section
+  # exec_time     # Execution time
+  # time          # Time stamps section
+  # line_sep      # Line break
+  # battery       # Battery level and status
+  # vi_mode       # Vi-mode indicator
+  # jobs          # Background jobs indicator
+  # exit_code     # Exit code section
+  # char          # Prompt character
+# )
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -186,8 +187,10 @@ export PATH="$(brew --prefix git)/bin:$PATH"
 
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false
-export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
+#export PATH="/Users/tungtram/Library/Python/3.7/bin:$PATH"
 
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/Users/tungtram/gocode
 export PATH="$PATH:$GOPATH/bin"
@@ -258,18 +261,23 @@ if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
 export CXXFLAGS="-mmacosx-version-min=10.9"
 export LDFLAGS="-mmacosx-version-min=10.9"
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
-export VIRTUALENVWRAPPER_VIRTUALENV="/usr/local/bin/virtualenv"
+export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tungtram/Library/Python/3.7/bin/virtualenv"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 #source /usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+export VIRTUALENVWRAPPER_SCRIPT=/Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper.sh
+source /Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper_lazy.sh
 
 alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
 alias tngl="bundle exec tiny_golem"
+
+alias kitty_update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+alias brew_reinstall="brew list | xargs brew reinstall"
+
+export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 
 export FZF_BASE="/Users/tungtram/.fzf/bin/fzf"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
@@ -316,6 +324,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 eval "$(direnv hook zsh)"
 export PATH="/usr/local/opt/qt/bin:$PATH"
 export PIP_NO_CACHE_DIR=off
+
+export THOR_MERGE="nvim -d $1 $2"
 
 . /usr/local/opt/asdf/asdf.sh
 . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
@@ -399,10 +409,10 @@ unset -f bind-git-helper
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # workaround to disable bold promt for spaceship theme
-() {
-  local z=$'\0'
-  PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
-}
+# () {
+  # local z=$'\0'
+  # PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
+# }
 
 merge_test() {
   current_branch=$(git symbolic-ref HEAD --short)
@@ -413,12 +423,17 @@ merge_test() {
   fi
 
   git checkout $upper_branch
+  if [[ $? != 0 ]]; then
+    echo "Failed to checkout $upper_branch"
+    return
+  fi
   git fetch origin
   git reset --hard FETCH_HEAD
   git merge --no-ff $current_branch
   git checkout $current_branch
 
-  read -p "Push $upper_branch to origin? (y/N) " push_upper
+  # read -p "Push $upper_branch to origin? (y/N) " push_upper
+  read "push_upper?Push $upper_branch to origin? (y/N) "
   if [ "$push_upper" = "y" ]; then
     git push origin $upper_branch
 
@@ -428,3 +443,33 @@ merge_test() {
 
   return
 }
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+# Add the following to the end of ~/.zshrc
+eval "$(starship init zsh)"
