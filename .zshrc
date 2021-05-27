@@ -177,7 +177,6 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 eval "$(pyenv init -)"
 
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting'
-# export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 export PATH=${PATH}:/usr/local/mysql/bin
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:/usr/local/lib/node_modules
@@ -188,12 +187,13 @@ export PATH="$(brew --prefix git)/bin:$PATH"
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false
 # export PATH="/usr/local/bin:$PATH"
-#export PATH="/Users/tungtram/Library/Python/3.7/bin:$PATH"
+# export PATH="/Users/tungtram/Library/Python/3.7/bin:$PATH"
 
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+# export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=/Users/tungtram/gocode
 export PATH="$PATH:$GOPATH/bin"
+export PATH="/Users/tungtram/elasticsearch/elasticsearch-5.6.16/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export CIRCLE_TOKEN=5b0b6f9c43e8e841441b607910d80157156db928
@@ -225,7 +225,7 @@ alias unzipall='unzip "*.zip"'
 alias calw='gcalcli calw'
 alias calm='gcalcli calm'
 alias agenda='gcalcli agenda'
-alias start_es='docker run -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.4.3'
+# alias start_es='docker run -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.6.14'
 alias aria='aria2c --enable-rpc=true --rpc-listen-all=true --rpc-allow-origin-all=true --rpc-secret=token --disable-ipv6=true'
 alias ss='spotify status'
 alias st='spotify stop'
@@ -242,7 +242,10 @@ alias tx="tmuxinator"
 alias ls="exa"
 alias cat="bat"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-export BUNDLE_GITHUB__COM="774d411bb83702d9cd2f8f7c9ab1c301668ec618"
+# export BUNDLE_GITHUB__COM="9d21f58a58d50f183a821296ac109d791a7d616d"
+export BUNDLE_GITHUB__COM="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"
+export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="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"
+export GITHUB_TOKEN="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"
 
 mkcdir()
 {
@@ -260,7 +263,7 @@ if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then 
 
 export CXXFLAGS="-mmacosx-version-min=10.9"
 export LDFLAGS="-mmacosx-version-min=10.9"
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/bin/python"
+export VIRTUALENVWRAPPER_PYTHON="/usr/local/opt/python@3.7/bin/python3"
 export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tungtram/Library/Python/3.7/bin/virtualenv"
 
 export WORKON_HOME=$HOME/.virtualenvs
@@ -443,33 +446,9 @@ merge_test() {
 
   return
 }
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
 
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Add the following to the end of ~/.zshrc
 eval "$(starship init zsh)"

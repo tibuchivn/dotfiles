@@ -35,16 +35,27 @@ colors:
     white:   '#fdf6e3' # base3
 
 # font:
-#   normal:
-#     family: M+ 1mn Nerd Font
-#     style: medium
-#   size: 16.0
+  # normal:
+    # family: M+ 1mn Nerd Font
+    # style: medium
+  # size: 16.0
+
+# font:
+  # normal:
+    # family: JetBrainsMono Nerd Font
+    # style: Regular
+  # bold:
+    # family: JetBrainsMono Nerd Font
+    # style: Medium
+  # size: 16.0
 
 font:
   normal:
-    # family: JetBrainsMono Nerd Font
-    family: Iosevka Nerd Font
-    style: Regular
+    family: Iosevka Nerd Font Mono
+    style: Light
+  bold:
+    family: Iosevka Nerd Font Mono
+    style: Medium
   size: 16.0
 
   offset:
