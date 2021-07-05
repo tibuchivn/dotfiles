@@ -310,11 +310,12 @@ _gen_fzf_default_opts() {
   --color fg:-1,bg:-1,hl:$blue,fg+:$base2,bg+:$base02,hl+:$blue
   --color info:$yellow,prompt:$yellow,pointer:$base3,marker:$base3,spinner:$yellow
   "
+  #
   # Solarized Light color scheme for fzf
   # export FZF_DEFAULT_OPTS="
-  #  --reverse --bind up:preview-up,down:preview-down
-  #  --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
-  #  --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
+   # --reverse --bind up:preview-up,down:preview-down
+   # --color fg:-1,bg:-1,hl:$blue,fg+:$base02,bg+:$base2,hl+:$blue
+   # --color info:$yellow,prompt:$yellow,pointer:$base03,marker:$base03,spinner:$yellow
   # "
 }
 _gen_fzf_default_opts
@@ -333,7 +334,10 @@ export THOR_MERGE="nvim -d $1 $2"
 . /usr/local/opt/asdf/asdf.sh
 . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
+# for solarized dark
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=23"
+# for solarized light
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=180"
 
 # fzf stuff
 # Will return non-zero status if the current directory is not managed by git

@@ -1,12 +1,8 @@
 set nocompatible               " be iMproved
 set fillchars=diff:⣿,vert:│
 
-" Press F4 to toggle highlighting on/off, and show current value.
-:noremap <F4> :set hlsearch! hlsearch?<CR>
+nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
 
-" Press Space to turn off highlighting and clear any message already displayed
-:nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
-" 1 tab to 2 space for ruby
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -15,10 +11,7 @@ set autoindent
 set foldmethod=indent
 set foldnestmax=10
 set foldlevelstart=30
-
 set scrolloff=50
-
-set updatetime=1000
 " number line show
 set nu
 " Triger `autoread` when files changes on disk
@@ -55,14 +48,18 @@ autocmd BufWritePre * :%s/\s\+$//e
 let mapleader= " "
 set completefunc=syntaxcomplete#Complete
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('/Users/tungtram/.vim/nvim_bundle')
 
 if !&diff
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
   Plug 'ludovicchabant/vim-gutentags'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 endif
+
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+" Plug 'norcalli/snippets.nvim'
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'Lokaltog/vim-easymotion'
@@ -74,17 +71,16 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'preservim/nerdcommenter'
-Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
 Plug 'lifepillar/vim-solarized8'
 Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
-Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'zivyangll/git-blame.vim'
@@ -94,8 +90,94 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'mhinz/vim-signify'
 
 call plug#end()
+
+" configuration for nvim lsp
+lua << END
+local nvim_lsp = require('lspconfig')
+
+local on_attach = function(client, bufnr)
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+  --Enable completion triggered by <c-x><c-o>
+  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
+  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      underline = true,
+      signs = true,
+    }
+  )
+  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({show_header = false})]]
+  -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
+end
+
+local servers = {'solargraph'}
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+  }
+end
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+      enable = true
+  },
+}
+
+
+END
+
+
+" configuration for autocomplete compe
+let g:compe = {}
+let g:compe.enabled = v:true
+let g:compe.autocomplete = v:true
+let g:compe.debug = v:false
+let g:compe.min_length = 1
+let g:compe.preselect = 'enable'
+let g:compe.throttle_time = 80
+let g:compe.source_timeout = 200
+let g:compe.resolve_timeout = 800
+let g:compe.incomplete_delay = 400
+let g:compe.max_abbr_width = 100
+let g:compe.max_kind_width = 100
+let g:compe.max_menu_width = 100
+let g:compe.documentation = v:true
+
+let g:compe.source = {}
+let g:compe.source.path = v:true
+let g:compe.source.buffer = v:true
+let g:compe.source.calc = v:true
+let g:compe.source.nvim_lsp = v:true
+let g:compe.source.nvim_lua = v:true
+let g:compe.source.vsnip = v:true
+let g:compe.source.ultisnips = v:true
+let g:compe.source.luasnip = v:true
+let g:compe.source.emoji = v:true
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+" <Tab>: completion
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" configuration for autocomplete compe END
 
 set background=dark
 " set background=light
@@ -103,6 +185,7 @@ set background=dark
 let g:solarized_use16=1
 
 colorscheme solarized8
+" colorscheme PaperColor
 
 " nerdcommenter to give extra space after #
 let NERDSpaceDelims=1
@@ -110,23 +193,12 @@ let NERDSpaceDelims=1
 " ranger integration
 let g:ranger_map_keys = 0
 
-" let g:airline#extensions#coc#enabled = 1
-" let g:airline#extensions#tabline#enabled = 0
-" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-" let g:airline_powerline_fonts = 1
-" let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-" let g:airline_skip_empty_sections = 1
-" let g:airline_section_z = ''
-" let g:airline_solarized_bg='dark'
-" let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
-" let g:airline#extensions#tabline#right_sep = ' '
-" let g:airline#extensions#tabline#right_alt_sep = '|'
 
+" let g:lightline = { 'colorscheme': 'paperColor' }
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
-      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
+      \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
       \   'right': [['lineinfo'], ['filetype']]
       \ },
       \ 'tabline': {
@@ -157,51 +229,15 @@ function! LightlineFilename()
   return expand('%')
 endfunction
 
+autocmd OptionSet background call lightline#colorscheme() | call lightline#update()
+
 let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
-let g:coc_node_path = '/Users/tungtram/.asdf/installs/nodejs/12.13.0/bin/node'
-
-" coc-explorer
-let g:coc_explorer_global_presets = {
-\   '.vim': {
-\     'root-uri': '~/.vim',
-\   },
-\   'tab': {
-\     'position': 'tab',
-\     'quit-on-open': v:true,
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\     'floating-width': '120',
-\   },
-\   'floatingTop': {
-\     'position': 'floating',
-\     'floating-position': 'center-top',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingLeftside': {
-\     'position': 'floating',
-\     'floating-position': 'left-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingRightside': {
-\     'position': 'floating',
-\     'floating-position': 'right-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
-\ }
-
-" map <leader>E :CocCommand explorer --preset simplify<CR>
 map <leader>E :Ranger<CR>
 map <leader>y "+y
 map <leader>p "+p
+map <leader>P "0p
 map <leader>H :History<cr>
 map <leader>B :Buffers<cr>
 map <leader>W :Windows<cr>
@@ -243,7 +279,7 @@ let g:fzf_buffers_jump = 1
 inoremap jj <ESC>
 
 let g:grepper           = {}
-let g:grepper.tools     = ['rg', 'git']
+let g:grepper.tools     = ['git', 'rg']
 let g:grepper.jump      = 0
 let g:grepper.quickfix  = 1
 let g:grepper.next_tool = '<leader>g'
@@ -253,6 +289,8 @@ let g:grepper.open      = 1
 "set completeopt=longest,menuone,noinsert
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+set completeopt=menuone,noselect
+
 let test#vim#term_position = "belowright"
 let test#strategy = "neovim"
 let test#ruby#use_binstubs = 0
@@ -261,7 +299,6 @@ let g:python_highlight_all = 1
 
 let g:indentLine_leadingSpaceEnabled = 0
 let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_fileTypeExclude = ['coc-explorer']
 
 let g:tmux_navigator_disable_when_zoomed = 1
 
@@ -291,43 +328,6 @@ set nowritebackup
 set updatetime=300
 set signcolumn=yes
 set cmdheight=2
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-      \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <silent><expr> <C-Space> coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<C-k>'
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use `:Format` to format current buffer
-nnoremap <silent> gh :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" kill coc.nvim after quit vim
-autocmd VimLeavePre * :call coc#rpc#kill()
-autocmd VimLeave * if get(g:, 'coc_process_pid', 0) | call system('kill -9 -'.g:coc_process_pid) | endif
 
 let g:goyo_linenr=1
 let g:goyo_width=120
@@ -340,3 +340,11 @@ nnoremap k gk
 nmap =j :%!jq<CR>
 nnoremap H gT
 nnoremap L gt
+
+" junegunn/vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
