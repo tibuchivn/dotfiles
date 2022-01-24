@@ -51,11 +51,11 @@ colors:
     # cyan:    '0x93a1a1'
     # white:   '0xfdf6e3'
 
-font:
-  normal:
-    family: M+ 2m
-    style: regular
-  size: 16.0
+# font:
+  # normal:
+    # family: M+ 2m
+    # style: regular
+  # size: 16.0
 
 # font:
   # normal:
@@ -83,6 +83,15 @@ font:
     family: VictorMono Nerd Font
     style: Medium
   size: 15.0
+
+# font:
+  # normal:
+    # family: Operator Mono Nerd Font
+    # style: Light
+  # bold:
+    # family: Operator Mono Nerd Font
+    # style: Bold
+  # size: 16.0
 
 # font:
   # normal:

@@ -3,10 +3,10 @@ set fillchars=diff:⣿,vert:│
 
 nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
 
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
+" set tabstop=2
+" set softtabstop=2
+" set shiftwidth=2
+" set expandtab
 set autoindent
 set foldmethod=indent
 set foldnestmax=10
@@ -37,10 +37,13 @@ set cursorline
 filetype plugin indent on
 syntax on
 
+" live substitution
+set inccommand=split
+
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 " support css word with -
 autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
-autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
+" autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
 
 " set t_Co=256
 autocmd BufWritePre * :%s/\s\+$//e
@@ -50,28 +53,23 @@ set completefunc=syntaxcomplete#Complete
 
 call plug#begin('/Users/tungtram/.vim/nvim_bundle')
 
-if !&diff
-  Plug 'ludovicchabant/vim-gutentags'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-endif
-
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'norcalli/snippets.nvim'
-
 Plug 'vim-ruby/vim-ruby'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-cucumber'
 Plug 'preservim/nerdcommenter'
 Plug 'itchyny/lightline.vim'
+Plug 'spywhere/lightline-lsp'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
@@ -83,16 +81,45 @@ Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'zivyangll/git-blame.vim'
 Plug 'vimlab/split-term.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'mhinz/vim-signify'
+" Plug 'mhinz/vim-signify'
+Plug 'rhysd/git-messenger.vim'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ojroques/vim-scrollstatus'
+Plug 'AndrewRadev/switch.vim'
+Plug 'preservim/vimux'
+Plug 'posva/vim-vue'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
+
+set background=dark
+" set background=light
+let g:solarized_use16=1
+colorscheme solarized8
+"
+" configuration for vim-scrollstatus
+let g:scrollstatus_symbol_track = '-'
+let g:scrollstatus_symbol_bar = '|'
+
+" configuration for coq completion
+let g:coq_settings = {
+      \ 'auto_start': v:true,
+      \ 'clients.tmux.enabled': v:false,
+      \ 'keymap.jump_to_mark': '<c-j>'
+      \ }
+
+" highlight yanked text
+augroup LuaHighlight
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
 
 " configuration for nvim lsp
 lua << END
@@ -111,6 +138,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -119,73 +147,19 @@ local on_attach = function(client, bufnr)
       signs = true,
     }
   )
-  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics({show_header = false})]]
+  -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
   -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
 end
 
-local servers = {'solargraph'}
+local servers = {'solargraph', 'tsserver'}
+local coq = require 'coq'
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-  }
+  -- nvim_lsp[lsp].setup { on_attach = on_attach, }
+  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
 end
-
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-      enable = true
-  },
-}
-
 
 END
 
-
-" configuration for autocomplete compe
-let g:compe = {}
-let g:compe.enabled = v:true
-let g:compe.autocomplete = v:true
-let g:compe.debug = v:false
-let g:compe.min_length = 1
-let g:compe.preselect = 'enable'
-let g:compe.throttle_time = 80
-let g:compe.source_timeout = 200
-let g:compe.resolve_timeout = 800
-let g:compe.incomplete_delay = 400
-let g:compe.max_abbr_width = 100
-let g:compe.max_kind_width = 100
-let g:compe.max_menu_width = 100
-let g:compe.documentation = v:true
-
-let g:compe.source = {}
-let g:compe.source.path = v:true
-let g:compe.source.buffer = v:true
-let g:compe.source.calc = v:true
-let g:compe.source.nvim_lsp = v:true
-let g:compe.source.nvim_lua = v:true
-let g:compe.source.vsnip = v:true
-let g:compe.source.ultisnips = v:true
-let g:compe.source.luasnip = v:true
-let g:compe.source.emoji = v:true
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
-
-" <Tab>: completion
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-" configuration for autocomplete compe END
-
-set background=dark
-" set background=light
-
-let g:solarized_use16=1
-
-colorscheme solarized8
-" colorscheme PaperColor
 
 " nerdcommenter to give extra space after #
 let NERDSpaceDelims=1
@@ -193,13 +167,21 @@ let NERDSpaceDelims=1
 " ranger integration
 let g:ranger_map_keys = 0
 
+" gutentags ignore javascript and not load in diff mode
+let g:gutentags_exclude_filetypes = ['javascript', 'javascriptreact', 'typescript']
+let g:gutentags_ctags_exclude = [
+      \ 'build/*',
+      \ '.cache/*'
+      \ ]
+if &diff
+  let g:gutentags_enabled = 0
+endif
 
-" let g:lightline = { 'colorscheme': 'paperColor' }
 let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-      \   'right': [['lineinfo'], ['filetype']]
+      \   'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ], ['lineinfo'], ['percent'], ['filetype']]
       \ },
       \ 'tabline': {
       \   'left': [['tabs']],
@@ -214,6 +196,21 @@ let g:lightline = {
       \   'fileformat': 'MyFileformat',
       \   'gitbranch': 'FugitiveHead',
       \   'filename': 'LightlineFilename',
+      \   'percent': 'ScrollStatus',
+      \ },
+      \ 'component_expand': {
+      \   'linter_hints': 'lightline#lsp#hints',
+      \   'linter_infos': 'lightline#lsp#infos',
+      \   'linter_warnings': 'lightline#lsp#warnings',
+      \   'linter_errors': 'lightline#lsp#errors',
+      \   'linter_ok': 'lightline#lsp#ok',
+      \ },
+      \ 'component_type': {
+      \   'linter_hints': 'right',
+      \   'linter_infos': 'right',
+      \   'linter_warnings': 'warning',
+      \   'linter_errors': 'error',
+      \   'linter_ok': 'right',
       \ }
       \ }
 function! MyFiletype()
@@ -236,8 +233,8 @@ let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 map <leader>E :Ranger<CR>
 map <leader>y "+y
-map <leader>p "+p
-map <leader>P "0p
+map <leader>P "+p
+map <leader>p "0p
 map <leader>H :History<cr>
 map <leader>B :Buffers<cr>
 map <leader>W :Windows<cr>
@@ -251,8 +248,11 @@ map <leader>cc vipyPgvO<Esc>O<Esc>gv:!curl --config -<CR>
 nnoremap <leader>\ <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
 nnoremap <leader>G :Grepper<cr>
-nnoremap <leader>g :Grepper -quickfix -open<cr>
+nnoremap <leader>gg :Grepper -quickfix -open<cr>
+nnoremap <leader>gq :Grepper -quickfix -open<cr>
+nnoremap <leader>gl :Grepper -noquickfix -open<cr>
 
+nnoremap <Leader>et :tabnew ~/code_temp.rb<CR>
 nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>ek :tabnew ~/.config/kitty/kitty.conf<CR>
@@ -265,6 +265,8 @@ nmap <leader>pl :let @*=expand("%:p")<CR>
 nmap <Leader>f :TestFile<CR>
 nmap <Leader>s :TestNearest<CR>
 nmap <Leader>l :TestLast<CR>
+
+map <leader>S :Switch<cr>
 
 " quocle map cfdo
 " vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
@@ -279,7 +281,7 @@ let g:fzf_buffers_jump = 1
 inoremap jj <ESC>
 
 let g:grepper           = {}
-let g:grepper.tools     = ['git', 'rg']
+let g:grepper.tools     = ['rg', 'ag', 'git']
 let g:grepper.jump      = 0
 let g:grepper.quickfix  = 1
 let g:grepper.next_tool = '<leader>g'
@@ -292,7 +294,8 @@ let g:grepper.open      = 1
 set completeopt=menuone,noselect
 
 let test#vim#term_position = "belowright"
-let test#strategy = "neovim"
+" let test#strategy = "neovim"
+let test#strategy = "vimux"
 let test#ruby#use_binstubs = 0
 
 let g:python_highlight_all = 1
@@ -341,10 +344,12 @@ nmap =j :%!jq<CR>
 nnoremap H gT
 nnoremap L gt
 
+onoremap q i'
+onoremap Q i"
+
 " junegunn/vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
