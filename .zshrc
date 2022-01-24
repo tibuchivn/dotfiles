@@ -129,7 +129,7 @@ export ZSH=/Users/tungtram/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git tmux chucknorris zsh-autosuggestions)
-plugins=(git tmux fzf zsh-autosuggestions osx)
+plugins=(git tmux fzf zsh-autosuggestions macos)
 
 DISABLE_MAGIC_FUNCTIONS=true
 ZSH_TMUX_AUTOSTART=false
@@ -174,9 +174,8 @@ source $(brew --prefix)/share/antigen/antigen.zsh
 # antigen bundle thewtex/tmux-mem-cpu-load
 # antigen theme denysdovhan/spaceship-prompt
 
-eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
 
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting'
 export PATH=${PATH}:/usr/local/mysql/bin
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:/usr/local/lib/node_modules
@@ -202,15 +201,13 @@ alias vi="vim"
 alias ci="circleci-cli"
 alias rsp="bundle exec rails s -b 0.0.0.0"
 alias rc="bundle exec rails console"
-alias rj="QUEUE=* COUNT=1 bin/rake resque:work"
-alias rsc="bundle exec rake resque:scheduler"
 alias b="bundle install"
 alias c="bundle exec cucumber"
 alias migrate="bundle exec rake db:migrate && RAILS_ENV=test bundle exec rake db:migrate"
 alias testprepare="bundle exec rake db:test:prepare"
 alias testmigrate="RAILS_ENV=test bundle exec rake db:migrate"
 alias testdb="RAILS_ENV=test bundle exec rake db:drop db:create db:schema:load db:migrate"
-alias cow="source ~/cowsay.sh"
+alias cow="fortune | cowsay"
 alias 'today=calendar -A 0 -f /usr/share/calendar/calendar.mark | sort'
 alias 'smart=diskutil info disk0 | grep SMART' # display SMART status of hard drive
 alias apps='mdfind "kMDItemAppStoreHasReceipt=1"'
@@ -222,9 +219,6 @@ alias pss="ps aux | grep"
 alias rs="rspec -f d -c"
 alias tiny="la | grep tiny"
 alias unzipall='unzip "*.zip"'
-alias calw='gcalcli calw'
-alias calm='gcalcli calm'
-alias agenda='gcalcli agenda'
 # alias start_es='docker run -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.6.14'
 alias aria='aria2c --enable-rpc=true --rpc-listen-all=true --rpc-allow-origin-all=true --rpc-secret=token --disable-ipv6=true'
 alias ss='spotify status'
@@ -240,12 +234,9 @@ alias gfm="git fmerge"
 alias gfrs="git freset"
 alias tx="tmuxinator"
 alias ls="exa"
-alias cat="bat"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-# export BUNDLE_GITHUB__COM="9d21f58a58d50f183a821296ac109d791a7d616d"
-export BUNDLE_GITHUB__COM="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"
-export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="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"
-export GITHUB_TOKEN="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"
+export BUNDLE_GITHUB__COM="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"
+export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="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"
 
 mkcdir()
 {
@@ -261,8 +252,8 @@ if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-export CXXFLAGS="-mmacosx-version-min=10.9"
-export LDFLAGS="-mmacosx-version-min=10.9"
+# export CXXFLAGS="-mmacosx-version-min=10.9"
+# export LDFLAGS="-mmacosx-version-min=10.9"
 export VIRTUALENVWRAPPER_PYTHON="/usr/local/opt/python@3.7/bin/python3"
 export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tungtram/Library/Python/3.7/bin/virtualenv"
 
@@ -272,13 +263,21 @@ export PROJECT_HOME=$HOME/Devel
 export VIRTUALENVWRAPPER_SCRIPT=/Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper.sh
 source /Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper_lazy.sh
 
-alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
-alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+# alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+# alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias pg_start="launchctl load ~/Library/LaunchAgents"
+alias pg_stop="launchctl unload ~/Library/LaunchAgents"
 
 alias tngl="bundle exec tiny_golem"
 
 alias kitty_update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
-alias brew_reinstall="brew list | xargs brew reinstall"
+alias ip2loc="curl -s https://ipinfo.io/$(curl -s https://ipinfo.io/ip) | jq"
+# alias brew_reinstall="brew list | xargs brew reinstall"
+
+alias coin="coin_price"
+export COIN_PRICE="bitcoin,matic-network,chiliz,enjincoin,tlm,tko,ftt"
+
+alias nrd="npm run dev"
 
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 
@@ -330,9 +329,6 @@ export PATH="/usr/local/opt/qt/bin:$PATH"
 export PIP_NO_CACHE_DIR=off
 
 export THOR_MERGE="nvim -d $1 $2"
-
-. /usr/local/opt/asdf/asdf.sh
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 # for solarized dark
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=23"
@@ -453,6 +449,10 @@ merge_test() {
 
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export GITHUB_TOKEN=$(<~/.github_token)
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+. /usr/local/opt/asdf/libexec/asdf.sh
 
 # Add the following to the end of ~/.zshrc
 eval "$(starship init zsh)"

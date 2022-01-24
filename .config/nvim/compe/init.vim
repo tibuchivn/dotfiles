@@ -3,10 +3,10 @@ set fillchars=diff:⣿,vert:│
 
 nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
 
-" set tabstop=2
-" set softtabstop=2
-" set shiftwidth=2
-" set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 set autoindent
 set foldmethod=indent
 set foldnestmax=10
@@ -43,7 +43,7 @@ set inccommand=split
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 " support css word with -
 autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
-" autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
+autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
 
 " set t_Co=256
 autocmd BufWritePre * :%s/\s\+$//e
@@ -51,20 +51,18 @@ autocmd BufWritePre * :%s/\s\+$//e
 let mapleader= " "
 set completefunc=syntaxcomplete#Complete
 
-call plug#begin('/Users/tungtram/.vim/nvim_bundle')
+call plug#begin('/Users/tungtram/.vim/nvim_bundle_compe')
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neovim/nvim-lspconfig'
 Plug 'vim-ruby/vim-ruby'
 Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-cucumber'
 Plug 'preservim/nerdcommenter'
@@ -87,15 +85,24 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-" Plug 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ojroques/vim-scrollstatus'
 Plug 'AndrewRadev/switch.vim'
-Plug 'preservim/vimux'
-Plug 'posva/vim-vue'
-Plug 'rust-lang/rust.vim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'onsails/lspkind-nvim'
 
 call plug#end()
 
@@ -109,11 +116,11 @@ let g:scrollstatus_symbol_track = '-'
 let g:scrollstatus_symbol_bar = '|'
 
 " configuration for coq completion
-let g:coq_settings = {
-      \ 'auto_start': v:true,
-      \ 'clients.tmux.enabled': v:false,
-      \ 'keymap.jump_to_mark': '<c-j>'
-      \ }
+" let g:coq_settings = {
+      " \ 'auto_start': v:true,
+      " \ 'clients.tmux.enabled': v:false,
+      " \ 'keymap.jump_to_mark': '<c-j>'
+      " \ }
 
 " highlight yanked text
 augroup LuaHighlight
@@ -123,6 +130,71 @@ augroup END
 
 " configuration for nvim lsp
 lua << END
+  -- Setup nvim-cmp.
+local cmp = require'cmp'
+local lspkind = require('lspkind')
+
+cmp.setup({
+  formatting = {
+    format = lspkind.cmp_format({
+      with_text = true,
+      menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[Latex]",
+      })
+    }),
+  },
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    end,
+  },
+  mapping = {
+    ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
+    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    -- { name = 'vsnip' }, -- For vsnip users.
+    -- { name = 'luasnip' }, -- For luasnip users.
+    { name = 'ultisnips' }, -- For ultisnips users.
+    -- { name = 'snippy' }, -- For snippy users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
@@ -152,10 +224,10 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {'solargraph', 'tsserver'}
-local coq = require 'coq'
+-- local coq = require 'coq'
 for _, lsp in ipairs(servers) do
-  -- nvim_lsp[lsp].setup { on_attach = on_attach, }
-  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
+  nvim_lsp[lsp].setup { on_attach = on_attach, capabilities = capabilities, autostart = false }
+  -- nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
 end
 
 END
@@ -168,11 +240,7 @@ let NERDSpaceDelims=1
 let g:ranger_map_keys = 0
 
 " gutentags ignore javascript and not load in diff mode
-let g:gutentags_exclude_filetypes = ['javascript', 'javascriptreact', 'typescript']
-let g:gutentags_ctags_exclude = [
-      \ 'build/*',
-      \ '.cache/*'
-      \ ]
+let g:gutentags_exclude_filetypes = ['javascript', 'javascriptreact']
 if &diff
   let g:gutentags_enabled = 0
 endif
@@ -294,8 +362,7 @@ let g:grepper.open      = 1
 set completeopt=menuone,noselect
 
 let test#vim#term_position = "belowright"
-" let test#strategy = "neovim"
-let test#strategy = "vimux"
+let test#strategy = "neovim"
 let test#ruby#use_binstubs = 0
 
 let g:python_highlight_all = 1
