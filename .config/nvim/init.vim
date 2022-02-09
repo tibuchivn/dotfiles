@@ -96,6 +96,8 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'preservim/vimux'
 Plug 'posva/vim-vue'
 Plug 'rust-lang/rust.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 call plug#end()
 
@@ -120,6 +122,11 @@ augroup LuaHighlight
   autocmd!
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
+
+" configuration for gitsigns
+lua << END
+require('gitsigns').setup()
+END
 
 " configuration for nvim lsp
 lua << END

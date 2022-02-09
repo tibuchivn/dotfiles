@@ -235,8 +235,8 @@ alias gfrs="git freset"
 alias tx="tmuxinator"
 alias ls="exa"
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-export BUNDLE_GITHUB__COM="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"
-export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="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"
+export BUNDLE_GITHUB__COM=$(<~/.github_token)
+export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="x-access-token:$(<~/.github_token)"
 
 mkcdir()
 {
@@ -449,10 +449,11 @@ merge_test() {
 
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export GITHUB_TOKEN=$(<~/.github_token)
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
 . /usr/local/opt/asdf/libexec/asdf.sh
+
+unset GITHUB_TOKEN
 
 # Add the following to the end of ~/.zshrc
 eval "$(starship init zsh)"
