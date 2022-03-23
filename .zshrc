@@ -450,6 +450,7 @@ merge_test() {
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 . /usr/local/opt/asdf/libexec/asdf.sh
 

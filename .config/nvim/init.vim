@@ -74,6 +74,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/limelight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
 Plug 'lifepillar/vim-solarized8'
@@ -87,7 +88,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-" Plug 'mhinz/vim-signify'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
@@ -95,9 +95,11 @@ Plug 'ojroques/vim-scrollstatus'
 Plug 'AndrewRadev/switch.vim'
 Plug 'preservim/vimux'
 Plug 'posva/vim-vue'
+" Plug 'simrat39/rust-tools.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'chrisbra/csv.vim'
 
 call plug#end()
 
@@ -139,6 +141,40 @@ local on_attach = function(client, bufnr)
   --Enable completion triggered by <c-x><c-o>
   --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Go-to definition in a split window
+  -- local function goto_definition(split_cmd)
+    -- local util = vim.lsp.util
+    -- local log = require("vim.lsp.log")
+    -- local api = vim.api
+
+    -- -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
+    -- local handler = function(_, result, ctx)
+      -- if result == nil or vim.tbl_isempty(result) then
+        -- local _ = log.info() and log.info(ctx.method, "No location found")
+        -- return nil
+      -- end
+
+      -- if split_cmd then
+        -- vim.cmd(split_cmd)
+      -- end
+
+      -- if vim.tbl_islist(result) then
+        -- util.jump_to_location(result[1])
+
+        -- if #result > 1 then
+          -- util.set_qflist(util.locations_to_items(result))
+          -- api.nvim_command("copen")
+          -- api.nvim_command("wincmd p")
+        -- end
+      -- else
+        -- util.jump_to_location(result)
+      -- end
+    -- end
+
+    -- return handler
+  -- end
+  -- vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit')
+
   -- Mappings.
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -154,11 +190,26 @@ local on_attach = function(client, bufnr)
       signs = true,
     }
   )
-  -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
-  -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
+  vim.o.updatetime = 250
+  -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+  vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+
+  vim.cmd [[
+    highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+    highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+    highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+    highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+
+    sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+    sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+    sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+    sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+  ]]
 end
 
-local servers = {'solargraph', 'tsserver'}
+-- require('rust-tools').setup({})
+
+local servers = {'solargraph', 'tsserver', 'rust_analyzer'}
 local coq = require 'coq'
 for _, lsp in ipairs(servers) do
   -- nvim_lsp[lsp].setup { on_attach = on_attach, }
