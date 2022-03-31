@@ -56,6 +56,7 @@ call plug#begin('/Users/tungtram/.vim/nvim_bundle')
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neovim/nvim-lspconfig'
 Plug 'vim-ruby/vim-ruby'
+" Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
@@ -77,7 +78,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'overcache/NeoSolarized'
 Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -106,8 +108,9 @@ call plug#end()
 set background=dark
 " set background=light
 let g:solarized_use16=1
-colorscheme solarized8
-"
+" colorscheme solarized8
+colorscheme NeoSolarized
+
 " configuration for vim-scrollstatus
 let g:scrollstatus_symbol_track = '-'
 let g:scrollstatus_symbol_bar = '|'
@@ -218,6 +221,8 @@ end
 
 END
 
+" let g:limelight_conceal_ctermfg = 245  " Solarized Base1
+" let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
 
 " nerdcommenter to give extra space after #
 let NERDSpaceDelims=1
@@ -363,6 +368,7 @@ let g:indentLine_leadingSpaceChar = '·'
 
 let g:tmux_navigator_disable_when_zoomed = 1
 
+let g:loaded_ruby_provider = 0
 let g:ruby_indent_block_style = 'do'
 let g:ruby_indent_assignment_style = 'variable'
 " let g:ruby_indent_assignment_style = 'hanging'
