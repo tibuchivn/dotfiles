@@ -51,7 +51,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 let mapleader= " "
 set completefunc=syntaxcomplete#Complete
 
-call plug#begin('/Users/tungtram/.vim/nvim_bundle')
+call plug#begin('~/.vim/nvim_bundle')
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neovim/nvim-lspconfig'
