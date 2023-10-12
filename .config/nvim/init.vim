@@ -40,6 +40,8 @@ syntax on
 " live substitution
 set inccommand=split
 
+set mouse=
+
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 " support css word with -
 autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
@@ -55,6 +57,7 @@ call plug#begin('~/.vim/nvim_bundle')
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'neovim/nvim-lspconfig'
+Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'easymotion/vim-easymotion'
@@ -78,7 +81,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
-" Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-solarized8'
 Plug 'overcache/NeoSolarized'
 Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
@@ -89,6 +92,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
@@ -96,14 +100,26 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ojroques/vim-scrollstatus'
 Plug 'AndrewRadev/switch.vim'
 Plug 'preservim/vimux'
-Plug 'posva/vim-vue'
+" Plug 'posva/vim-vue'
 " Plug 'simrat39/rust-tools.nvim'
 Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'chrisbra/csv.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'Exafunction/codeium.vim'
 
 call plug#end()
+
+" let g:chadtree_settings = { "options.polling_rate": 5.0 }
+
+" codium
+let g:codeium_no_map_tab = 0
+let g:codeium_enabled = v:false
+
+imap <script><silent><nowait><expr> <C-l> codeium#Accept()
+imap <C-^>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
 
 set background=dark
 " set background=light
@@ -130,7 +146,13 @@ augroup END
 
 " configuration for gitsigns
 lua << END
-require('gitsigns').setup()
+require('gitsigns').setup{
+  -- on_attach = function(bufnr)
+  --   -- Navigation
+  --   map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", {expr=true})
+  --   map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", {expr=true})
+  -- end
+}
 END
 
 " configuration for nvim lsp
@@ -141,59 +163,19 @@ local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  --Enable completion triggered by <c-x><c-o>
-  --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Go-to definition in a split window
-  -- local function goto_definition(split_cmd)
-    -- local util = vim.lsp.util
-    -- local log = require("vim.lsp.log")
-    -- local api = vim.api
-
-    -- -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-    -- local handler = function(_, result, ctx)
-      -- if result == nil or vim.tbl_isempty(result) then
-        -- local _ = log.info() and log.info(ctx.method, "No location found")
-        -- return nil
-      -- end
-
-      -- if split_cmd then
-        -- vim.cmd(split_cmd)
-      -- end
-
-      -- if vim.tbl_islist(result) then
-        -- util.jump_to_location(result[1])
-
-        -- if #result > 1 then
-          -- util.set_qflist(util.locations_to_items(result))
-          -- api.nvim_command("copen")
-          -- api.nvim_command("wincmd p")
-        -- end
-      -- else
-        -- util.jump_to_location(result)
-      -- end
-    -- end
-
-    -- return handler
-  -- end
-  -- vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit')
-
   -- Mappings.
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-      underline = true,
-      signs = true,
-    }
-  )
-  vim.o.updatetime = 250
+  vim.diagnostic.config({
+    virtual_text = false,
+    underline = true,
+    signs = true
+  })
+
   -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
   vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
 
@@ -215,11 +197,14 @@ end
 local servers = {'solargraph', 'tsserver', 'rust_analyzer'}
 local coq = require 'coq'
 for _, lsp in ipairs(servers) do
-  -- nvim_lsp[lsp].setup { on_attach = on_attach, }
+  -- nvim_lsp[lsp].setup { on_attach = on_attach, autostart = false}
   nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
 end
 
+require'toggle_lsp_diagnostics'.init()
 END
+
+nmap <leader>tu <Plug>(toggle-lsp-diag-vtext)
 
 " let g:limelight_conceal_ctermfg = 245  " Solarized Base1
 " let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
@@ -230,12 +215,6 @@ let NERDSpaceDelims=1
 " ranger integration
 let g:ranger_map_keys = 0
 
-" gutentags ignore javascript and not load in diff mode
-let g:gutentags_exclude_filetypes = ['javascript', 'javascriptreact', 'typescript']
-let g:gutentags_ctags_exclude = [
-      \ 'build/*',
-      \ '.cache/*'
-      \ ]
 if &diff
   let g:gutentags_enabled = 0
 endif
@@ -244,7 +223,7 @@ let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-      \   'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ], ['lineinfo'], ['percent'], ['filetype']]
+      \   'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ], ['lineinfo'], ['percent'], ['filetype'], ['codium_status']]
       \ },
       \ 'tabline': {
       \   'left': [['tabs']],
@@ -260,6 +239,7 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead',
       \   'filename': 'LightlineFilename',
       \   'percent': 'ScrollStatus',
+      \   'codium_status': 'codeium#GetStatusString',
       \ },
       \ 'component_expand': {
       \   'linter_hints': 'lightline#lsp#hints',
@@ -285,6 +265,7 @@ function! MyFileformat()
   return (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol())
 endfunction
 
+
 function! LightlineFilename()
   return expand('%')
 endfunction
@@ -295,6 +276,7 @@ let g:auto_save = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
 
 map <leader>E :Ranger<CR>
+" map <leader>E :CHADopen<CR>
 map <leader>y "+y
 map <leader>P "+p
 map <leader>p "0p
@@ -304,7 +286,7 @@ map <leader>W :Windows<cr>
 map <leader>T :BTags<cr>
 map <leader>ft :Filetypes<cr>
 map <leader>? :GFiles?<cr>
-map <Leader>= gg=G<C-o>
+map <Leader>= <esc>gg=G<C-o><C-o>zz
 map <leader>wb :%bd\|e#\|bd#<cr>
 map <leader>cc vipyPgvO<Esc>O<Esc>gv:!curl --config -<CR>
 
@@ -337,7 +319,9 @@ map <leader>S :Switch<cr>
 
 nnoremap <silent> <C-p> :FZF<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true } }
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true } }
+" - down / up / left / right
+let g:fzf_layout = { 'down': '30%' }
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
 
@@ -357,9 +341,8 @@ let g:grepper.open      = 1
 set completeopt=menuone,noselect
 
 let test#vim#term_position = "belowright"
-" let test#strategy = "neovim"
 let test#strategy = "vimux"
-let test#ruby#use_binstubs = 0
+let test#ruby#use_binstubs = 1
 
 let g:python_highlight_all = 1
 
@@ -410,6 +393,32 @@ nnoremap L gt
 
 onoremap q i'
 onoremap Q i"
+
+function! DeleteFile(...)
+  if(exists('a:1'))
+    let theFile=a:1
+  elseif ( &ft == 'help' )
+    echohl Error
+    echo "Cannot delete a help buffer!"
+    echohl None
+    return -1
+  else
+    let theFile=expand('%:p')
+  endif
+  let delStatus=delete(theFile)
+  if(delStatus == 0)
+    echo "Deleted " . theFile
+  else
+    echohl WarningMsg
+    echo "Failed to delete " . theFile
+    echohl None
+  endif
+  return delStatus
+endfunction
+"delete the current file
+com! Rm call DeleteFile()
+"delete the file and quit the buffer (quits vim if this was the last file)
+com! RM call DeleteFile() <Bar> q!
 
 " junegunn/vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
