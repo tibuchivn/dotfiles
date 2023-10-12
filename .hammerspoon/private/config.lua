@@ -22,8 +22,8 @@ Install:andUse("PopupTranslateSelection",
 )
 
 hspoon_list = {
-    "AClock",
-    --"ClipShow",
+    -- "AClock",
+    -- "ClipShow",
     "CountDown",
     "FnMate",
     "HSaria2",
@@ -31,6 +31,24 @@ hspoon_list = {
     "SpeedMenu",
     "WinWin",
 }
+
+function moveWindowToDisplay(d)
+  return function()
+    local displays = hs.screen.allScreens()
+    local win = hs.window.focusedWindow()
+    win:moveToScreen(displays[d], false, true)
+  end
+end
+
+function moveWindowToNextDisplay()
+    local app = hs.window.focusedWindow()
+    app:moveToScreen(app:screen():next(), false, true)
+    -- app:maximize()
+end
+
+hs.hotkey.bind(mash, "1", moveWindowToDisplay(1))
+hs.hotkey.bind(mash, "2", moveWindowToDisplay(2))
+hs.hotkey.bind(mash, "tab", moveWindowToNextDisplay)
 
 local caffeine = hs.menubar.new()
 
@@ -43,17 +61,20 @@ function displayCurrentTrack()
 end
 
 hs.hotkey.bind(mash, 'space', displayCurrentTrack)
-hs.hotkey.bind(mash, 'p', hs.spotify.playpause)
-hs.hotkey.bind(mash, 'n', spotifyNext)
+hs.hotkey.bind('alt', 'm', displayCurrentTrack)
+hs.hotkey.bind('alt', 'p', hs.spotify.playpause)
+hs.hotkey.bind('alt', 'n', hs.spotify.next)
+hs.hotkey.bind('alt', '=', hs.spotify.volumeUp)
+hs.hotkey.bind('alt', '-', hs.spotify.volumeDown)
 
 local function updateCaffeineDisplay(state)
     local result
     if state then
         caffeine:setIcon("caffeine-active.png")
-        --hs.alert("Caffeine enabled", 1)
+        hs.alert("Caffeine enabled", 1)
     else
         caffeine:setIcon("caffeine-inactive.png")
-        --hs.alert("Caffeine disabled", 1)
+        hs.alert("Caffeine disabled", 1)
     end
 end
 
@@ -187,7 +208,7 @@ end
 hs.hotkey.bind(mash, "p", ping)
 
 -- Show date time and battery
-hs.hotkey.bind(mash, 'T', function()
+hs.hotkey.bind("alt", "T", function()
   local seconds = 3
   local message = os.date("%I:%M%p") .. "\n" .. os.date("%a %b %d") .. "\nBattery: " ..
      hs.battery.percentage() .. "%"
