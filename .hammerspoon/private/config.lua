@@ -71,9 +71,11 @@ local function updateCaffeineDisplay(state)
     local result
     if state then
         caffeine:setIcon("caffeine-active.png")
+        -- caffeine:setTitle("AWAKE")
         hs.alert("Caffeine enabled", 1)
     else
         caffeine:setIcon("caffeine-inactive.png")
+        -- caffeine:setTitle("SLEEPY")
         hs.alert("Caffeine disabled", 1)
     end
 end

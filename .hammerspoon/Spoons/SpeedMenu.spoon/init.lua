@@ -34,7 +34,7 @@ local function data_diff()
     else
         obj.kbout = string.format("%6.2f", out_diff/1024) .. ' kb/s'
     end
-    local disp_str = '⥄ ' .. obj.kbout .. '\n⥂ ' .. obj.kbin
+    local disp_str = '↑' .. obj.kbout .. '   ↓' .. obj.kbin
     if obj.darkmode then
         obj.disp_str = hs.styledtext.new(disp_str, {font={size=9.0, color={hex="#FFFFFF"}}})
     else
