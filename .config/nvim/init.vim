@@ -3,10 +3,10 @@ set fillchars=diff:⣿,vert:│
 
 nnoremap <silent> <ESC><ESC> :nohlsearch<Bar>:echo<CR>
 
-" set tabstop=2
-" set softtabstop=2
-" set shiftwidth=2
-" set expandtab
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
 set autoindent
 set foldmethod=indent
 set foldnestmax=10
@@ -23,6 +23,12 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
       \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" highlight yanked text
+augroup LuaHighlight
+  autocmd!
+  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+augroup END
+
 set ignorecase
 set smartcase
 set hlsearch
@@ -33,7 +39,7 @@ set hidden
 
 " hightlight column and line
 set cursorline
-"set cursorcolumn
+" set cursorcolumn
 filetype plugin indent on
 syntax on
 
@@ -61,7 +67,6 @@ Plug 'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim'
 Plug 'vim-ruby/vim-ruby'
 " Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-haml'
 Plug 'tpope/vim-repeat'
@@ -87,7 +92,7 @@ Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vimlab/split-term.vim'
+" Plug 'vimlab/split-term.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
@@ -97,39 +102,35 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ojroques/vim-scrollstatus'
+" Plug 'ojroques/vim-scrollstatus'
 Plug 'AndrewRadev/switch.vim'
 Plug 'preservim/vimux'
 " Plug 'posva/vim-vue'
 " Plug 'simrat39/rust-tools.nvim'
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hashivim/vim-terraform'
-Plug 'Exafunction/codeium.vim'
+" Plug 'Exafunction/codeium.vim'
 
 call plug#end()
 
 " let g:chadtree_settings = { "options.polling_rate": 5.0 }
 
 " codium
-let g:codeium_no_map_tab = 0
-let g:codeium_enabled = v:false
+" let g:codeium_no_map_tab = 0
+" let g:codeium_enabled = v:false
 
-imap <script><silent><nowait><expr> <C-l> codeium#Accept()
-imap <C-^>   <Cmd>call codeium#CycleCompletions(1)<CR>
-imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
-imap <C-x>   <Cmd>call codeium#Clear()<CR>
+" imap <script><silent><nowait><expr> <C-l> codeium#Accept()
+" imap <C-^>   <Cmd>call codeium#CycleCompletions(1)<CR>
+" imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+" imap <C-x>   <Cmd>call codeium#Clear()<CR>
 
 set background=dark
 " set background=light
 let g:solarized_use16=1
 " colorscheme solarized8
 colorscheme NeoSolarized
-
-" configuration for vim-scrollstatus
-let g:scrollstatus_symbol_track = '-'
-let g:scrollstatus_symbol_bar = '|'
 
 " configuration for coq completion
 let g:coq_settings = {
@@ -138,11 +139,6 @@ let g:coq_settings = {
       \ 'keymap.jump_to_mark': '<c-j>'
       \ }
 
-" highlight yanked text
-augroup LuaHighlight
-  autocmd!
-  autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-augroup END
 
 " configuration for gitsigns
 lua << END
@@ -206,8 +202,8 @@ END
 
 nmap <leader>tu <Plug>(toggle-lsp-diag-vtext)
 
-" let g:limelight_conceal_ctermfg = 245  " Solarized Base1
-" let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
+let g:limelight_conceal_ctermfg = 245  " Solarized Base1
+let g:limelight_conceal_guifg = '#8a8a8a'  " Solarized Base1
 
 " nerdcommenter to give extra space after #
 let NERDSpaceDelims=1
@@ -223,7 +219,7 @@ let g:lightline = {
       \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [['mode', 'paste'], ['readonly', 'filename', 'modified']],
-      \   'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ], ['lineinfo'], ['percent'], ['filetype'], ['codium_status']]
+      \   'right': [[ 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints', 'linter_ok' ], ['lineinfo'], ['percent'], ['filetype']]
       \ },
       \ 'tabline': {
       \   'left': [['tabs']],
@@ -239,7 +235,6 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead',
       \   'filename': 'LightlineFilename',
       \   'percent': 'ScrollStatus',
-      \   'codium_status': 'codeium#GetStatusString',
       \ },
       \ 'component_expand': {
       \   'linter_hints': 'lightline#lsp#hints',
@@ -288,7 +283,6 @@ map <leader>ft :Filetypes<cr>
 map <leader>? :GFiles?<cr>
 map <Leader>= <esc>gg=G<C-o><C-o>zz
 map <leader>wb :%bd\|e#\|bd#<cr>
-map <leader>cc vipyPgvO<Esc>O<Esc>gv:!curl --config -<CR>
 
 nnoremap <leader>\ <C-w>v<C-w>l
 nnoremap <leader>- <C-w>s<C-w>j
@@ -297,11 +291,18 @@ nnoremap <leader>gg :Grepper -quickfix -open<cr>
 nnoremap <leader>gq :Grepper -quickfix -open<cr>
 nnoremap <leader>gl :Grepper -noquickfix -open<cr>
 
+let g:grepper           = {}
+let g:grepper.tools     = ['rg', 'ag', 'git']
+let g:grepper.jump      = 0
+let g:grepper.quickfix  = 1
+let g:grepper.next_tool = '<leader>g'
+let g:grepper.open      = 1
+
 nnoremap <Leader>et :tabnew ~/code_temp.rb<CR>
 nnoremap <Leader>ev :tabnew ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>sv :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>ek :tabnew ~/.config/kitty/kitty.conf<CR>
-nnoremap <Leader>ea :tabnew ~/.config/alacritty/alacritty.yml<CR>
+nnoremap <Leader>ea :tabnew ~/.config/alacritty/alacritty.toml<CR>
 nnoremap <Leader>ez :tabnew ~/.zshrc<CR>
 nnoremap <leader>o ddO
 
@@ -326,13 +327,6 @@ let g:fzf_layout = { 'down': '30%' }
 let g:fzf_buffers_jump = 1
 
 inoremap jj <ESC>
-
-let g:grepper           = {}
-let g:grepper.tools     = ['rg', 'ag', 'git']
-let g:grepper.jump      = 0
-let g:grepper.quickfix  = 1
-let g:grepper.next_tool = '<leader>g'
-let g:grepper.open      = 1
 
 " COMPLETER
 "set completeopt=longest,menuone,noinsert
