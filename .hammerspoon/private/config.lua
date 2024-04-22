@@ -43,7 +43,7 @@ end
 function moveWindowToNextDisplay()
     local app = hs.window.focusedWindow()
     app:moveToScreen(app:screen():next(), false, true)
-    -- app:maximize()
+    app:maximize()
 end
 
 hs.hotkey.bind(mash, "1", moveWindowToDisplay(1))
@@ -54,6 +54,9 @@ local caffeine = hs.menubar.new()
 
 function spotifyNext()
     hs.spotify.next()
+    hs.timer.doAfter(1, function()
+      hs.spotify.displayCurrentTrack()
+    end)
 end
 
 function displayCurrentTrack()
@@ -63,7 +66,7 @@ end
 hs.hotkey.bind(mash, 'space', displayCurrentTrack)
 hs.hotkey.bind('alt', 'm', displayCurrentTrack)
 hs.hotkey.bind('alt', 'p', hs.spotify.playpause)
-hs.hotkey.bind('alt', 'n', hs.spotify.next)
+hs.hotkey.bind('alt', 'n', spotifyNext)
 hs.hotkey.bind('alt', '=', hs.spotify.volumeUp)
 hs.hotkey.bind('alt', '-', hs.spotify.volumeDown)
 

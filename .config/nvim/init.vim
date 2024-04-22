@@ -112,6 +112,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hashivim/vim-terraform'
 " Plug 'Exafunction/codeium.vim'
+" Plug 'chrisbra/csv.vim'
+Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
 
@@ -131,6 +133,16 @@ set background=dark
 let g:solarized_use16=1
 " colorscheme solarized8
 colorscheme NeoSolarized
+
+" detect csv file for csv.vim plugin
+" if exists("did_load_csvfiletype")
+  " finish
+" endif
+" let did_load_csvfiletype=1
+
+" augroup filetypedetect
+  " au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
+" augroup END
 
 " configuration for coq completion
 let g:coq_settings = {
