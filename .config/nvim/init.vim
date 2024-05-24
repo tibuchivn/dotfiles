@@ -92,12 +92,10 @@ Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'vimlab/split-term.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
 Plug 'francoiscabrol/ranger.vim'
-" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 Plug 'rbgrouleff/bclose.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
@@ -105,28 +103,14 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 " Plug 'ojroques/vim-scrollstatus'
 Plug 'AndrewRadev/switch.vim'
 Plug 'preservim/vimux'
-" Plug 'posva/vim-vue'
-" Plug 'simrat39/rust-tools.nvim'
-" Plug 'rust-lang/rust.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'hashivim/vim-terraform'
-" Plug 'Exafunction/codeium.vim'
-" Plug 'chrisbra/csv.vim'
 Plug 'mechatroner/rainbow_csv'
 
 call plug#end()
 
-" let g:chadtree_settings = { "options.polling_rate": 5.0 }
-
-" codium
-" let g:codeium_no_map_tab = 0
-" let g:codeium_enabled = v:false
-
-" imap <script><silent><nowait><expr> <C-l> codeium#Accept()
-" imap <C-^>   <Cmd>call codeium#CycleCompletions(1)<CR>
-" imap <C-,>   <Cmd>call codeium#CycleCompletions(-1)<CR>
-" imap <C-x>   <Cmd>call codeium#Clear()<CR>
+" set notgc
 
 set background=dark
 " set background=light
@@ -134,23 +118,12 @@ let g:solarized_use16=1
 " colorscheme solarized8
 colorscheme NeoSolarized
 
-" detect csv file for csv.vim plugin
-" if exists("did_load_csvfiletype")
-  " finish
-" endif
-" let did_load_csvfiletype=1
-
-" augroup filetypedetect
-  " au! BufRead,BufNewFile *.csv,*.dat	setfiletype csv
-" augroup END
-
 " configuration for coq completion
 let g:coq_settings = {
       \ 'auto_start': v:true,
       \ 'clients.tmux.enabled': v:false,
       \ 'keymap.jump_to_mark': '<c-j>'
       \ }
-
 
 " configuration for gitsigns
 lua << END
@@ -339,10 +312,6 @@ let g:fzf_layout = { 'down': '30%' }
 let g:fzf_buffers_jump = 1
 
 inoremap jj <ESC>
-
-" COMPLETER
-"set completeopt=longest,menuone,noinsert
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 set completeopt=menuone,noselect
 
