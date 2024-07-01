@@ -79,8 +79,9 @@ Plug 'tpope/vim-cucumber'
 Plug 'preservim/nerdcommenter'
 Plug 'itchyny/lightline.vim'
 Plug 'spywhere/lightline-lsp'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/limelight.vim'
@@ -88,6 +89,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug '907th/vim-auto-save'
 Plug 'lifepillar/vim-solarized8'
 Plug 'overcache/NeoSolarized'
+" Plug 'Tsuzat/NeoSolarized.nvim', { 'branch': 'master' }
 Plug 'mhinz/vim-grepper'
 Plug 'janko/vim-test'
 Plug 'jiangmiao/auto-pairs'
@@ -159,6 +161,7 @@ local on_attach = function(client, bufnr)
 
   -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
   vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+  -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.lsp.buf.hover(nil, {focus=false, scope="cursor"})]]
 
   vim.cmd [[
     highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
@@ -260,12 +263,6 @@ map <leader>E :Ranger<CR>
 map <leader>y "+y
 map <leader>P "+p
 map <leader>p "0p
-map <leader>H :History<cr>
-map <leader>B :Buffers<cr>
-map <leader>W :Windows<cr>
-map <leader>T :BTags<cr>
-map <leader>ft :Filetypes<cr>
-map <leader>? :GFiles?<cr>
 map <Leader>= <esc>gg=G<C-o><C-o>zz
 map <leader>wb :%bd\|e#\|bd#<cr>
 
@@ -303,13 +300,45 @@ map <leader>S :Switch<cr>
 " vnoremap <leader>h y:%s/<C-R>"/<C-R>"/g<left><left>
 " xmap <leader>ah y:Grepper -noprompt -quickfix -query <C-R>"<CR>:cfdo %s/<C-R>"/<C-R>"/g<left><left>
 
-nnoremap <silent> <C-p> :FZF<CR>
+" nnoremap <silent> <C-p> :FZF<CR>
 
+" FZF.VIM CONFIGURATION
+" layout floating
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'rounded': v:true } }
 " - down / up / left / right
+
+" layout bottom
 let g:fzf_layout = { 'down': '30%' }
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+map <leader>H :History<cr>
+map <leader>B :Buffers<cr>
+map <leader>W :Windows<cr>
+map <leader>T :BTags<cr>
+map <leader>ft :Filetypes<cr>
+map <leader>? :GFiles?<cr>
+
+" FZF.LUA CONFIGURATION
+lua << END
+  -- require("fzf-lua").setup({ "default" })
+  require("fzf-lua").setup({
+    {"fzf-vim", "telescope"},
+    fzf_opts = { ["--layout"] = "reverse", ["--marker"] = "+" },
+    -- winopts = { split = "belowright new" },
+  })
+  -- vim.api.nvim_set_keymap("n", "<C-\\>", [[<Cmd>lua require"fzf-lua".buffers()<CR>]], {})
+  -- vim.api.nvim_set_keymap("n", "<C-k>", [[<Cmd>lua require"fzf-lua".builtin()<CR>]], {})
+  -- vim.api.nvim_set_keymap("n", "<C-p>", [[<Cmd>lua require"fzf-lua".files()<CR>]], {})
+  -- vim.api.nvim_set_keymap("n", "<C-l>", [[<Cmd>lua require"fzf-lua".live_grep_glob()<CR>]], {})
+  -- vim.api.nvim_set_keymap("n", "<C-g>", [[<Cmd>lua require"fzf-lua".grep_project()<CR>]], {})
+END
+map <leader>H :FzfLua oldfiles<cr>
+map <leader>B :FzfLua buffers<cr>
+map <leader>T :FzfLua btags<cr>
+map <leader>ft :FzfLua filetypes<cr>
+map <leader>? :FzfLua git_status<cr>
+map <leader>F :FzfLua<cr>
+nnoremap <silent> <C-p> :FzfLua files<CR>
 
 inoremap jj <ESC>
 
