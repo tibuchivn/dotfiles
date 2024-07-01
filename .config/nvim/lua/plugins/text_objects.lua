@@ -1,4 +1,1 @@
-return {
-  'echasnovski/mini.ai',
-  version = false,
-}
+return { "michaeljsmith/vim-indent-object" }
