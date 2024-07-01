@@ -4,18 +4,20 @@ return {
   config = function()
     require("lualine").setup({
       options = {
+        icons_enabled = false,
         theme = "solarized_dark",
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
       },
       sections = {
         lualine_b = { "diff", "diagnostics" },
-        lualine_c = { {"filename", path = 1} }
+        lualine_c = { {"filename", path = 1} },
+        lualine_x = {'fileformat', 'filetype'},
       },
       tabline = {
         lualine_a = {
           {
-            "tabs",
+            "buffers",
             tab_max_length = 30,
             max_length = function()
               return vim.o.columns * 2 / 3
