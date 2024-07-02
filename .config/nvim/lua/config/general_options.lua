@@ -1,10 +1,10 @@
 -- set vim options
-vim.opt.compatible     = false
 vim.opt.tabstop        = 2
 vim.opt.softtabstop    = 2
 vim.opt.shiftwidth     = 2
 vim.opt.expandtab      = true
 vim.opt.autoindent     = true
+vim.opt.smartindent     = true
 vim.opt.foldmethod     = "indent"
 vim.opt.foldnestmax    = 10
 vim.opt.foldlevelstart = 30

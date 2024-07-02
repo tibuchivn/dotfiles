@@ -1,6 +1,7 @@
 return {
-  "pocco81/auto-save.nvim",
-  config = function()
-    require ("auto-save").setup({})
-  end
+  "907th/vim-auto-save",
+  init = function()
+    vim.g.auto_save = 1
+    vim.g.auto_save_events = { "InsertLeave", "TextChanged" }
+  end,
 }
