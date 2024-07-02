@@ -7,6 +7,7 @@ return {
     require("fzf-lua").setup({
       {"fzf-vim", "telescope"},
       fzf_opts = { ["--layout"] = "reverse", ["--marker"] = "+" },
+      winopts = { preview = { hidden = "hidden" } }
       -- winopts = { split = "belowright new" },
     })
     -- vim.api.nvim_set_keymap("n", "<C-\\>", [[<Cmd>lua require"fzf-lua".buffers()<CR>]], {})
@@ -19,5 +20,6 @@ return {
     vim.keymap.set("n", "<leader>T", ":FzfLua btags<cr>")
     vim.keymap.set("n", "<leader>?", ":FzfLua git_status<cr>")
     vim.keymap.set("n", "<leader>F", ":FzfLua<cr>")
+    vim.keymap.set("n", "<leader>ft", ":FzfLua filetypes<cr>")
   end
 }

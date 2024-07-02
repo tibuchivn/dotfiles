@@ -17,7 +17,7 @@ return {
       tabline = {
         lualine_a = {
           {
-            "buffers",
+            "tabs",
             tab_max_length = 30,
             max_length = function()
               return vim.o.columns * 2 / 3
