@@ -1,11 +1,12 @@
 return {
   {
     "junegunn/goyo.vim",
-    config = function()
+    init = function()
       vim.g.goyo_linenr = 1
       vim.g.goyo_width = 120
       vim.g.goyo_height = "100%"
-
+    end,
+    config = function()
       vim.keymap.set("n", "<leader>z", ":Goyo<cr>")
       vim.cmd([[
       command! ShowLuaLine lua require('lualine').hide({unhide=true})

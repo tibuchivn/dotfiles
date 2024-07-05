@@ -4,7 +4,7 @@ vim.opt.softtabstop    = 2
 vim.opt.shiftwidth     = 2
 vim.opt.expandtab      = true
 vim.opt.autoindent     = true
-vim.opt.smartindent     = true
+vim.opt.smartindent    = true
 vim.opt.foldmethod     = "indent"
 vim.opt.foldnestmax    = 10
 vim.opt.foldlevelstart = 30
@@ -28,7 +28,8 @@ vim.opt.backup         = false
 vim.opt.writebackup    = false
 vim.opt.updatetime     = 300
 vim.opt.signcolumn     = "yes"
-vim.opt.cmdheight      = 2
+vim.opt.cmdheight      = 1
+vim.opt.showmode       = false
 
 -- set leader key
 vim.g.mapleader = " "

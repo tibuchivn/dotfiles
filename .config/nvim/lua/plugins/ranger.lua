@@ -1,8 +1,10 @@
 return {
   "francoiscabrol/ranger.vim",
   dependencies = { "rbgrouleff/bclose.vim" },
-  config = function()
+  init = function()
     vim.g.ranger_map_keys = 0
+  end,
+  config = function()
     vim.keymap.set("n", "<leader>E", ":Ranger<cr>")
   end
 }
