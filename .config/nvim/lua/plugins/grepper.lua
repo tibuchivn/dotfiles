@@ -1,12 +1,16 @@
 return {
   "mhinz/vim-grepper",
-  config = function()
-    vim.g.grepper.tools = { "rg", "ag", "git" }
-    vim.g.grepper.jump = 0
-    vim.g.grepper.quickfix = 1
-    vim.g.grepper.next_tool = "<leader>g"
-    vim.g.grepper.open = 1
+  init = function()
+    local my_grepper = {}
+    my_grepper.tools = { "rg", "ag", "git" }
+    my_grepper.jump = 0
+    my_grepper.quickfix = 1
+    my_grepper.next_tool = "<leader>g"
+    my_grepper.open = 2
 
+    vim.g.grepper = my_grepper
+  end,
+  config = function()
     vim.keymap.set("n", "<leader>G", ":Grepper -tool rg<cr>")
     vim.keymap.set("n", "<leader>gg", ":Grepper -tool rg -quickfix -open<cr>")
   end
