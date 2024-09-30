@@ -18,6 +18,11 @@ return {
         keymap = {
           jump_to_mark = "<C-j>"
         },
+        display = {
+          ghost_text = {
+            enabled = true,
+          },
+        },
     }
   end,
   config = function()
@@ -56,7 +61,7 @@ return {
       ]]
     end
 
-    local servers = {'solargraph', 'tsserver', 'rust_analyzer'}
+    local servers = {'solargraph', 'ts_ls', 'rust_analyzer'}
     local coq = require 'coq'
     for _, lsp in ipairs(servers) do
       nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))

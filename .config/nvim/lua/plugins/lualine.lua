@@ -1,6 +1,8 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   config = function()
     require("lualine").setup({
       options = {
@@ -12,7 +14,7 @@ return {
       sections = {
         lualine_b = { "diff", "diagnostics" },
         lualine_c = { {"filename", path = 1} },
-        lualine_x = {'fileformat', 'filetype'},
+        lualine_x = { 'fileformat', 'filetype'},
       },
       tabline = {
         lualine_a = {

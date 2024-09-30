@@ -22,8 +22,8 @@ vim.keymap.set("n", "<leader>ev", [[:lua require'fzf-lua'.files({ cwd="~/.config
 vim.keymap.set("i", "jj", "<esc>")
 
 vim.keymap.set("n", "p", "p=`]")
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
+-- vim.keymap.set("n", "j", "gj")
+-- vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "=j", ":%!jq<CR>")
 vim.keymap.set("n", "H", "gT")
 vim.keymap.set("n", "L", "gt")
