@@ -1,7 +1,12 @@
 return {
   { "tpope/vim-sensible" },
   { "tpope/vim-repeat" },
-  { "tpope/vim-surround" },
+  {
+    "tpope/vim-surround",
+    init = function()
+      vim.g.surround_no_insert_mappings = 1
+    end
+  },
   { "tpope/vim-unimpaired" },
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },

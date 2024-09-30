@@ -10,6 +10,7 @@ vim.opt.foldnestmax    = 10
 vim.opt.foldlevelstart = 30
 vim.opt.scrolloff      = 50
 vim.opt.number         = true
+vim.opt.relativenumber = true
 vim.opt.fillchars      = "diff:⣿,vert:│"
 vim.opt.ignorecase     = true
 vim.opt.smartcase      = true
@@ -34,6 +35,16 @@ vim.opt.showmode       = false
 -- set leader key
 vim.g.mapleader = " "
 
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 -- autocmd from vimrc
 vim.cmd([==[
 " Triger `autoread` when files changes on disk
@@ -44,12 +55,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
 \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-" highlight yanked text
-augroup LuaHighlight
-autocmd!
-autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
-augroup END
 
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 " support css word with -
