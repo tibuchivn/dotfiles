@@ -31,6 +31,7 @@ vim.opt.updatetime     = 300
 vim.opt.signcolumn     = "yes"
 vim.opt.cmdheight      = 1
 vim.opt.showmode       = false
+vim.opt.laststatus     = 3
 
 -- set leader key
 vim.g.mapleader = " "
