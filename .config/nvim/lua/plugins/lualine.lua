@@ -10,6 +10,7 @@ return {
         theme = "solarized_dark",
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
+        globalstatus = vim.o.laststatus == 3,
       },
       sections = {
         lualine_b = { "diff", "diagnostics" },
@@ -38,6 +39,11 @@ return {
         lualine_x = {},
         lualine_y = {},
         lualine_z = {},
+      },
+      extensions = {
+        "fzf",
+        "fugitive",
+        "quickfix",
       },
     })
   end

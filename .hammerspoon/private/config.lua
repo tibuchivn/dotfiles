@@ -26,7 +26,7 @@ hspoon_list = {
     -- "ClipShow",
     "CountDown",
     "FnMate",
-    "HSaria2",
+    -- "HSaria2",
     "KSheet",
     "SpeedMenu",
     "WinWin",
