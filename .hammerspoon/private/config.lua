@@ -105,6 +105,14 @@ end
 
 hs.hotkey.bind(mash, "Return", pn.toggleFullScreen)
 
+-- Paste the staging password into clipboard
+local textToPaste = "FMxsW9zj6rz5*3BLb7n?"
+local function copyToClipboard()
+    hs.pasteboard.setContents(textToPaste)
+    hs.alert.show("Text copied to clipboard!", 1)
+end
+hs.hotkey.bind(shift_mash, "p", copyToClipboard)
+
 -- Reconnect to current Wifi
 function ssidChangedCallback()
     local ssid = hs.wifi.currentNetwork()
