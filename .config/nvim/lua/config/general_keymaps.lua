@@ -29,3 +29,4 @@ vim.keymap.set("n", "H", "gT")
 vim.keymap.set("n", "L", "gt")
 
 vim.keymap.set("n", "<esc><esc>", ":nohlsearch<Bar>:echo<CR>")
+vim.cmd([[tmap <C-o> <C-\><C-n>]])

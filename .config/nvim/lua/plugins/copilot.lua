@@ -3,7 +3,7 @@ return {
     'github/copilot.vim',
     event = "VeryLazy",
     init = function()
-      vim.g.copilot_node_command = '/opt/homebrew/Cellar/node/22.8.0/bin/node'
+      vim.g.copilot_node_command = '/opt/homebrew/opt/node@22/bin/node'
       vim.keymap.set('i', '<C-g>', 'copilot#Accept("\\<CR>")', {
         expr = true,
         replace_keycodes = false

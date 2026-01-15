@@ -5,9 +5,25 @@ vim.opt.shiftwidth     = 2
 vim.opt.expandtab      = true
 vim.opt.autoindent     = true
 vim.opt.smartindent    = true
-vim.opt.foldmethod     = "indent"
-vim.opt.foldnestmax    = 10
-vim.opt.foldlevelstart = 30
+-- Nice and simple folding:
+-- vim.o.foldenable = true
+-- vim.o.foldlevel = 99
+-- vim.o.foldmethod = "expr"
+-- -- vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- vim.o.foldtext = ""
+-- vim.opt.foldcolumn = "0"
+-- vim.opt.fillchars:append({fold = " "})
+
+-- Folding by indent
+-- vim.opt.foldmethod     = "indent"
+-- vim.opt.foldnestmax    = 10
+-- vim.opt.foldlevel      = 99
+-- vim.opt.foldlevelstart = 99
+-- vim.o.foldcolumn = '0' -- '0' is not bad
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- vim.o.foldenable = true
+
 vim.opt.scrolloff      = 50
 vim.opt.number         = true
 vim.opt.relativenumber = true

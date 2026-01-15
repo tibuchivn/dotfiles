@@ -9,7 +9,7 @@ return {
 
 		local keymap = vim.keymap
 
-		keymap.set('n', "<leader>sl", ":SessionRestore<CR>", { desc = 'Restore session for cwd' })
-		keymap.set('n', "<leader>ss", ":SessionSave<CR>", { desc = 'Save Session' })
+		keymap.set('n', "<leader>sl", ":AutoSession restore<CR>", { desc = 'Restore session for cwd' })
+		keymap.set('n', "<leader>ss", ":AutoSession save<CR>", { desc = 'Save Session' })
 	end,
 }

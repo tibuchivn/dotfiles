@@ -9,14 +9,14 @@ return {
   },
   init = function()
     vim.g.coq_settings = {
-        auto_start = true,
+        auto_start = "shut-up",
         clients = {
           tmux = {
             enabled = false,
           },
         },
         keymap = {
-          jump_to_mark = "<C-j>"
+          jump_to_mark = "<C-J>"
         },
         display = {
           ghost_text = {
@@ -24,9 +24,20 @@ return {
           },
         },
     }
+    vim.keymap.set("n", "<leader>dt", function()
+      if vim.diagnostic.is_enabled() then
+        vim.diagnostic.disable()
+        print("Diagnostics disabled")
+      else
+        vim.diagnostic.enable()
+        print("Diagnostics enabled")
+      end
+    end, { desc = "Toggle Diagnostics" })
+    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+    vim.diagnostic.enable(false)
   end,
   config = function()
-    local nvim_lsp = require('lspconfig')
+    -- local nvim_lsp = require('lspconfig')
 
     local on_attach = function(client, bufnr)
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -40,7 +51,7 @@ return {
       buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
       vim.diagnostic.config({
-        virtual_text = false,
+        virtual_text = true,
         underline = true,
         signs = true
       })
@@ -64,7 +75,20 @@ return {
     local servers = {'solargraph', 'ts_ls', 'rust_analyzer'}
     local coq = require 'coq'
     for _, lsp in ipairs(servers) do
-      nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
+      -- nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
+      vim.lsp.enable(lsp, coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
     end
+
+    -- Configure Copilot LSP
+    local copilot_lsp_path = vim.fn.stdpath('data') .. '/lazy/copilot.vim/copilot-language-server/dist/language-server.js'
+    
+    vim.lsp.config('copilot', {
+      cmd = { vim.g.copilot_node_command or 'node', copilot_lsp_path, '--stdio' },
+      filetypes = { '*' },
+      root_dir = vim.fs.root(0, { '.git' }),
+      capabilities = coq.lsp_ensure_capabilities({}),
+    })
+    
+    vim.lsp.enable('copilot')
   end,
 }
