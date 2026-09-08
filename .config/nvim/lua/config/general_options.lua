@@ -5,24 +5,6 @@ vim.opt.shiftwidth     = 2
 vim.opt.expandtab      = true
 vim.opt.autoindent     = true
 vim.opt.smartindent    = true
--- Nice and simple folding:
--- vim.o.foldenable = true
--- vim.o.foldlevel = 99
--- vim.o.foldmethod = "expr"
--- -- vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
--- vim.o.foldtext = ""
--- vim.opt.foldcolumn = "0"
--- vim.opt.fillchars:append({fold = " "})
-
--- Folding by indent
--- vim.opt.foldmethod     = "indent"
--- vim.opt.foldnestmax    = 10
--- vim.opt.foldlevel      = 99
--- vim.opt.foldlevelstart = 99
--- vim.o.foldcolumn = '0' -- '0' is not bad
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- vim.o.foldenable = true
 
 vim.opt.scrolloff      = 50
 vim.opt.number         = true
@@ -52,6 +34,9 @@ vim.opt.laststatus     = 3
 -- set leader key
 vim.g.mapleader = " "
 
+-- Enable ui2: redesigned messages/cmdline UI (Neovim 0.12+)
+require('vim._core.ui2').enable({})
+
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -62,6 +47,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
 -- autocmd from vimrc
 vim.cmd([==[
 " Triger `autoread` when files changes on disk
@@ -73,10 +59,14 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 autocmd FileChangedShellPost *
 \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+filetype plugin indent on
+
 autocmd BufNewFile,BufRead *_spec.rb set filetype=ruby
 " support css word with -
-autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
+" autocmd FileType css,scss,slim,html,eruby,coffee,javascript setlocal iskeyword+=-
 " autocmd FileType python set shiftwidth=2 tabstop=2 expandtab
+autocmd! FileType groovy runtime indent/javascript.vim
+autocmd FileType groovy setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 autocmd BufWritePre * :%s/\s\+$//e
 ]==])

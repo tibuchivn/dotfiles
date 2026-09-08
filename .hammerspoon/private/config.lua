@@ -52,23 +52,15 @@ hs.hotkey.bind(mash, "tab", moveWindowToNextDisplay)
 
 local caffeine = hs.menubar.new()
 
-function spotifyNext()
-    hs.spotify.next()
-    hs.timer.doAfter(1, function()
-      hs.spotify.displayCurrentTrack()
-    end)
+local function mediaKey(key)
+    hs.eventtap.event.newSystemKeyEvent(key, true):post()
+    hs.eventtap.event.newSystemKeyEvent(key, false):post()
 end
 
-function displayCurrentTrack()
-    hs.spotify.displayCurrentTrack()
-end
-
-hs.hotkey.bind(mash, 'space', displayCurrentTrack)
-hs.hotkey.bind('alt', 'm', displayCurrentTrack)
-hs.hotkey.bind('alt', 'p', hs.spotify.playpause)
-hs.hotkey.bind('alt', 'n', spotifyNext)
-hs.hotkey.bind('alt', '=', hs.spotify.volumeUp)
-hs.hotkey.bind('alt', '-', hs.spotify.volumeDown)
+hs.hotkey.bind('alt', 'p', function() mediaKey('PLAY') end)
+hs.hotkey.bind('alt', 'n', function() mediaKey('NEXT') end)
+hs.hotkey.bind('alt', '=', function() mediaKey('SOUND_UP') end)
+hs.hotkey.bind('alt', '-', function() mediaKey('SOUND_DOWN') end)
 
 local function updateCaffeineDisplay(state)
     local result
@@ -105,13 +97,18 @@ end
 
 hs.hotkey.bind(mash, "Return", pn.toggleFullScreen)
 
--- Paste the staging password into clipboard
-local textToPaste = "FMxsW9zj6rz5*3BLb7n?"
-local function copyToClipboard()
-    hs.pasteboard.setContents(textToPaste)
-    hs.alert.show("Text copied to clipboard!", 1)
+local function bindCopyToClipboard(mods, key, text)
+    hs.hotkey.bind(mods, key, function()
+        hs.pasteboard.setContents(text)
+        hs.alert.show("Zzz", 1)
+    end)
 end
-hs.hotkey.bind(shift_mash, "p", copyToClipboard)
+
+-- Paste the staging password into clipboard
+-- require secrets.lua to read the password from
+local secrets = dofile(os.getenv("HOME") .. "/.hammerspoon/secrets.lua")
+bindCopyToClipboard(shift_mash, "p", secrets.password_p)
+bindCopyToClipboard(shift_mash, "w", secrets.password_w)
 
 -- Reconnect to current Wifi
 function ssidChangedCallback()

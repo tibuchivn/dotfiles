@@ -369,5 +369,71 @@ if string.len(hsconsole_keys[2]) > 0 then
 end
 
 ----------------------------------------------------------------------------------------------------
+-- mouseM modal environment
+hsmouse_step = hsmouse_step or 30
+
+local function moveMouse(direction)
+    local currentPos = hs.mouse.absolutePosition()
+    if direction == "left" then
+        hs.mouse.absolutePosition({x = currentPos.x - hsmouse_step, y = currentPos.y})
+    elseif direction == "down" then
+        hs.mouse.absolutePosition({x = currentPos.x, y = currentPos.y + hsmouse_step})
+    elseif direction == "up" then
+        hs.mouse.absolutePosition({x = currentPos.x, y = currentPos.y - hsmouse_step})
+    elseif direction == "right" then
+        hs.mouse.absolutePosition({x = currentPos.x + hsmouse_step, y = currentPos.y})
+    end
+end
+
+spoon.ModalMgr:new("mouseM")
+local cmodal = spoon.ModalMgr.modal_list["mouseM"]
+cmodal:bind('', 'escape', 'Deactivate mouseM', function() spoon.ModalMgr:deactivate({"mouseM"}) end)
+cmodal:bind('', 'Q', 'Deactivate mouseM', function() spoon.ModalMgr:deactivate({"mouseM"}) end)
+cmodal:bind('', 'tab', 'Toggle Cheatsheet', function() spoon.ModalMgr:toggleCheatsheet() end)
+cmodal:bind('', 'H', 'Move Mouse Left', function() moveMouse("left") end, nil, function() moveMouse("left") end)
+cmodal:bind('', 'J', 'Move Mouse Down', function() moveMouse("down") end, nil, function() moveMouse("down") end)
+cmodal:bind('', 'K', 'Move Mouse Up', function() moveMouse("up") end, nil, function() moveMouse("up") end)
+cmodal:bind('', 'L', 'Move Mouse Right', function() moveMouse("right") end, nil, function() moveMouse("right") end)
+cmodal:bind('shift', 'J', 'Scroll Down', function()
+    hs.eventtap.event.newScrollEvent({0, -4}, {}, 'line'):post()
+end, nil, function()
+    hs.eventtap.event.newScrollEvent({0, -4}, {}, 'line'):post()
+end)
+cmodal:bind('shift', 'K', 'Scroll Up', function()
+    hs.eventtap.event.newScrollEvent({0, 4}, {}, 'line'):post()
+end, nil, function()
+    hs.eventtap.event.newScrollEvent({0, 4}, {}, 'line'):post()
+end)
+cmodal:bind('', 'return', 'Left Click', function()
+    local currentPos = hs.mouse.absolutePosition()
+    hs.eventtap.leftClick(currentPos)
+end)
+cmodal:bind('', "space", 'Right Click', function()
+    local currentPos = hs.mouse.absolutePosition()
+    hs.eventtap.rightClick(currentPos)
+end)
+
+-- Register mouseM with modal supervisor
+hsmouseM_keys = hsmouseM_keys or {"alt", "M"}
+if string.len(hsmouseM_keys[2]) > 0 then
+    spoon.ModalMgr.supervisor:bind(hsmouseM_keys[1], hsmouseM_keys[2], "Enter mouseM Environment", function()
+        spoon.ModalMgr:deactivateAll()
+        spoon.ModalMgr:activate({"mouseM"}, "#00FF00")
+    end)
+end
+
+----------------------------------------------------------------------------------------------------
+-- Register mouse to next screen
+hsmouse_screen_keys = hsmouse_screen_keys or {"alt", "S"}
+if string.len(hsmouse_screen_keys[2]) > 0 then
+    spoon.ModalMgr.supervisor:bind(hsmouse_screen_keys[1], hsmouse_screen_keys[2], "Move Mouse to Next Screen", function()
+        local currentScreen = hs.mouse.getCurrentScreen()
+        local nextScreen = currentScreen:next()
+        local screenFrame = nextScreen:frame()
+        hs.mouse.absolutePosition({x = screenFrame.x + screenFrame.w / 2, y = screenFrame.y + screenFrame.h / 2})
+    end)
+end
+
+----------------------------------------------------------------------------------------------------
 -- Finally we initialize ModalMgr supervisor
 spoon.ModalMgr.supervisor:enter()

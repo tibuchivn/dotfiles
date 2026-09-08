@@ -9,6 +9,12 @@ return {
   },
   { "tpope/vim-unimpaired" },
   { "tpope/vim-fugitive" },
+  {
+    "shumphrey/fugitive-gitlab.vim",
+    init = function()
+      vim.g.fugitive_gitlab_domains = { "git.internetbrands.com" }
+    end
+  },
   { "tpope/vim-rhubarb" },
   { "mechatroner/rainbow_csv" },
   { "easymotion/vim-easymotion" },

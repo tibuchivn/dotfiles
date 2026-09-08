@@ -93,3 +93,12 @@ hstype_keys = {"alt", "V"}
 
 -- Toggle Hammerspoon console
 hsconsole_keys = {"alt", "Z"}
+
+-- mouseM environment keybinding: Mouse control mode
+hsmouseM_keys = {"alt", "M"}
+
+-- Move mouse to next screen
+hsmouse_screen_keys = {"alt", "S"}
+
+-- Mouse movement step size in pixels (used in mouseM mode)
+hsmouse_step = 30

@@ -15,37 +15,41 @@ return {
     "sindrets/diffview.nvim"
   },
   {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
+    "chrisgrieser/nvim-rip-substitute",
+    cmd = "RipSubstitute",
+    opts = {},
+    keys = {
+      {
+        "<leader>rs",
+        function() require("rip-substitute").sub() end,
+        mode = { "n", "x" },
+        desc = " rip substitute",
+      },
     },
-    init = function()
-      vim.o.foldcolumn = "0"
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-    end,
-    config = function()
-      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true
-      }
-      local language_servers = vim.lsp.get_clients() -- or list servers manually like {'gopls', 'clangd'}
-      for _, ls in ipairs(language_servers) do
-        vim.lsp.enable(ls, {
-          capabilities = capabilities
-          -- you can add other fields for setting up lsp server in this table
-        })
-        -- require('lspconfig')[ls].setup({
-        --   capabilities = capabilities
-        --   -- you can add other fields for setting up lsp server in this table
-        -- })
-      end
-      require('ufo').setup()
-    end
+  },
+  {
+    "Imngzx/jisho.nvim",
+    cmd = "Jisho",
+    keys = {
+      {
+        '<leader>tj',
+        function() require('jisho').search() end,
+        mode = 'n',
+        desc = 'Jisho (Word under cursor)',
+      },
+      {
+        '<leader>tj',
+        function()
+          local start_pos = vim.fn.getpos('v')
+          local end_pos = vim.fn.getpos('.')
+          local lines = vim.fn.getregion(start_pos, end_pos)
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
+          require('jisho').search(table.concat(lines, ' '))
+        end,
+        mode = 'v',
+        desc = 'Jisho (Selection)',
+      },
+    },
+    opts = {},
   },
 }
