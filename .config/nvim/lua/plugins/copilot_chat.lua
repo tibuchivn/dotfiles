@@ -41,7 +41,7 @@ return {
     },
     opts = {
       debug = false,
-      model = 'claude-sonnet-4',
+      model = 'claude-haiku-4.5',
       question_header = "## User ",
       answer_header = "## Copilot ",
       error_header = "## Error ",
