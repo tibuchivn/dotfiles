@@ -9,15 +9,15 @@ return {
   },
   init = function()
     vim.g.coq_settings = {
-        auto_start = "shut-up",
+        -- auto_start = "shut-up",
         clients = {
           tmux = {
             enabled = false,
           },
         },
-        keymap = {
-          jump_to_mark = "<C-J>"
-        },
+        -- keymap = {
+        --   jump_to_mark = "<C-J>"
+        -- },
         display = {
           ghost_text = {
             enabled = true,
@@ -76,19 +76,19 @@ return {
     local coq = require 'coq'
     for _, lsp in ipairs(servers) do
       -- nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
-      vim.lsp.enable(lsp, coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
+      -- vim.lsp.enable(lsp, coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
     end
 
     -- Configure Copilot LSP
     local copilot_lsp_path = vim.fn.stdpath('data') .. '/lazy/copilot.vim/copilot-language-server/dist/language-server.js'
-    
+
     vim.lsp.config('copilot', {
       cmd = { vim.g.copilot_node_command or 'node', copilot_lsp_path, '--stdio' },
       filetypes = { '*' },
       root_dir = vim.fs.root(0, { '.git' }),
-      capabilities = coq.lsp_ensure_capabilities({}),
+      -- capabilities = coq.lsp_ensure_capabilities({}),
     })
-    
+
     vim.lsp.enable('copilot')
   end,
 }
