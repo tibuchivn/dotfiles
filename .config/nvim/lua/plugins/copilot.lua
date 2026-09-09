@@ -3,7 +3,11 @@ return {
     'github/copilot.vim',
     event = "VeryLazy",
     init = function()
-      vim.g.copilot_node_command = '/opt/homebrew/opt/node@22/bin/node'
+      -- macOS: use pinned Homebrew node@22 if present; else fall back to PATH `node` (Windows/Linux)
+      local brew_node = '/opt/homebrew/opt/node@22/bin/node'
+      if vim.fn.executable(brew_node) == 1 then
+        vim.g.copilot_node_command = brew_node
+      end
       vim.keymap.set('i', '<C-g>', 'copilot#Accept("\\<CR>")', {
         expr = true,
         replace_keycodes = false
