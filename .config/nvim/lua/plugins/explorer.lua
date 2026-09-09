@@ -58,6 +58,13 @@ return {
           map_split(buf_id, 'gv', 'belowright vertical')
         end,
       })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "minifiles",
+        callback = function()
+          vim.b.minipairs_disable = true
+        end,
+      })
     end
   },
 }
