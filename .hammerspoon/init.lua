@@ -437,3 +437,7 @@ end
 ----------------------------------------------------------------------------------------------------
 -- Finally we initialize ModalMgr supervisor
 spoon.ModalMgr.supervisor:enter()
+
+----------------------------------------------------------------------------------------------------
+-- Menubar widget: live power input wattage (see power_wattage.lua)
+require("power_wattage").start()
