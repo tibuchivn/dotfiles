@@ -28,7 +28,7 @@ hspoon_list = {
     "FnMate",
     -- "HSaria2",
     "KSheet",
-    "SpeedMenu",
+    -- "SpeedMenu",   -- netspeed meter on the menubar; disabled on request
     "WinWin",
 }
 
