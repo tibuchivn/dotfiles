@@ -65,7 +65,7 @@ Gate:
 cd ~/backup-2026-10-20
 shasum -a 256 -c SHA256SUMS
 ```
-Kỳ vọng: 14 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst` (gồm `tools-config`),
+Kỳ vọng: 15 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst` (gồm `tools-config`),
 `30-db/*`.
 Các dòng `FAILED open or read` cho `10-secrets/bundle/...` là **bình thường** (bundle plaintext
 đã bị xoá trước khi reset, không upload).
@@ -213,7 +213,7 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 ## 5. Definition of done
 
-- [ ] `shasum -a 256 -c SHA256SUMS` trong backup: 14 OK
+- [ ] `shasum -a 256 -c SHA256SUMS` trong backup: 15 OK
 - [ ] `git -C ~/tung/dotfiles status --short` trống, đúng branch
 - [ ] mọi symlink trong `bin/link.sh` trỏ đúng vào repo
 - [ ] `zsh -ic` load được `DEEPSEEK_API_KEY`, `brew`, `nvim`, `tmux`
