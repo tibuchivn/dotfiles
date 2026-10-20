@@ -79,16 +79,35 @@ chmod -R go-rwx bundle
 ```
 Gate: `ls bundle` phải thấy `ssh/ zsh_secrets etc/ gnupg/ hermes/ kubeconfigs/`.
 
-### B4 — SSH key trước, rồi mới clone
+### B4 — SSH key + ssh config TRƯỚC, rồi mới clone (git config chưa cần)
+
+`git clone` qua SSH cần đúng 3 thứ, **không cần `~/.gitconfig`**:
+`~/.ssh/config` (có `Host github-tibuchivn`), private key đúng file, và quyền 600.
+`user.name/user.email` chỉ cần khi commit — có sau bước `link` (symlink `~/.gitconfig`).
+
 ```bash
 mkdir -p ~/.ssh && chmod 700 ~/.ssh
 rsync -a ~/backup-2026-10-20/10-secrets/bundle/ssh/ ~/.ssh/
+chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_* ~/.ssh/*_rsa ~/.ssh/*.pem 2>/dev/null
 chmod 644 ~/.ssh/*.pub ~/.ssh/config ~/.ssh/known_hosts 2>/dev/null
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-ssh -T git@github.com    # kỳ vọng: "Hi ...! You've successfully authenticated"
+ssh-add --apple-use-keychain ~/.ssh/id_rsa_tibuchivn
+
+# GATE bắt buộc — phải qua trước khi clone:
+ssh -T git@github-tibuchivn     # kỳ vọng: "Hi <user>! You've successfully authenticated"
 ```
-Repo dùng host alias `github-tibuchivn` (khai báo trong `~/.ssh/config`, đã restore ở trên).
+
+Nếu gate fail: kiểm tra `ssh -v git@github-tibuchivn`, xem `~/.ssh/config` có block
+`Host github-tibuchivn` + `IdentityFile ~/.ssh/id_rsa_tibuchivn`, và key có mode 600.
+Không được "clone bằng cách khác" rồi bỏ qua — báo người dùng.
+
+Fallback khi SSH không thể sửa (ví dụ key hỏng): tải zip branch
+`backup/pre-reset-2026-10-20` từ GitHub web, giải nén vào `~/tung/dotfiles`;
+`bin/restore.sh` không cần `.git` để chạy, chỉ mất khả năng `git pull/commit`.
+
+SSH config trong bundle dùng `IdentityFile ~/.ssh/...` (portable, không phụ thuộc username).
+Dòng `Include ~/.colima/ssh_config` có thể trỏ file không tồn tại trên máy mới — vô hại.
 
 ```bash
 mkdir -p ~/tung
@@ -151,6 +170,9 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 - **Config tĩnh = symlink, config app tự ghi = copy snapshot.** Claude/opencode/hermes ghi
   settings bằng temp+rename nên sẽ phá symlink. Đừng "sửa" bằng cách symlink chúng.
+- **`~/.gitconfig` trong repo có `trace2.eventTarget` trỏ socket của Asterix.app**
+  (`/Users/tung.tram/.asterix-gittrace/...`). Máy mới chưa có app đó → git vẫn chạy, chỉ mất trace.
+  Nếu git phàn nàn: `git config --global --unset trace2.eventtarget`.
 - **Đừng giải nén `hermes-state.tar.zst` đè lên bản Hermes vừa cài.** Hermes có lệnh native:
   `hermes backup` (zip, không gồm codebase) và `hermes import --force <zip>`.
   `hermes import` an toàn cả khi Hermes đang chạy: nó ghi `.db` qua SQLite backup API (không thay
