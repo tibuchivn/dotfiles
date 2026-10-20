@@ -124,7 +124,12 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
   rồi `launchctl load ...` sau khi đã `hermes` login.
 - **Docker**: `brew install colima docker && colima start` (image pull lại).
 - **Ollama models**: `ollama pull <model>` — không backup (4.2G).
-- **Karabiner/keychain/Touch ID/FileVault**: theo máy mới.
+- **WireGuard**: tunnel "tung-laptop" nằm trong **login keychain** (app 1.0.16), không có file
+  `.conf` trên đĩa. Trước khi wipe phải export từ app (File → Export Tunnels…), đóng gói bằng
+  `10-secrets/encrypt-wireguard.sh` → `wireguard-secrets-*.age`. Sau restore: mở app → Import
+  tunnel từ file trong archive.
+- **Keychain / Touch ID / FileVault**: theo máy mới.
+- **Karabiner**: không dùng trên máy này.
 
 ## Ghi chú thiết kế
 
