@@ -13,7 +13,8 @@ Bạn là agent đang chạy trên **máy mới**; người dùng ngồi cạnh 
 | Thứ | Giá trị |
 |---|---|
 | Máy nguồn | macOS 15.7.7, arm64, Homebrew prefix `/opt/homebrew` |
-| Repo | `git@github-tibuchivn:tibuchivn/dotfiles.git`, branch `master` (= `backup/pre-reset-2026-10-20`, đã merge) |
+| Repo | `git@github-tibuchivn:tibuchivn/dotfiles.git`, branch `master` (đã chứa toàn bộ backup; branch `backup/pre-reset-2026-10-20` chỉ là mốc) |
+| Điều kiện tiên quyết | Hermes trên máy mới phải **đã login được 1 provider LLM** (`hermes setup` / `hermes model`, ví dụ Copilot OAuth) — key cũ nằm trong backup nên chưa dùng được lúc này |
 | Backup | folder Drive `backup-mac-2026-10-20`, tải về `~/backup-2026-10-20` |
 | Entry point | `~/tung/dotfiles/bin/restore.sh` — 12 bước, có `--step` và `--dry-run` |
 | Secrets | `10-secrets/secrets-YYYYMMDD.tar.gz.age` — passphrase **chỉ người dùng biết** |
@@ -64,7 +65,7 @@ Gate:
 cd ~/backup-2026-10-20
 shasum -a 256 -c SHA256SUMS
 ```
-Kỳ vọng: 13 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst` (gồm `tools-config`),
+Kỳ vọng: 14 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst` (gồm `tools-config`),
 `30-db/*`.
 Các dòng `FAILED open or read` cho `10-secrets/bundle/...` là **bình thường** (bundle plaintext
 đã bị xoá trước khi reset, không upload).
@@ -91,11 +92,16 @@ rsync -a ~/backup-2026-10-20/10-secrets/bundle/ssh/ ~/.ssh/
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/id_* ~/.ssh/*_rsa ~/.ssh/*.pem 2>/dev/null
 chmod 644 ~/.ssh/*.pub ~/.ssh/config ~/.ssh/known_hosts 2>/dev/null
+# config gốc có `Include /Users/<tên cũ>/.colima/ssh_config` (đường dẫn tuyệt đối) → chuẩn hoá về ~
+sed -i '' -E 's#^Include /Users/[^/]+/#Include ~/#' ~/.ssh/config
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 ssh-add --apple-use-keychain ~/.ssh/id_rsa_tibuchivn
 
 # GATE bắt buộc — phải qua trước khi clone:
 ssh -T git@github-tibuchivn     # kỳ vọng: "Hi <user>! You've successfully authenticated"
+ssh -T git@github.com           # account tinypulse (id_rsa)
+ssh -T git@github-tinypulse     # phải ra cùng account với dòng trên
+# (`ssh -T` thoát exit 1 dù thành công; chỉ đọc câu chào, đừng coi exit code là lỗi)
 ```
 
 Nếu gate fail: kiểm tra `ssh -v git@github-tibuchivn`, xem `~/.ssh/config` có block
@@ -103,11 +109,11 @@ Nếu gate fail: kiểm tra `ssh -v git@github-tibuchivn`, xem `~/.ssh/config` c
 Không được "clone bằng cách khác" rồi bỏ qua — báo người dùng.
 
 Fallback khi SSH không thể sửa (ví dụ key hỏng): tải zip branch
-`backup/pre-reset-2026-10-20` từ GitHub web, giải nén vào `~/tung/dotfiles`;
+`master` từ GitHub web, giải nén vào `~/tung/dotfiles`;
 `bin/restore.sh` không cần `.git` để chạy, chỉ mất khả năng `git pull/commit`.
 
 SSH config trong bundle dùng `IdentityFile ~/.ssh/...` (portable, không phụ thuộc username).
-Dòng `Include ~/.colima/ssh_config` có thể trỏ file không tồn tại trên máy mới — vô hại.
+Dòng `Include ~/.colima/ssh_config` (đã chuẩn hoá bằng sed ở trên) có thể trỏ file không tồn tại trên máy mới — vô hại.
 
 ```bash
 mkdir -p ~/tung
@@ -197,7 +203,7 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 ## 5. Definition of done
 
-- [ ] `shasum -a 256 -c SHA256SUMS` trong backup: 12 OK
+- [ ] `shasum -a 256 -c SHA256SUMS` trong backup: 14 OK
 - [ ] `git -C ~/tung/dotfiles status --short` trống, đúng branch
 - [ ] mọi symlink trong `bin/link.sh` trỏ đúng vào repo
 - [ ] `zsh -ic` load được `DEEPSEEK_API_KEY`, `brew`, `nvim`, `tmux`
