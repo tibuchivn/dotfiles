@@ -118,6 +118,7 @@ Sau `brew`, chạy tiếp từng bước một và đọc output:
 | `nvim` | Lazy restore + Mason | mở `nvim` không lỗi |
 | `tmux` | tpm install_plugins | `tmux new -d && tmux ls` |
 | `hermes` | cài Hermes Agent | `hermes --version` |
+| `hermes-import` | `hermes import --force` từ `hermes-native-backup.zip` (tự snapshot `~/.hermes` trước) | `hermes doctor` không báo lỗi config |
 | `claude` | cài Claude Code | `claude --version` |
 
 `mysql` import dài: chạy nền và theo dõi, đừng để timeout im lặng.
@@ -150,6 +151,10 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 - **Config tĩnh = symlink, config app tự ghi = copy snapshot.** Claude/opencode/hermes ghi
   settings bằng temp+rename nên sẽ phá symlink. Đừng "sửa" bằng cách symlink chúng.
+- **Đừng giải nén `hermes-state.tar.zst` đè lên bản Hermes vừa cài.** Hermes có lệnh native:
+  `hermes backup` (zip, không gồm codebase) và `hermes import --force <zip>`. Dùng zip +
+  `hermes import` để nó tự xử lý schema; tar chỉ là fallback. Version lệch thì `hermes doctor`
+  rồi `hermes migrate`.
 - **`.claude/settings.json` trong repo đã sanitize**: token bị thay bằng `REPLACE_ME`.
   Giá trị thật nằm trong `bundle/claude-disabled-env.txt`. Chỉ khôi phục nếu người dùng cần
   gateway đó; đây là token của key `_DISABLED_*` nên thường không cần.

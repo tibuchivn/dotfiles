@@ -68,15 +68,24 @@ Từng bước riêng (khi cần chạy lại):
 ./bin/restore.sh --step brew        # brew bundle install (lâu nhất, ~175 formula + 40 cask)
 ./bin/restore.sh --step secrets
 ./bin/restore.sh --step link        # symlink config tĩnh
-./bin/restore.sh --step state       # giải nén claude/hermes/opencode
+./bin/restore.sh --step state       # claude/opencode/tools-config (hermes đi đường riêng bên dưới)
 ./bin/restore.sh --step toolchains  # asdf / mise / uv / gem / bun
 ./bin/restore.sh --step services    # mysql, postgres, redis
 ./bin/restore.sh --step db          # import dump (~10-20 phút cho mysql)
 ./bin/restore.sh --step nvim
 ./bin/restore.sh --step tmux
 ./bin/restore.sh --step hermes
+./bin/restore.sh --step hermes-import   # hermes import --force từ hermes-native-backup.zip
 ./bin/restore.sh --step claude
 ```
+
+**Thứ tự Hermes bắt buộc**: cài Hermes trước (`--step hermes`), rồi mới `--step hermes-import`.
+`hermes import` là đường chính thức để khôi phục config/state/skills/sessions — nó hiểu schema
+của chính nó, an toàn hơn giải nén tar đè lên bản cài mới. Trước khi import, script tự copy
+`~/.hermes` hiện tại thành `~/.hermes.pre-import-<stamp>` để rollback nếu version lệch.
+`20-state/hermes-state.tar.zst` chỉ là bản dự phòng và bị **bỏ qua** khi có file zip.
+
+Nếu `hermes doctor` báo config cũ: chạy `hermes migrate`.
 
 ## 3. Kiểm tra sau khi restore
 
