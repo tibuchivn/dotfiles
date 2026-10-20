@@ -1,0 +1,10 @@
+ai.hermes.gateway-local-sensei.plist
+ai.hermes.gateway-test-llm.plist
+com.google.GoogleUpdater.wake.plist
+com.google.keystone.agent.plist
+com.google.keystone.xpcservice.plist
+com.microsoft.EdgeUpdater.wake.plist
+homebrew.mxcl.logrotate.plist
+homebrew.mxcl.postgresql@14.plist
+homebrew.mxcl.redis.plist
+sh.brew.mysql@8.0.plist

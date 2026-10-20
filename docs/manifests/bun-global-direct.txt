@@ -1,0 +1,3 @@
+/Users/tung.tram node_modules (396)
+├── @involvex/youtube-music-cli@0.2.3
+└── omo-ai@5.0.1

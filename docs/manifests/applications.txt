@@ -1,0 +1,82 @@
+ウーパールーパー (WaniKani Companion).app
+Alacritty-JP.app
+Alacritty.app
+Amazon Kindle.app
+Anki.app
+Antigravity IDE.app
+Antigravity.app
+Asterix.app
+Azure VPN Client.app
+Bazecor.app
+BetterDisplay.app
+Bitwarden.app
+Brave Browser.app
+Caffeine.app
+calibre.app
+ClassIn.app
+Claude.app
+Cloudflare WARP.app
+Company Portal.app
+CuaDriver.app
+Cyberduck.app
+DBX.app
+Docker.app
+DuckDuckGo.app
+EtreCheckPro.app
+Firefox.app
+FortiClient.app
+FortiClientUninstaller.app
+Ghostty.app
+GitHub Copilot.app
+Google Chrome Beta.app
+Google Chrome.app
+GoTiengViet.app
+Grammarly for Safari.app
+Hammerspoon.app
+Ice.app
+JamfProtect.app
+Juicy.app
+Kakehashi.app
+Keynote.app
+kitty.app
+Lens.app
+logioptionsplus.app
+Microsoft Defender.app
+Microsoft Edge.app
+Microsoft Excel.app
+Microsoft Outlook.app
+Microsoft PowerPoint.app
+Microsoft Remote Desktop.app
+Microsoft Remote Desktop.localized
+Microsoft Word.app
+Moom.app
+MySQLWorkbench.app
+NihongoMaster.app
+Numbers Creator Studio.app
+Numbers.app
+Ollama.app
+Opera.app
+Orca.app
+Pages.app
+Postman.app
+PowerShell.app
+Pulse.app
+Rambox.app
+RelayCards.app
+Safari.app
+Self Service.app
+Signal.app
+SimplyJSON.app
+Sourcetree.app
+TablePlus.app
+The Unarchiver.app
+Tsurukame.app
+Utilities
+Vimac.app
+Vimari.app
+Visual Studio Code.app
+VLC.app
+Windows App.app
+Windscribe.app
+WireGuard.app
+zoom.us.app

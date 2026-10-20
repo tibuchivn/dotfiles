@@ -1,0 +1,8 @@
+Name              Status User      File
+cloudflared       none                      
+logrotate         scheduled       tung.tram ~/Library/LaunchAgents/homebrew.mxcl.logrotate.plist
+mongodb-community none                      
+mysql@8.0         started         tung.tram ~/Library/LaunchAgents/sh.brew.mysql@8.0.plist
+postgresql@14     started         tung.tram ~/Library/LaunchAgents/homebrew.mxcl.postgresql@14.plist
+redis             started         tung.tram ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+unbound           none                      

@@ -1,0 +1,4 @@
+tmux-continuum
+tmux-resurrect
+tmux-spotify
+tpm
