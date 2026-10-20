@@ -1,0 +1,70 @@
+return {
+  "neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
+  lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
+  init = function()
+    vim.keymap.set("n", "<leader>dt", function()
+      if vim.diagnostic.is_enabled() then
+        vim.diagnostic.disable()
+        print("Diagnostics disabled")
+      else
+        vim.diagnostic.enable()
+        print("Diagnostics enabled")
+      end
+    end, { desc = "Toggle Diagnostics" })
+    vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostics" })
+    vim.diagnostic.enable(false)
+  end,
+  config = function()
+    -- local nvim_lsp = require('lspconfig')
+
+    local on_attach = function(client, bufnr)
+      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+      -- Mappings.
+      local opts = { noremap=true, silent=true }
+      buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+      buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+      buf_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+
+      vim.diagnostic.config({
+        virtual_text = true,
+        underline = true,
+        signs = true
+      })
+
+      vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+      -- vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.lsp.buf.hover(nil, {focus=false, scope="cursor"})]]
+
+      vim.cmd [[
+      highlight! DiagnosticLineNrError guibg=#51202A guifg=#FF0000 gui=bold
+      highlight! DiagnosticLineNrWarn guibg=#51412A guifg=#FFA500 gui=bold
+      highlight! DiagnosticLineNrInfo guibg=#1E535D guifg=#00FFFF gui=bold
+      highlight! DiagnosticLineNrHint guibg=#1E205D guifg=#0000FF gui=bold
+
+      sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=DiagnosticLineNrError
+      sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=DiagnosticLineNrWarn
+      sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=DiagnosticLineNrInfo
+      sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=DiagnosticLineNrHint
+      ]]
+    end
+
+    local servers = {'solargraph', 'ts_ls', 'rust_analyzer'}
+    for _, lsp in ipairs(servers) do
+      -- nvim_lsp[lsp].setup({ on_attach = on_attach, autostart = false })
+      -- vim.lsp.enable(lsp, { on_attach = on_attach, autostart = false })
+    end
+
+    -- Configure Copilot LSP
+    local copilot_lsp_path = vim.fn.stdpath('data') .. '/lazy/copilot.vim/copilot-language-server/dist/language-server.js'
+
+    vim.lsp.config('copilot', {
+      cmd = { vim.g.copilot_node_command or 'node', copilot_lsp_path, '--stdio' },
+      filetypes = { '*' },
+      root_dir = vim.fs.root(0, { '.git' }),
+    })
+
+    vim.lsp.enable('copilot')
+  end,
+}
