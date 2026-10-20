@@ -2,6 +2,9 @@
 
 Backup tạo ngày 2026-10-20. Gồm 2 phần:
 
+> Nếu bạn là **agent** được giao restore: đọc `docs/RESTORE-AGENT.md` (runbook có gate,
+> chia việc agent/người dùng, và danh sách bẫy). File này dành cho người đọc.
+
 | Phần | Ở đâu | Chứa gì |
 |---|---|---|
 | Config | repo này (`~/tung/dotfiles`) | zsh, tmux, git, nvim, alacritty, kitty, hammerspoon, opencode, claude, hermes config, Brewfile, manifests |
