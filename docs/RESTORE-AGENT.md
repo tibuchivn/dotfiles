@@ -176,6 +176,12 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 - **Config tĩnh = symlink, config app tự ghi = copy snapshot.** Claude/opencode/hermes ghi
   settings bằng temp+rename nên sẽ phá symlink. Đừng "sửa" bằng cách symlink chúng.
+- **WireGuard tunnels sống trong login keychain**, không phải file `.conf`:
+  `security dump-keychain | grep 'WireGuard Tunnel'` liệt kê được label, nhưng `security -w`
+  từ tiến trình không có GUI context sẽ **treo chờ hộp thoại Allow** (timeout 124). Đừng cố đọc
+  keychain thay người dùng — bảo họ export từ app (File → Export Tunnels…, cần Touch ID) và
+  đóng gói bằng `encrypt-wireguard.sh`. Keychain nói chung (Wi-Fi, cert, app password) không
+  backup được.
 - **`~/.gitconfig` trong repo có `trace2.eventTarget` trỏ socket của Asterix.app**
   (`/Users/ttram/.corp-tool/...`). Máy mới chưa có app đó → git vẫn chạy, chỉ mất trace.
   Nếu git phàn nàn: `git config --global --unset trace2.eventtarget`.
