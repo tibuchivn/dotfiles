@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
+  "agents": {
+    "sisyphus":          { "model": "athena-provider/saas-openai-gpt-5.6-sol" },
+    "oracle":            { "model": "athena-provider/saas-anthropic-claude-fable-5" },
+    "prometheus":        { "model": "athena-provider/saas-openai-gpt-5.6-luna-priority" },
+    "metis":             { "model": "athena-provider/saas-anthropic-claude-sonnet-5" },
+    "momus":             { "model": "athena-provider/saas-fireworks-kimi-k3" },
+    "explore":           { "model": "athena-provider/saas-vertex-gemini-3.7-flash" },
+    "hephaestus":        { "model": "athena-provider/saas-openai-gpt-5.1-codex" },
+    "sisyphus-junior":   { "model": "deepseek/deepseek-flash" },
+    "atlas":             { "model": "athena-provider/saas-groq-gpt-oss-120b" },
+    "multimodal-looker": { "model": "athena-provider/saas-vertex-gemini-3.1-flash-image" }
+  },
+  "categories": {
+    "visual-engineering": { "model": "athena-provider/saas-fireworks-kimi-k3" },
+    "ultrabrain":         { "model": "athena-provider/saas-openai-gpt-5.6-sol" },
+    "deep":               { "model": "athena-provider/saas-anthropic-claude-fable-5" },
+    "artistry":           { "model": "athena-provider/saas-vertex-gemini-3.1-flash-image" },
+    "quick":              { "model": "deepseek/deepseek-flash" },
+    "unspecified-low":    { "model": "athena-provider/saas-openai-gpt-5.4-mini" },
+    "unspecified-high":   { "model": "athena-provider/saas-openai-gpt-5.5" },
+    "writing":            { "model": "athena-provider/saas-anthropic-claude-sonnet-5" }
+  }
+}

@@ -1,32 +1,33 @@
 [core]
-	excludesfile = /Users/tungtram/.gitignore_global
-  editor = vim
+	excludesfile = ~/.gitignore_global
+  editor = nvim
+	fsmonitor = true
+	untrackedCache = true
 [difftool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
-#[mergetool "sourcetree"]
-#	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-#	trustExitCode = true
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
 
 [merge]
-	tool = vimdiff
-[mergetool "vimdiff"]
+  tool = nvimdiff
+  ; tool = diffconflicts
+[mergetool "nvimdiff"]
 	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "diffconflicts"]
+  cmd = nvim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+  trustExitCode = true
 [diff]
-	tool = kdiff3
+  tool = nvimdiff
+  ; tool = diffconflicts
 [user]
 	name = Tung Tram
-	email = tung@tinypulse.com
+	email = tibuchivn@users.noreply.github.com
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-[mergetool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-	trustExitCode = true
-[commit]
-	template = /Users/tungtram/.stCommitMsg
+#[commit]
+#	template = /Users/tungtram/.stCommitMsg
 #[credential]
 #	helper = osxkeychain
 [url "git@github.com:"]
@@ -42,3 +43,8 @@
 	keepBackup = false
 [pull]
 	rebase = false
+[url "ssh://git@git.example.com/"]
+	insteadOf = https://git.example.com/
+[trace2]
+	eventTarget = af_unix:stream:/Users/ttram/.corp-tool/internal/daemon/trace2.sock
+	eventNesting = 0

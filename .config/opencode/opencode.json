@@ -1,0 +1,135 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "ask",
+    "bash": {
+      "*": "ask",
+      "git *": "allow",
+      "bundle *": "allow",
+      "ls *": "allow",
+      "cat *": "allow",
+      "pwd *": "allow",
+      "grep *": "allow",
+      "find *": "allow",
+      "tail *": "allow",
+      "head *": "allow",
+      "sort *": "allow",
+      "which *": "allow",
+      "glab auth *": "allow",
+      "glab mr *": "allow",
+      "echo *": "allow",
+      "test *": "allow"
+    }
+  },
+  "command": {
+    "mr": {
+      "template": "Create a merge request using glab for current branch, with a proper title and description based on the git commit history.",
+      "description": "Create MR using glab for current branch"
+    },
+    "pr": {
+      "template": "Create a pull request using gh for current branch, with a proper title and description based on the git commit history and follow the template.",
+      "description": "Create PR using gh for current branch"
+    }
+  },
+  "plugin": [
+    "./plugins/caveman/plugin.js",
+    "@dietrichgebert/ponytail",
+    "oh-my-openagent@latest"
+  ],
+  "provider": {
+    "deepseek": {
+      "npm": "@ai-sdk/deepseek",
+      "options": {},
+      "models": {
+        "deepseek-flash": {
+          "name": "DeepSeek Flash"
+        }
+      }
+    },
+    "athena-provider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Athena Provider",
+      "options": {
+        "baseURL": "https://athena.corp.example.com/v1/"
+      },
+      "models": {
+        "saas-fireworks-glm-5.3": { "name": "Fireworks Glm 5.3" },
+        "saas-fireworks-kimi-k3": { "name": "Fireworks Kimi K3" },
+        "saas-fireworks-minimax-m3": { "name": "Fireworks Minimax M3" },
+        "saas-fireworks-inkling": { "name": "Fireworks Inkling" },
+        "saas-fireworks-glm-5.3-flash": { "name": "Fireworks Glm 5.3 Flash" },
+        "saas-fireworks-zai-gpt-oss-120b": { "name": "Fireworks Zai Gpt Oss 120B" },
+        "saas-cerebras-gpt-oss-120b": { "name": "Cerebras Gpt Oss 120B" },
+        "saas-fireworks-qwen-3.8-2.4t-a95b": { "name": "Fireworks Qwen 3.8 2.4T A95B" },
+        "saas-fireworks-deepseek-v4.1-flash": { "name": "Fireworks Deepseek V4.1 Flash" },
+        "saas-fireworks-nvidia-nemotron-3-ultra-nvfp4": { "name": "Fireworks Nvidia Nemotron 3 Ultra Nvfp4" },
+        "saas-fireworks-kimi-k2.7-code": { "name": "Fireworks Kimi K2.7 Code" },
+        "saas-groq-gpt-oss-20b": { "name": "Groq Gpt Oss 20B" },
+        "saas-vertex-gemini-3.6-flash": { "name": "Vertex Gemini 3.6 Flash" },
+        "saas-vertex-claude-sonnet-4-5": { "name": "Vertex Claude Sonnet 4 5" },
+        "saas-vertex-claude-3-5-sonnet": { "name": "Vertex Claude 3 5 Sonnet" },
+        "saas-fireworks-deepseek-v4-flash-0731": { "name": "Fireworks Deepseek V4 Flash 0731" },
+        "saas-openai-gpt-3.5-turbo-0125": { "name": "Openai Gpt 3.5 Turbo 0125" },
+        "saas-fireworks-kimi-k2p6": { "name": "Fireworks Kimi K2P6" },
+        "saas-vertex-mistral-large-2411": { "name": "Vertex Mistral Large 2411" },
+        "saas-vertex-gemini-3.5-flash": { "name": "Vertex Gemini 3.5 Flash" },
+        "saas-vertex-gemini-3.1-flash-lite-preview": { "name": "Vertex Gemini 3.1 Flash Lite Preview" },
+        "saas-vertex-claude-3-7-sonnet": { "name": "Vertex Claude 3 7 Sonnet" },
+        "saas-vertex-claude-3-5-haiku": { "name": "Vertex Claude 3 5 Haiku" },
+        "saas-anthropic-claude-sonnet-5": { "name": "Anthropic Claude Sonnet 5" },
+        "saas-anthropic-claude-3-5-sonnet-v2": { "name": "Anthropic Claude 3 5 Sonnet V2" },
+        "saas-openai-gpt-5.6-sol": { "name": "Openai Gpt 5.6 Sol" },
+        "saas-openai-gpt-5.5": { "name": "Openai Gpt 5.5" },
+        "saas-openai-gpt-5.1-codex": { "name": "Openai Gpt 5.1 Codex" },
+        "saas-anthropic-claude-sonnet-4-5": { "name": "Anthropic Claude Sonnet 4 5" },
+        "saas-openai-gpt-5.6-luna-priority": { "name": "Openai Gpt 5.6 Luna Priority" },
+        "saas-openai-gpt-5.1": { "name": "Openai Gpt 5.1" },
+        "saas-groq-qwen3.8-27b": { "name": "Groq Qwen3.8 27B" },
+        "saas-groq-gpt-oss-120b": { "name": "Groq Gpt Oss 120B" },
+        "saas-fireworks-deepseek-v4-pro-0813": { "name": "Fireworks Deepseek V4 Pro 0813" },
+        "saas-openai-gpt-5": { "name": "Openai Gpt 5" },
+        "saas-fireworks-glm-5.2": { "name": "Fireworks Glm 5.2" },
+        "saas-vertex-gemini-3.7-flash": { "name": "Vertex Gemini 3.7 Flash" },
+        "saas-fireworks-muse-glimmer-30b": { "name": "Fireworks Muse Glimmer 30B" },
+        "saas-openai-gpt-5.6-luna": { "name": "Openai Gpt 5.6 Luna" },
+        "saas-anthropic-claude-opus-4-8": { "name": "Anthropic Claude Opus 4 8" },
+        "saas-openai-gpt-5.6-terra": { "name": "Openai Gpt 5.6 Terra" },
+        "saas-anthropic-claude-fable-5": { "name": "Anthropic Claude Fable 5" },
+        "saas-openai-gpt-4.1-nano": { "name": "Openai Gpt 4.1 Nano" },
+        "saas-vertex-gemini-2.5-flash-image": { "name": "Vertex Gemini 2.5 Flash Image" },
+        "saas-vertex-gemini-3.1-flash-image": { "name": "Vertex Gemini 3.1 Flash Image" },
+        "saas-anthropic-claude-opus-4-7": { "name": "Anthropic Claude Opus 4 7" },
+        "saas-openai-gpt-5.2": { "name": "Openai Gpt 5.2" },
+        "saas-openai-gpt-5.4-mini": { "name": "Openai Gpt 5.4 Mini" },
+        "saas-openai-gpt-5.4-nano": { "name": "Openai Gpt 5.4 Nano" },
+        "saas-openai-gpt-5-nano": { "name": "Openai Gpt 5 Nano" },
+        "saas-openai-gpt-4o": { "name": "Openai Gpt 4O" },
+        "saas-openai-gpt-4.1": { "name": "Openai Gpt 4.1" },
+        "saas-openai-gpt-5.4": { "name": "Openai Gpt 5.4" },
+        "saas-openai-gpt-3.5-turbo": { "name": "Openai Gpt 3.5 Turbo" },
+        "saas-openai-gpt-5-mini": { "name": "Openai Gpt 5 Mini" },
+        "saas-openai-gpt-3.5-turbo-instruct": { "name": "Openai Gpt 3.5 Turbo Instruct" },
+        "saas-vertex-gemini-2.5": { "name": "Vertex Gemini 2.5" }
+      }
+    }
+  },
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
+    },
+    "xwiki": {
+      "type": "remote",
+      "url": "https://platform-mcp-private.corp.example.com/xwiki/mcp",
+      "headers": {
+        "Authorization": "Basic REDACTED-CREDENTIAL"
+      },
+      "enabled": true
+    }
+  }
+}
