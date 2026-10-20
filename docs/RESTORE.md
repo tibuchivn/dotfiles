@@ -137,7 +137,7 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
 ## Checklist trước reset
 
 - [ ] `./bin/sync.sh` + `git -C ~/tung/dotfiles add -A && git commit` (chụp config mới nhất)
-- [ ] `git -C ~/tung/dotfiles push` (branch `backup/pre-reset-2026-10-20`)
+- [ ] `git -C ~/tung/dotfiles push` (master; branch `backup/pre-reset-2026-10-20` giữ làm mốc)
 - [ ] Chạy `10-secrets/encrypt-secrets.sh` (tự nhập passphrase, lưu passphrase vào Bitwarden)
 - [ ] Upload `10-secrets/*.age`, `20-state/*.tar.zst`, `30-db/*` lên Google Drive
 - [ ] `shasum -a 256` các file backup, lưu `SHA256SUMS` (script `verify.sh` trong backup dir)

@@ -13,7 +13,7 @@ Bạn là agent đang chạy trên **máy mới**; người dùng ngồi cạnh 
 | Thứ | Giá trị |
 |---|---|
 | Máy nguồn | macOS 15.7.7, arm64, Homebrew prefix `/opt/homebrew` |
-| Repo | `git@github-tibuchivn:tibuchivn/dotfiles.git`, branch `backup/pre-reset-2026-10-20` |
+| Repo | `git@github-tibuchivn:tibuchivn/dotfiles.git`, branch `master` (= `backup/pre-reset-2026-10-20`, đã merge) |
 | Backup | folder Drive `backup-mac-2026-10-20`, tải về `~/backup-2026-10-20` |
 | Entry point | `~/tung/dotfiles/bin/restore.sh` — 12 bước, có `--step` và `--dry-run` |
 | Secrets | `10-secrets/secrets-YYYYMMDD.tar.gz.age` — passphrase **chỉ người dùng biết** |
@@ -112,7 +112,7 @@ Dòng `Include ~/.colima/ssh_config` có thể trỏ file không tồn tại tr�
 ```bash
 mkdir -p ~/tung
 git clone git@github-tibuchivn:tibuchivn/dotfiles.git ~/tung/dotfiles
-cd ~/tung/dotfiles && git checkout backup/pre-reset-2026-10-20
+cd ~/tung/dotfiles            # master đã chứa toàn bộ backup; không cần checkout branch
 ```
 Gate: `git log --oneline -1` ra commit `feat(dotfiles): track full config set...` hoặc mới hơn.
 
