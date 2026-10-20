@@ -1,0 +1,15 @@
+# ~/.config/alacritty/presentation.toml
+[general]
+import = [
+  "~/.config/alacritty/alacritty.toml"
+]
+
+[font]
+size = 20.0
+
+[font.normal]
+family = "Noto Sans Mono CJK JP"
+
+[window]
+padding = { x = 10, y = 10 }
+dynamic_padding = true

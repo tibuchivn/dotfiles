@@ -2,3 +2,9 @@ tags
 .hammerspoon/secrets.lua
 .sisyphus/
 asterix_story_log.json
+.zsh_secrets
+**/node_modules/
+.config/opencode/.omo/
+*.backup-*
+*.bak
+.claude/settings.local.json

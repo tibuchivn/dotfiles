@@ -1,0 +1,6 @@
+{
+  "plugin": [
+    "oh-my-openagent@latest",
+    "file:///Users/tung.tram/.config/opencode/plugins/orca-opencode-status-tui/tui.js"
+  ]
+}

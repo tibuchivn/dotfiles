@@ -1,16 +1,18 @@
 # zmodload zsh/zprof
+# Homebrew prefix — change this when moving to a new machine (e.g. /usr/local on Intel Mac)
+BREW_PREFIX="/opt/homebrew"
+
 # If you come from bash you might have to change your $PATH.F
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/tungtram/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell" or "amuse"
 # ZSH_THEME="honukai"
-
 
 # ZSH_THEME="spaceship"
 
@@ -85,7 +87,6 @@ export ZSH=/Users/tungtram/.oh-my-zsh
   # char          # Prompt character
 # )
 
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -129,13 +130,18 @@ export ZSH=/Users/tungtram/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git tmux chucknorris zsh-autosuggestions)
-plugins=(git tmux fzf zsh-autosuggestions macos)
+plugins=(git tmux zsh-autosuggestions)
 
 DISABLE_MAGIC_FUNCTIONS=true
 ZSH_TMUX_AUTOSTART=false
 
+# Skip compaudit security scan (saves ~70ms) — OMZ handles compinit once
+ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
+source $BREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+source $BREW_PREFIX/opt/chruby/share/chruby/auto.sh
+# chruby ruby-2.6.10
 
 # fortune -s | cowsay -f ${$(cowsay -l | cut -f2 -d:)[($(gshuf -i 0-${#$(cowsay -l | cut -f2 -d:)[@]} -n 1))]}
 
@@ -169,19 +175,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ANTIGEN_MUTEX=false
-source $(brew --prefix)/share/antigen/antigen.zsh
+# antigen removed — not loading any bundles, was causing startup warnings
 # eval "$(thefuck --alias)"
 # antigen bundle thewtex/tmux-mem-cpu-load
 # antigen theme denysdovhan/spaceship-prompt
 
-eval "$(pyenv init --path)"
+# eval "$(pyenv init --path)"
 
-export PATH=${PATH}:/usr/local/mysql/bin
+# export PATH=${PATH}:/usr/local/mysql/bin
 export PATH=$PATH:/opt/local/bin
 export PATH=$PATH:/usr/local/lib/node_modules
 export PATH=/usr/local/sbin:$PATH
-export PATH=/bin:/usr/local/bin:usr/bin:${PATH}
-export PATH="$(brew --prefix git)/bin:$PATH"
+export PATH="$BREW_PREFIX/opt/git/bin:$PATH"
 
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=false
@@ -190,20 +195,20 @@ export PIP_REQUIRE_VIRTUALENV=false
 
 # export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/Users/tungtram/gocode
+export GOPATH=/Users/tung.tram/gocode
 export PATH="$PATH:$GOPATH/bin"
-export PATH="/Users/tungtram/elasticsearch/elasticsearch-5.6.16/bin:$PATH"
+# export PATH="/Users/tung.tram/elasticsearch/elasticsearch-5.6.16/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
-export CIRCLE_TOKEN=5b0b6f9c43e8e841441b607910d80157156db928
 
 alias vi="vim"
+alias n="nvim"
 alias ci="circleci-cli"
 alias rsp="bundle exec rails s -b 0.0.0.0"
 alias rc="bundle exec rails console"
 alias b="bundle install"
 alias c="bundle exec cucumber"
-alias migrate="bundle exec rake db:migrate && RAILS_ENV=test bundle exec rake db:migrate"
+alias migrate="unset DATABASE_URL && bundle exec rake db:migrate && RAILS_ENV=test bundle exec rake db:migrate"
 alias testprepare="bundle exec rake db:test:prepare"
 alias testmigrate="RAILS_ENV=test bundle exec rake db:migrate"
 alias testdb="RAILS_ENV=test bundle exec rake db:drop db:create db:schema:load db:migrate"
@@ -214,12 +219,11 @@ alias apps='mdfind "kMDItemAppStoreHasReceipt=1"'
 alias refreshbrew='brew outdated | while read cask; do brew upgrade $cask; done'
 alias transvi='trans :vi'
 alias tv='trans :vi'
-alias pyenv="source ~/gl-env/bin/activate"
+# alias pyenv="source ~/gl-env/bin/activate"
 alias pss="ps aux | grep"
 alias rs="rspec -f d -c"
 alias tiny="la | grep tiny"
 alias unzipall='unzip "*.zip"'
-# alias start_es='docker run -p 9200:9200 -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.6.14'
 alias aria='aria2c --enable-rpc=true --rpc-listen-all=true --rpc-allow-origin-all=true --rpc-secret=token --disable-ipv6=true'
 alias ss='spotify status'
 alias st='spotify stop'
@@ -233,7 +237,11 @@ alias gfco="git fco"
 alias gfm="git fmerge"
 alias gfrs="git freset"
 alias tx="tmuxinator"
-alias ls="exa"
+alias ls="eza"
+
+alias k9sp='KUBECONFIG=~/tinypulse-production.yaml k9s -n production'
+alias k9ss='KUBECONFIG=~/tinypulse-staging.yaml k9s -n tiny-staging'
+
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 export BUNDLE_GITHUB__COM=$(<~/.github_token)
 export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="x-access-token:$(<~/.github_token)"
@@ -244,24 +252,24 @@ mkcdir()
   cd -P -- "$1"
 }
 
-export PATH="/Users/tungtram/bin/Sencha/Cmd:$PATH"
+# export PATH="/Users/tungtram/bin/Sencha/Cmd:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/tungtram/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/tungtram/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+# if [ -f '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/tungtram/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # export CXXFLAGS="-mmacosx-version-min=10.9"
 # export LDFLAGS="-mmacosx-version-min=10.9"
-export VIRTUALENVWRAPPER_PYTHON="/usr/local/opt/python@3.7/bin/python3"
-export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tungtram/Library/Python/3.7/bin/virtualenv"
+# export VIRTUALENVWRAPPER_PYTHON="/usr/local/opt/python@3.7/bin/python3"
+# export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tung.tram/Library/Python/3.7/bin/virtualenv"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 #source /usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_SCRIPT=/Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper.sh
-source /Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper_lazy.sh
+# export VIRTUALENVWRAPPER_SCRIPT=/Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper.sh
+# source /Users/tungtram/Library/Python/3.7/bin/virtualenvwrapper_lazy.sh
 
 # alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 # alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
@@ -271,7 +279,7 @@ alias pg_stop="launchctl unload ~/Library/LaunchAgents"
 alias tngl="bundle exec tiny_golem"
 
 alias kitty_update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
-alias ip2loc="curl -s https://ipinfo.io/$(curl -s https://ipinfo.io/ip) | jq"
+alias ip2loc='curl -s https://ipinfo.io/$(curl -s https://ipinfo.io/ip) | jq'
 # alias brew_reinstall="brew list | xargs brew reinstall"
 
 alias coin="coin_price"
@@ -279,9 +287,17 @@ export COIN_PRICE="bitcoin,matic-network,chiliz,enjincoin,tlm,tko,ftt"
 
 alias nrd="npm run dev"
 
+export METAPLEX_PATH="~/tung/solana/metaplex/js/packages/cli/src"
+alias metaplex="ts-node $METAPLEX_PATH/candy-machine-v2-cli.ts"
+
+alias glances="/Users/tung.tram/.local/bin/glances"
+alias kill_md="launchctl unload /Library/LaunchAgents/com.microsoft.wdav.tray.plist"
+alias hebi="hebikani"
+alias create_release_mr='/Users/tung.tram/create-release-mr.sh -d "$(pwd)"'
+
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 
-export FZF_BASE="/Users/tungtram/.fzf/bin/fzf"
+export FZF_BASE="/Users/tung.tram/.fzf/bin/fzf"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 _gen_fzf_default_opts() {
   local base03="234"
@@ -324,11 +340,11 @@ export FZF_COMPLETION_TRIGGER='~~'
 export FZF_COMPLETION_OPTS='+c -x'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-eval "$(direnv hook zsh)"
 export PATH="/usr/local/opt/qt/bin:$PATH"
 export PIP_NO_CACHE_DIR=off
 
-export THOR_MERGE="nvim -d $1 $2"
+export THOR_MERGE='nvim -d $1 $2'
+# export THOR_MERGE='$BREW_PREFIX/bin/nvim -d $1 $2 -c "wincmd w" -c "wincmd J"'
 
 # for solarized dark
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=23"
@@ -407,7 +423,6 @@ bind-git-helper() {
 
 bind-git-helper f b t r g
 unset -f bind-git-helper
-# zprof
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -416,6 +431,39 @@ unset -f bind-git-helper
   # local z=$'\0'
   # PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
 # }
+
+aws_force_deploy() {
+  aws ecs update-service --cluster $1 --service $2 --force-new-deployment
+}
+
+railsc() {
+  cluster=$1
+  if [ -z "$1" ]
+  then
+    cluster=staging-engage
+  fi
+
+  service_name=$2
+  if [ -z "$2" ]
+  then
+    service_name=console
+  fi
+
+  console_service=$(aws ecs list-services --cluster $cluster | jq -r "[.serviceArns[]|select(match(\"${service_name}\"))][0]")
+  echo $console_service
+
+  task=$(aws ecs list-tasks --cluster $cluster --service $console_service | jq -r '.taskArns[0]')
+  echo $task
+  # chamber_cluster=$(echo $cluster | tr - /)
+  chamber_cluster=$(echo $cluster | sed 's/-/\//')
+
+  container=$3
+  if [ -z "$3" ]
+  then
+    container=engage
+  fi
+  aws ecs execute-command --cluster $cluster --region us-east-1 --task $task --container $container --command "chamber exec ${chamber_cluster} -- bundle exec rails console" --interactive
+}
 
 merge_test() {
   current_branch=$(git symbolic-ref HEAD --short)
@@ -446,15 +494,145 @@ merge_test() {
 
   return
 }
+touch2() { mkdir -p "$(dirname "$1")" && touch "$1" ; }
+
+check_ruby_syntax() {
+  local check_type="${1:-unstaged}"  # Default to unstaged if no argument provided
+  local ruby_files
+  local description
+
+  case "$check_type" in
+    "unstaged")
+      ruby_files=$(git diff --name-only | grep '\.rb$')
+      description="unstaged"
+      ;;
+    "staged")
+      ruby_files=$(git diff --cached --name-only | grep '\.rb$')
+      description="staged"
+      ;;
+    "both")
+      # Combine both unstaged and staged files, removing duplicates
+      ruby_files=$(git diff --name-only && git diff --cached --name-only | sort -u | grep '\.rb$')
+      description="unstaged and staged"
+      ;;
+    *)
+      echo "Usage: check_ruby_syntax [unstaged|staged|both]"
+      echo "  unstaged: Check only unstaged files (default)"
+      echo "  staged:   Check only staged files"
+      echo "  both:     Check both unstaged and staged files"
+      return 1
+      ;;
+  esac
+
+  # Check if there are any Ruby files to process
+  if [ -z "$ruby_files" ]; then
+    echo "No $description Ruby files to check."
+    return 0
+  fi
+
+  echo "Checking syntax for $description Ruby files..."
+  echo ""
+
+  local has_errors=false
+
+  # Loop through each file using a while read loop
+  while IFS= read -r file; do
+    # Skip empty lines that might result from the command substitution
+    if [ -z "$file" ]; then
+        continue
+    fi
+
+    echo "Checking syntax for: $file"
+
+    if [ -f "$file" ]; then
+      local output
+      output=$(ruby -c "$file" 2>&1)
+      local exit_code=$?
+
+      if [ $exit_code -ne 0 ]; then
+        echo "----------------------------------------"
+        printf "Syntax ERROR in: %s\n" "$file"
+        printf "%s\n" "$output"
+        echo "----------------------------------------"
+        has_errors=true
+      fi
+    else
+        printf "Warning: File '%s' listed by git but not found on disk.\n" "$file"
+    fi
+  done <<< "$ruby_files"
+
+  # Final notification
+  if [ "$has_errors" = true ]; then
+    echo ""
+    echo "Errors were found in one or more files."
+    return 1
+  else
+    echo ""
+    echo "All checked Ruby files have valid syntax."
+    return 0
+  fi
+}
+
+# Convenience wrapper functions
+check_unstaged_ruby_syntax() {
+  check_ruby_syntax "unstaged"
+}
+
+check_staged_ruby_syntax() {
+  check_ruby_syntax "staged"
+}
+
+check_all_ruby_syntax() {
+  check_ruby_syntax "both"
+}
 
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="$BREW_PREFIX/opt/python@3.9/libexec/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$BREW_PREFIX/opt/openssl@1.1"
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+export PATH="$BREW_PREFIX/opt/mysql@8.0/bin:$PATH"
+export PATH="/Users/tung.tram/.pyenv/shims:${PATH}"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export KITTY_LISTEN_ON=unix:/tmp/mykitty
+export MYSQL_PS1="(\u@\h) [\d]> "
+
+export KUBECONFIG="$HOME/tinypulse-staging.yaml"
+
+export DISABLE_AUTO_UPDATE="true"
+export OPENCODE_DISABLE_CLAUDE_CODE_HOOKS=1
+
+# . $BREW_PREFIX/opt/asdf/libexec/asdf.sh
 
 unset GITHUB_TOKEN
 
 # Add the following to the end of ~/.zshrc
+# eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
+# eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
+
+. "$HOME/.local/bin/env"
+# zprof
+
+# bun completions
+[ -s "/Users/tung.tram/.bun/_bun" ] && source "/Users/tung.tram/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# cargo
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Added by Antigravity IDE
+export PATH="/Users/tung.tram/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# Added by asterix-gittrace installer on Thu Oct  1 14:51:09 +07 2026
+export PATH="/Users/tung.tram/.asterix-gittrace/bin:$PATH"
+
+# ── Secrets (không track trong git) ──────────────────────────────────
+# Copy .zsh_secrets.example -> ~/.zsh_secrets rồi điền giá trị.
+[ -f "$HOME/.zsh_secrets" ] && source "$HOME/.zsh_secrets"
