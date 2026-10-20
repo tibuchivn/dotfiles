@@ -1,0 +1,350 @@
+# Generated Tue Oct 20 11:23:32 +07 2026
+
+## com.apple.dock
+{
+    autohide = 1;
+    largesize = 128;
+    "last-analytics-stamp" =     (
+        "814073593.608444"
+    );
+    lastShowIndicatorTime = "685957709.869092";
+    loc = "en_US:US";
+    "mod-count" = 9889;
+    "no-bouncing" = 1;
+    "persistent-apps" =     (
+                {
+            GUID = 3826194725;
+            "tile-data" =             {
+                book = {length = 572, bytes = 0x626f6f6b 3c020000 00000510 40000000 ... 04000000 00000000 };
+                "bundle-identifier" = "com.operasoftware.Opera";
+                "dock-extra" = 0;
+                "file-data" =                 {
+                    "_CFURLString" = "file:///Applications/Opera.app/";
+                    "_CFURLStringType" = 15;
+                };
+                "file-label" = Opera;
+                "file-mod-date" = 11046228464928;
+                "file-type" = 41;
+                "is-beta" = 0;
+                "parent-mod-date" = 90949800458613;
+            };
+            "tile-type" = "file-tile";
+        }
+    );
+    "persistent-others" =     (
+                {
+            GUID = 3393016655;
+            "tile-data" =             {
+                arrangement = 2;
+                book = {length = 676, bytes = 0x626f6f6b a4020000 00000510 40000000 ... 04000000 00000000 };
+                displayas = 0;
+                "file-data" =                 {
+                    "_CFURLString" = "file:///Users/tung.tram/Downloads/";
+                    "_CFURLStringType" = 15;
+                };
+                "file-label" = Downloads;
+                "file-mod-date" = 16165772789728;
+                "file-type" = 2;
+                "is-beta" = 0;
+                "parent-mod-date" = 205011190110387;
+                preferreditemsize = "-1";
+                showas = 2;
+            };
+            "tile-type" = "directory-tile";
+        }
+    );
+    "recent-apps" =     (
+                {
+            GUID = 2666992227;
+            "tile-data" =             {
+                book = {length = 576, bytes = 0x626f6f6b 40020000 00000510 40000000 ... 04000000 00000000 };
+                "bundle-identifier" = "com.microsoft.rdc.macos";
+                "dock-extra" = 0;
+                "file-data" =                 {
+                    "_CFURLString" = "file:///Applications/Windows%20App.app/";
+                    "_CFURLStringType" = 15;
+                };
+                "file-label" = "Windows App";
+                "file-mod-date" = 150817354711911;
+                "file-type" = 1;
+                "is-beta" = 0;
+                "parent-mod-date" = 204276814790114;
+            };
+            "tile-type" = "file-tile";
+        },
+                {
+            GUID = 2666992228;
+            "tile-data" =             {
+                book = {length = 640, bytes = 0x626f6f6b 80020000 00000510 40000000 ... 44010000 00000000 };
+                "bundle-identifier" = "com.dygmalab.bazecor";
+                "dock-extra" = 0;
+                "file-data" =                 {
+                    "_CFURLString" = "file:///Applications/Bazecor.app/";
+                    "_CFURLStringType" = 15;
+
+## com.apple.finder
+{
+    ComputerViewSettings =     {
+        CustomViewStyleVersion = 1;
+        ExtendedListViewSettingsV2 =         {
+            axTextSize = 13;
+            calculateAllSizes = 0;
+            columns =             (
+                                {
+                    ascending = 1;
+                    identifier = name;
+                    visible = 1;
+                    width = 713;
+                },
+                                {
+                    ascending = 0;
+                    identifier = ubiquity;
+                    visible = 0;
+                    width = 35;
+                },
+                                {
+                    ascending = 0;
+                    identifier = dateModified;
+                    visible = 1;
+                    width = 181;
+                },
+                                {
+                    ascending = 0;
+                    identifier = dateCreated;
+                    visible = 0;
+                    width = 181;
+                },
+                                {
+                    ascending = 0;
+                    identifier = size;
+                    visible = 1;
+                    width = 97;
+                },
+                                {
+                    ascending = 1;
+                    identifier = kind;
+                    visible = 1;
+                    width = 115;
+                },
+                                {
+                    ascending = 1;
+                    identifier = label;
+                    visible = 0;
+                    width = 100;
+                },
+                                {
+                    ascending = 1;
+                    identifier = version;
+                    visible = 0;
+                    width = 75;
+                },
+                                {
+                    ascending = 1;
+                    identifier = comments;
+                    visible = 0;
+                    width = 300;
+                },
+                                {
+                    ascending = 0;
+                    identifier = dateLastOpened;
+                    visible = 0;
+                    width = 200;
+                },
+                                {
+                    ascending = 0;
+                    identifier = shareOwner;
+                    visible = 0;
+                    width = 200;
+                },
+                                {
+                    ascending = 0;
+                    identifier = shareLastEditor;
+                    visible = 0;
+                    width = 200;
+                },
+                                {
+
+## NSGlobalDomain
+{
+    AKLastIDMSEnvironment = 0;
+    AKLastLocale = "en_US";
+    AppleAntiAliasingThreshold = 4;
+    AppleKeyboardUIMode = 0;
+    AppleLanguages =     (
+        "en-US",
+        "ja-US"
+    );
+    AppleLanguagesDidMigrate = "13.6.4";
+    AppleLanguagesSchemaVersion = 5400;
+    AppleLocale = "en_US";
+    AppleMeasurementUnits = Centimeters;
+    AppleMetricUnits = 1;
+    AppleMiniaturizeOnDoubleClick = 0;
+    AppleShowAllExtensions = 1;
+    AppleTemperatureUnit = Celsius;
+    InitialKeyRepeat = 25;
+    "InitialKeyRepeat_Level_Saved" = 3;
+    "KB_DoubleQuoteOption" = "\\U201cabc\\U201d";
+    "KB_SingleQuoteOption" = "\\U2018abc\\U2019";
+    "KB_SpellingLanguage" =     {
+        "KB_SpellingLanguageIsAutomatic" = 1;
+    };
+    KeyRepeat = 2;
+    NSAutomaticCapitalizationEnabled = 0;
+    NSAutomaticDashSubstitutionEnabled = 1;
+    NSAutomaticPeriodSubstitutionEnabled = 0;
+    NSAutomaticQuoteSubstitutionEnabled = 1;
+    NSAutomaticSpellingCorrectionEnabled = 0;
+    NSAutomaticTextCompletionEnabled = 1;
+    NSLinguisticDataAssetsRequestLastInterval = 86400;
+    NSLinguisticDataAssetsRequestTime = "2026-10-19 03:34:38 +0000";
+    NSLinguisticDataAssetsRequested =     (
+        en,
+        vi,
+        pt,
+        it,
+        es,
+        fr,
+        pl,
+        cs,
+        ro,
+        nl,
+        da,
+        ja,
+        tr,
+        ru,
+        fi,
+        hu,
+        de,
+        sv,
+        "en_US",
+        "ja_US",
+        "vi_US"
+    );
+    NSLinguisticDataAssetsRequestedByChecker =     (
+        en,
+        vi,
+        pt,
+        it,
+        es,
+        fr,
+        pl,
+        cs,
+        ro,
+        nl,
+        da,
+        tr,
+        ru,
+        fi,
+        hu,
+        de,
+        sv
+    );
+    NSNavPanelFileLastListModeForOpenModeKey = 2;
+    NSNavPanelFileLastListModeForSaveModeKey = 2;
+    NSNavPanelFileListModeForOpenMode2 = 2;
+    NSNavPanelFileListModeForSaveMode2 = 2;
+    NSPreferredWebServices =     {
+
+## com.apple.AppKit
+
+## com.apple.screencapture
+{
+    "last-analytics-stamp" = "814154958.558525";
+    "last-selection" =     {
+        Height = 686;
+        Width = 1809;
+        X = 83;
+        Y = 253;
+    };
+    "last-selection-display" = 0;
+    "location-last" = "~/Downloads";
+    style = selection;
+    target = clipboard;
+    video = 0;
+}
+
+## com.apple.desktopservices
+
+## com.apple.Terminal
+{
+    "Default Window Settings" = Pro;
+    DefaultProfilesVersion = 1;
+    HasMigratedDefaults = 1;
+    "Man Page Window Settings" = "Man Page";
+    NSOSPLastRootDirectory = {length = 752, bytes = 0x626f6f6b f0020000 00000410 30000000 ... 90010000 00000000 };
+    "NSSplitView Subview Frames NSColorPanelSplitView" =     (
+        "0.000000, 0.000000, 255.000000, 352.000000, NO, NO",
+        "0.000000, 353.000000, 255.000000, 48.000000, NO, NO"
+    );
+    "NSToolbar Configuration com.apple.NSColorPanel" =     {
+        "TB Is Shown" = 1;
+    };
+    "NSWindow Frame NSColorPanel" = "0 -18 255 217 0 0 1920 1055 ";
+    "NSWindow Frame NSFontPanel" = "1409 115 445 107 0 0 1920 1055 ";
+    "NSWindow Frame NSNavPanelAutosaveName" = "158 739 430 167 0 0 1920 1055 ";
+    "NSWindow Frame TTAppPreferences" = "733 439 667 568 0 0 1920 1055 ";
+    "NSWindow Frame TTWindow" = "693 56 1042 944 0 0 1920 1055 ";
+    "NSWindow Frame TTWindow Basic" = "-1512 75 745 466 -1512 -403 1512 944 ";
+    "NSWindow Frame TTWindow Homebrew" = "-1492 146 585 371 -1512 -403 1512 944 ";
+    "NSWindow Frame TTWindow Pro" = "0 12 1920 1043 0 0 1920 1055 ";
+    ProfileCurrentVersion = "2.07";
+    SecureKeyboardEntry = 0;
+    Shell = "/opt/homebrew/bin/fish";
+    "Startup Window Settings" = Pro;
+    "TTAppPreferences Selected Tab" = 1;
+    "Window Settings" =     {
+        Basic =         {
+            Font = {length = 267, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000cf };
+            FontAntialias = 1;
+            FontWidthSpacing = "1.004032258064516";
+            ProfileCurrentVersion = "2.07";
+            name = Basic;
+            type = "Window Settings";
+        };
+        Grass =         {
+            BackgroundColor = {length = 267, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d2 };
+            CursorColor = {length = 259, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000ca };
+            CursorType = 0;
+            Font = {length = 260, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000c8 };
+            FontAntialias = 1;
+            ProfileCurrentVersion = "2.07";
+            SelectionColor = {length = 268, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d3 };
+            TextBoldColor = {length = 258, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000c9 };
+            TextColor = {length = 259, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000ca };
+            name = Grass;
+            type = "Window Settings";
+        };
+        Homebrew =         {
+            BackgroundColor = {length = 248, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000bf };
+            CursorBlink = 1;
+            CursorColor = {length = 268, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d3 };
+            CursorType = 0;
+            Font = {length = 263, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000cb };
+            FontAntialias = 0;
+            ProfileCurrentVersion = "2.07";
+            SelectionColor = {length = 265, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d0 };
+            TextBoldColor = {length = 239, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000b6 };
+            TextColor = {length = 269, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d4 };
+            name = Homebrew;
+            type = "Window Settings";
+        };
+        "Man Page" =         {
+            BackgroundColor = {length = 273, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d8 };
+            Font = {length = 267, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000cf };
+            FontAntialias = 1;
+            FontWidthSpacing = "1.004032258064516";
+            ProfileCurrentVersion = "2.07";
+            SelectionColor = {length = 265, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000d0 };
+            TextBoldColor = {length = 322, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000ff };
+            TextColor = {length = 322, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000ff };
+            name = "Man Page";
+            rowCount = 48;
+            type = "Window Settings";
+        };
+        Novel =         {
+            BackgroundColor = {length = 261, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000cc };
+            CursorColor = {length = 277, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000dc };
+            Font = {length = 260, bytes = 0x62706c69 73743030 d4010203 04050607 ... 00000000 000000c8 };
+            FontAntialias = 1;
+

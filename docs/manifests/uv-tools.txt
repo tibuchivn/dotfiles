@@ -1,0 +1,8 @@
+aider-chat v0.86.1
+- aider
+browser-use v0.13.10
+- browser
+- browser-use
+- browser-use-tui
+- browseruse
+- bu
