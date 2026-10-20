@@ -1,0 +1,32 @@
+return {}
+-- return {
+--   "milanglacier/minuet-ai.nvim",
+--   lazy = false, -- registers the cmp source "minuet"; must exist before cmp asks for it
+--   config = function()
+--     require("minuet").setup({
+--       -- DeepSeek fill-in-the-middle endpoint; the key is read from the
+--       -- DEEPSEEK_API_KEY environment variable by name.
+--       provider = "openai_fim_compatible",
+--       request_timeout = 3.0,
+--       throttle = 1500, -- min ms between requests while typing (cost/rate limit control)
+--       debounce = 300, -- ms of no typing before a request goes out
+--       n_completions = 1,
+--       context_window = 2048,
+--       provider_options = {
+--         openai_fim_compatible = {
+--           api_key = "DEEPSEEK_API_KEY",
+--           name = "Deepseek",
+--           end_point = "https://api.deepseek.com/beta/completions",
+--           -- deepseek-flash is the FIM-capable fast model; verified against
+--           -- GET https://api.deepseek.com/models with your key.
+--           model = "deepseek-flash",
+--           optional = {
+--             max_tokens = 256,
+--             top_p = 0.9,
+--             stop = { "\n\n" },
+--           },
+--         },
+--       },
+--     })
+--   end,
+-- }

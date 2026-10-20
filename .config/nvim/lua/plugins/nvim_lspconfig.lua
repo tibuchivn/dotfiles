@@ -1,29 +1,7 @@
 return {
   "neovim/nvim-lspconfig", -- REQUIRED: for native Neovim LSP integration
   lazy = false, -- REQUIRED: tell lazy.nvim to start this plugin at startup
-  dependencies = {
-    -- main one
-    { "ms-jpq/coq_nvim", branch = "coq" },
-    -- 9000+ Snippets
-    { "ms-jpq/coq.artifacts", branch = "artifacts" },
-  },
   init = function()
-    vim.g.coq_settings = {
-        -- auto_start = "shut-up",
-        clients = {
-          tmux = {
-            enabled = false,
-          },
-        },
-        -- keymap = {
-        --   jump_to_mark = "<C-J>"
-        -- },
-        display = {
-          ghost_text = {
-            enabled = true,
-          },
-        },
-    }
     vim.keymap.set("n", "<leader>dt", function()
       if vim.diagnostic.is_enabled() then
         vim.diagnostic.disable()
@@ -73,10 +51,9 @@ return {
     end
 
     local servers = {'solargraph', 'ts_ls', 'rust_analyzer'}
-    local coq = require 'coq'
     for _, lsp in ipairs(servers) do
-      -- nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
-      -- vim.lsp.enable(lsp, coq.lsp_ensure_capabilities({ on_attach = on_attach, autostart = false }))
+      -- nvim_lsp[lsp].setup({ on_attach = on_attach, autostart = false })
+      -- vim.lsp.enable(lsp, { on_attach = on_attach, autostart = false })
     end
 
     -- Configure Copilot LSP
@@ -86,7 +63,6 @@ return {
       cmd = { vim.g.copilot_node_command or 'node', copilot_lsp_path, '--stdio' },
       filetypes = { '*' },
       root_dir = vim.fs.root(0, { '.git' }),
-      -- capabilities = coq.lsp_ensure_capabilities({}),
     })
 
     vim.lsp.enable('copilot')
