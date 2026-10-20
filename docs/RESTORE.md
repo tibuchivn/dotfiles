@@ -10,6 +10,11 @@ Backup tạo ngày 2026-10-20. Gồm 2 phần:
 | Config | repo này (`~/tung/dotfiles`) | zsh, tmux, git, nvim, alacritty, kitty, hammerspoon, opencode, claude, hermes config, Brewfile, manifests |
 | State + secrets | `~/backup-2026-10-20/` | secrets (age-encrypted), claude/hermes/opencode state, DB dumps |
 
+Ngoài config trong repo, archive `20-state/tools-config.tar.zst` (224K) chứa config của các
+CLI/editor khác: Codex, Gemini CLI, Copilot CLI, Continue, Aider, `.agents/skills`, Zed, Rio,
+Ghostty/fish/htop/coc, VS Code `settings.json` + `mcp.json` + prompts, plist của Ice,
+và `.zsh_history`. `restore.sh --step state` giải nén tất cả `*.tar.zst` nên không cần lệnh thêm.
+
 Trước khi reset máy, đọc hết mục **Checklist trước reset** ở cuối.
 
 ---
@@ -91,7 +96,8 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
 - **App ngoài brew**: xem `docs/manifests/applications.txt`. Các app MDM (Company Portal,
   JamfProtect, Microsoft Defender) phải enroll lại qua IT.
 - **Đăng nhập**: Bitwarden, iCloud, Google, Slack/Teams, VPN (FortiClient/Azure VPN),
-  Ollama, Claude/Codex/Gemini CLI.
+  Ollama, Claude/Codex/Gemini CLI. OAuth token của các CLI (`~/.gemini/oauth_creds.json`,
+  `~/.copilot/data.db`) **không** backup — login lại là xong.
 - **VS Code extension**: `docs/manifests/vscode-extensions.txt`
   → `cat docs/manifests/vscode-extensions.txt | xargs -n1 code --install-extension`
 - **Font**: so `docs/manifests/user-fonts.txt` với `~/Library/Fonts`; cask font đã cài qua Brewfile.

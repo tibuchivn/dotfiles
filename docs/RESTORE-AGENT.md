@@ -64,7 +64,8 @@ Gate:
 cd ~/backup-2026-10-20
 shasum -a 256 -c SHA256SUMS
 ```
-Kỳ vọng: 12 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst`, `30-db/*`.
+Kỳ vọng: 13 dòng `OK` cho `10-secrets/*.age`, `20-state/*.tar.zst` (gồm `tools-config`),
+`30-db/*`.
 Các dòng `FAILED open or read` cho `10-secrets/bundle/...` là **bình thường** (bundle plaintext
 đã bị xoá trước khi reset, không upload).
 
@@ -110,7 +111,7 @@ Sau `brew`, chạy tiếp từng bước một và đọc output:
 |---|---|---|
 | `secrets` | copy ssh/gnupg/aws/kube/gh/zsh_secrets từ bundle | `zsh -ic 'echo ${#DEEPSEEK_API_KEY}'` > 0 |
 | `link` | symlink config tĩnh | `readlink ~/.zshrc` trỏ vào repo |
-| `state` | giải nén claude/hermes/opencode | `ls ~/.claude/settings.json`, `~/.hermes/state.db` |
+| `state` | giải nén claude/hermes/opencode + tools-config | `ls ~/.claude/settings.json`, `~/.hermes/state.db`, VS Code `settings.json` |
 | `toolchains` | asdf/mise/uv/gem/bun | `asdf current`, `node -v` |
 | `services` | start mysql@8.0, postgresql@14, redis | `brew services list` thấy `started` |
 | `db` | import mysql (10-20 phút) + pg | `mysql -uroot -e 'show databases'` |
