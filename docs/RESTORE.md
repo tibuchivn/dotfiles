@@ -46,7 +46,9 @@ git clone git@github-tibuchivn:tibuchivn/dotfiles.git ~/tung/dotfiles
 > Nếu chưa có SSH key: copy `~/.ssh/id_ed25519` + `id_ed25519.pub` từ bundle trước
 > (`rsync -a ~/backup-2026-10-20/10-secrets/bundle/ssh/ ~/.ssh/ && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_*`),
 > rồi `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`.
-> **Gate trước khi clone**: `ssh -T git@github-tibuchivn` phải trả "successfully authenticated".
+> **Gate trước khi clone**: `ssh -T git@github-tibuchivn` phải trả "successfully authenticated"; thử thêm `ssh -T git@github.com` và `git@github-tinypulse`.
+> Chuẩn hoá `Include` tuyệt đối: `sed -i '' -E 's#^Include /Users/[^/]+/#Include ~/#' ~/.ssh/config`.
+> **Tiên quyết**: Hermes máy mới phải login 1 provider LLM trước (`hermes setup`), vì key cũ nằm trong backup.
 > Clone qua SSH chỉ cần `~/.ssh/config` + key, **không cần `~/.gitconfig`** — file đó được
 > symlink ở bước `link`, và chỉ cần cho commit/merge.
 
@@ -137,7 +139,7 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
 ## Checklist trước reset
 
 - [ ] `./bin/sync.sh` + `git -C ~/tung/dotfiles add -A && git commit` (chụp config mới nhất)
-- [ ] `git -C ~/tung/dotfiles push` (master; branch `backup/pre-reset-2026-10-20` giữ làm mốc)
+- [ ] `git -C ~/tung/dotfiles push` (master; branch `backup/pre-reset-2026-10-20` chỉ là mốc)
 - [ ] Chạy `10-secrets/encrypt-secrets.sh` (tự nhập passphrase, lưu passphrase vào Bitwarden)
 - [ ] Upload `10-secrets/*.age`, `20-state/*.tar.zst`, `30-db/*` lên Google Drive
 - [ ] `shasum -a 256` các file backup, lưu `SHA256SUMS` (script `verify.sh` trong backup dir)
