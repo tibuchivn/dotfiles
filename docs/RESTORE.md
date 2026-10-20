@@ -79,11 +79,15 @@ Từng bước riêng (khi cần chạy lại):
 ./bin/restore.sh --step claude
 ```
 
-**Thứ tự Hermes bắt buộc**: cài Hermes trước (`--step hermes`), rồi mới `--step hermes-import`.
-`hermes import` là đường chính thức để khôi phục config/state/skills/sessions — nó hiểu schema
-của chính nó, an toàn hơn giải nén tar đè lên bản cài mới. Trước khi import, script tự copy
-`~/.hermes` hiện tại thành `~/.hermes.pre-import-<stamp>` để rollback nếu version lệch.
-`20-state/hermes-state.tar.zst` chỉ là bản dự phòng và bị **bỏ qua** khi có file zip.
+**Thứ tự Hermes**: Hermes đã có sẵn nếu bạn đang dùng agent để restore — `--step hermes` tự
+bỏ qua (no-op) khi `hermes` đã cài, nên chỉ cần `--step hermes-import`. Lệnh này gọi
+`hermes import --force`, là đường chính thức để khôi phục config/state/skills/sessions.
+Trước khi import, script tự copy `~/.hermes` hiện tại thành `~/.hermes.pre-import-<stamp>`.
+
+`hermes import` an toàn cả khi Hermes đang chạy: nó ghi `.db` qua SQLite backup API và bỏ qua
+`gateway.pid`/`*.lock` của máy nguồn. Nhưng config/memory/skills chỉ nạp lúc khởi động →
+**restart session Hermes** sau khi import. Chạy import ở home mặc định (`~/.hermes`), không
+chạy trong profile. `20-state/hermes-state.tar.zst` chỉ là fallback và bị **bỏ qua** khi có zip.
 
 Nếu `hermes doctor` báo config cũ: chạy `hermes migrate`.
 

@@ -200,7 +200,7 @@ step_tmux() {
 # ─────────────────────────────────────────────────────────────
 step_hermes() {
   log "Cài Hermes Agent"
-  if have hermes; then echo "  đã có: $(hermes --version 2>/dev/null | head -1)"; return 0; fi
+  if have hermes; then echo "  đã có: $(hermes --version 2>/dev/null | head -1) — bỏ qua cài (đúng nếu agent đang chạy trên máy này)"; return 0; fi
   curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
   warn "Sau khi cài: chạy 'hermes' để login, rồi khôi phục profile/gateway LaunchAgents trong $BACKUP/40-apps/launchagents"
 }
