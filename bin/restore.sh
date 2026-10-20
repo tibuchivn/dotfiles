@@ -89,8 +89,13 @@ step_link() {
 step_state() {
   log "Khôi phục state (claude / hermes / opencode)"
   local S="$BACKUP/20-state"
+  local native_hermes="$S/hermes-native-backup.zip"
   for a in "$S"/*.tar.zst; do
     [ -f "$a" ] || continue
+    if [ -f "$native_hermes" ] && [ "$(basename "$a")" = "hermes-state.tar.zst" ]; then
+      echo "  -> hermes-state.tar.zst SKIP (ưu tiên 'hermes import' từ hermes-native-backup.zip)"
+      continue
+    fi
     echo "  -> $(basename "$a")"
     zstd -dc "$a" | tar -xf - -C "$HOME"
   done
@@ -201,6 +206,24 @@ step_hermes() {
 }
 
 # ─────────────────────────────────────────────────────────────
+# Khôi phục Hermes bằng lệnh native (an toàn hơn giải nén tar đè lên bản cài mới,
+# vì 'hermes import' biết cách xử lý config/state của chính nó).
+step_hermes_import() {
+  log "Khôi phục dữ liệu Hermes (hermes import)"
+  local z="$BACKUP/20-state/hermes-native-backup.zip"
+  if ! have hermes; then warn "chưa cài hermes — chạy: ./bin/restore.sh --step hermes"; return 1; fi
+  if [ ! -f "$z" ]; then warn "không thấy $z"; return 1; fi
+  if [ -d "$HOME/.hermes" ]; then
+    local snap="$HOME/.hermes.pre-import-$(date +%Y%m%d-%H%M%S)"
+    cp -R "$HOME/.hermes" "$snap" 2>/dev/null && echo "  snapshot bản cài mới: $snap" \
+      || warn "không snapshot được ~/.hermes (bỏ qua, vẫn tiếp tục)"
+  fi
+  hermes import --force "$z"
+  echo "  xong. Kiểm tra: hermes --version && hermes doctor"
+  warn "Nếu version mới khác bản backup (0.22.1): chạy 'hermes migrate' nếu doctor báo cần."
+}
+
+# ─────────────────────────────────────────────────────────────
 step_claude() {
   log "Cài Claude Code CLI (native)"
   have claude && { echo "  đã có"; return 0; }
@@ -233,7 +256,7 @@ run_step() {
     if [ "$1" = "all" ]; then
       echo "DRY-RUN — thứ tự các bước:"
       echo "  1 prereq   2 brew   3 secrets   4 link   5 state   6 toolchains"
-      echo "  7 services 8 db     9 nvim     10 tmux  11 hermes 12 claude  13 manual"
+      echo "  7 services 8 db     9 nvim     10 tmux  11 hermes 11b hermes-import 12 claude  13 manual"
       echo "Backup dir: $BACKUP"
       echo "Repo:       $REPO"
       return 0
@@ -253,6 +276,7 @@ run_step() {
     nvim) step_nvim ;;
     tmux) step_tmux ;;
     hermes) step_hermes ;;
+    hermes-import) step_hermes_import ;;
     claude) step_claude ;;
     all)
       step_prereq || exit 1
@@ -266,6 +290,7 @@ run_step() {
       step_nvim
       step_tmux
       step_hermes
+      step_hermes_import
       step_claude
       step_manual
       ;;
