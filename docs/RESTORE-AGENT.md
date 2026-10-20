@@ -176,6 +176,10 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 
 - **Config tĩnh = symlink, config app tự ghi = copy snapshot.** Claude/opencode/hermes ghi
   settings bằng temp+rename nên sẽ phá symlink. Đừng "sửa" bằng cách symlink chúng.
+- **Chrome/Brave giữ EXCLUSIVE lock trên `History`**: mọi truy vấn (kể cả `.backup` hay
+  `select count(*)`) trả `database is locked (5)` khi browser đang chạy, và `.backup` vẫn
+  **tạo file 0 byte với exit code 0** — đừng tin exit code. Guard: `pgrep -x "Google Chrome"`,
+  validate `quick_check` + `count(urls) > 0` + size > 4KB. Phải quit hẳn browser rồi mới chụp.
 - **WireGuard tunnels sống trong login keychain**, không phải file `.conf`:
   `security dump-keychain | grep 'WireGuard Tunnel'` liệt kê được label, nhưng `security -w`
   từ tiến trình không có GUI context sẽ **treo chờ hộp thoại Allow** (timeout 124). Đừng cố đọc

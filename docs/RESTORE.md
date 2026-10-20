@@ -128,6 +128,13 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
   `.conf` trên đĩa. Trước khi wipe phải export từ app (File → Export Tunnels…), đóng gói bằng
   `10-secrets/encrypt-wireguard.sh` → `wireguard-secrets-*.age`. Sau restore: mở app → Import
   tunnel từ file trong archive.
+- **Browsing history (Chrome + Brave)**: `10-secrets/browser-history-*.tar.gz.age`. Trước khi
+  backup phải **quit hẳn 2 browser** (History bị EXCLUSIVE lock → `database is locked`),
+  rồi `./collect-browsing-history.sh`.
+  Restore: quit browser → giải mã → copy `chrome/<profile>/History` (và `Bookmarks`, `Top Sites`,
+  `Shortcuts`) vào `~/Library/Application Support/Google/Chrome/<profile>/`, `chmod 600`,
+  xoá `History-journal`/`History-wal` cũ, mở lại browser. Không merge được với history hiện có —
+  muốn merge thì dùng Chrome/Brave Sync.
 - **Keychain / Touch ID / FileVault**: theo máy mới.
 - **Karabiner**: không dùng trên máy này.
 
