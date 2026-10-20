@@ -117,7 +117,7 @@ Sau `brew`, chạy tiếp từng bước một và đọc output:
 | `db` | import mysql (10-20 phút) + pg | `mysql -uroot -e 'show databases'` |
 | `nvim` | Lazy restore + Mason | mở `nvim` không lỗi |
 | `tmux` | tpm install_plugins | `tmux new -d && tmux ls` |
-| `hermes` | cài Hermes Agent | `hermes --version` |
+| `hermes` | cài Hermes Agent — **no-op nếu đã có** (agent đang chạy chính nó thì đúng là đã có) | `hermes --version` |
 | `hermes-import` | `hermes import --force` từ `hermes-native-backup.zip` (tự snapshot `~/.hermes` trước) | `hermes doctor` không báo lỗi config |
 | `claude` | cài Claude Code | `claude --version` |
 
@@ -152,9 +152,12 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
 - **Config tĩnh = symlink, config app tự ghi = copy snapshot.** Claude/opencode/hermes ghi
   settings bằng temp+rename nên sẽ phá symlink. Đừng "sửa" bằng cách symlink chúng.
 - **Đừng giải nén `hermes-state.tar.zst` đè lên bản Hermes vừa cài.** Hermes có lệnh native:
-  `hermes backup` (zip, không gồm codebase) và `hermes import --force <zip>`. Dùng zip +
-  `hermes import` để nó tự xử lý schema; tar chỉ là fallback. Version lệch thì `hermes doctor`
-  rồi `hermes migrate`.
+  `hermes backup` (zip, không gồm codebase) và `hermes import --force <zip>`.
+  `hermes import` an toàn cả khi Hermes đang chạy: nó ghi `.db` qua SQLite backup API (không thay
+  inode) và bỏ qua `gateway.pid`/`*.lock`/`gateway_state.json` của máy nguồn. Nhưng config/memory/
+  skills chỉ được nạp lúc khởi động → **phải restart session Hermes sau khi import**.
+  Chạy import dưới đúng home mặc định (`~/.hermes`), không chạy trong một profile, kẻo nó
+  restore vào `profiles/<name>`. Version lệch thì `hermes doctor` rồi `hermes migrate`.
 - **`.claude/settings.json` trong repo đã sanitize**: token bị thay bằng `REPLACE_ME`.
   Giá trị thật nằm trong `bundle/claude-disabled-env.txt`. Chỉ khôi phục nếu người dùng cần
   gateway đó; đây là token của key `_DISABLED_*` nên thường không cần.
