@@ -195,9 +195,9 @@ export PIP_REQUIRE_VIRTUALENV=false
 
 # export PATH="/usr/local/opt/python@3.7/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
-export GOPATH=/Users/tung.tram/gocode
+export GOPATH=/Users/ttram/gocode
 export PATH="$PATH:$GOPATH/bin"
-# export PATH="/Users/tung.tram/elasticsearch/elasticsearch-5.6.16/bin:$PATH"
+# export PATH="/Users/ttram/elasticsearch/elasticsearch-5.6.16/bin:$PATH"
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
@@ -243,8 +243,11 @@ alias k9sp='KUBECONFIG=~/tinypulse-production.yaml k9s -n production'
 alias k9ss='KUBECONFIG=~/tinypulse-staging.yaml k9s -n tiny-staging'
 
 export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-export BUNDLE_GITHUB__COM=$(<~/.github_token)
-export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="x-access-token:$(<~/.github_token)"
+# ~/.github_token không có trong backup 2026-10-20 → chỉ export khi file tồn tại
+if [ -r "$HOME/.github_token" ]; then
+  export BUNDLE_GITHUB__COM=$(<"$HOME/.github_token")
+  export BUNDLE_RUBYGEMS__PKG__GITHUB__COM="x-access-token:$(<"$HOME/.github_token")"
+fi
 
 mkcdir()
 {
@@ -263,7 +266,7 @@ mkcdir()
 # export CXXFLAGS="-mmacosx-version-min=10.9"
 # export LDFLAGS="-mmacosx-version-min=10.9"
 # export VIRTUALENVWRAPPER_PYTHON="/usr/local/opt/python@3.7/bin/python3"
-# export VIRTUALENVWRAPPER_VIRTUALENV="/Users/tung.tram/Library/Python/3.7/bin/virtualenv"
+# export VIRTUALENVWRAPPER_VIRTUALENV="/Users/ttram/Library/Python/3.7/bin/virtualenv"
 
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
@@ -290,14 +293,14 @@ alias nrd="npm run dev"
 export METAPLEX_PATH="~/tung/solana/metaplex/js/packages/cli/src"
 alias metaplex="ts-node $METAPLEX_PATH/candy-machine-v2-cli.ts"
 
-alias glances="/Users/tung.tram/.local/bin/glances"
+alias glances="/Users/ttram/.local/bin/glances"
 alias kill_md="launchctl unload /Library/LaunchAgents/com.microsoft.wdav.tray.plist"
 alias hebi="hebikani"
-alias create_release_mr='/Users/tung.tram/create-release-mr.sh -d "$(pwd)"'
+alias create_release_mr='/Users/ttram/create-release-mr.sh -d "$(pwd)"'
 
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 
-export FZF_BASE="/Users/tung.tram/.fzf/bin/fzf"
+export FZF_BASE="/Users/ttram/.fzf/bin/fzf"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 _gen_fzf_default_opts() {
   local base03="234"
@@ -592,7 +595,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$BREW_PREFIX/opt/openssl@1.1"
 export CARGO_NET_GIT_FETCH_WITH_CLI=true
 
 export PATH="$BREW_PREFIX/opt/mysql@8.0/bin:$PATH"
-export PATH="/Users/tung.tram/.pyenv/shims:${PATH}"
+export PATH="/Users/ttram/.pyenv/shims:${PATH}"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
@@ -614,11 +617,12 @@ eval "$(starship init zsh)"
 # eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
-. "$HOME/.local/bin/env"
+# ~/.local/bin/env do installer sinh ra (pipx/uv); máy mới chưa có → chỉ source khi tồn tại
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 # zprof
 
 # bun completions
-[ -s "/Users/tung.tram/.bun/_bun" ] && source "/Users/tung.tram/.bun/_bun"
+[ -s "/Users/ttram/.bun/_bun" ] && source "/Users/ttram/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -628,10 +632,10 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Added by Antigravity IDE
-export PATH="/Users/tung.tram/.antigravity-ide/antigravity-ide/bin:$PATH"
+export PATH="/Users/ttram/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # Added by asterix-gittrace installer on Thu Oct  1 14:51:09 +07 2026
-export PATH="/Users/tung.tram/.asterix-gittrace/bin:$PATH"
+export PATH="/Users/ttram/.asterix-gittrace/bin:$PATH"
 
 # ── Secrets (không track trong git) ──────────────────────────────────
 # Copy .zsh_secrets.example -> ~/.zsh_secrets rồi điền giá trị.

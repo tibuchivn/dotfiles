@@ -1,1 +1,1 @@
-export PATH="/Users/tung.tram/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
