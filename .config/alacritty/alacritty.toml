@@ -56,3 +56,9 @@ y = 1
 [window]
 option_as_alt = "Both"
 
+# Máy reset 2026-10-21: $SHELL trong env của app GUI là /bin/bash nên Alacritty mở bash
+# → oh-my-zsh/zle/bindkey không load. Ghim zsh, không phụ thuộc $SHELL.
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l"]
+
