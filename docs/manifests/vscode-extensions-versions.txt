@@ -1,0 +1,13 @@
+corp-tool.corp-tool-vscode@0.1.22
+bung87.rails@0.22.0
+bung87.vscode-gemfile@0.4.2
+cucumberopen.cucumber-official@1.11.0
+ms-vscode-remote.remote-containers@0.469.0
+ms-vscode-remote.remote-ssh@0.128.0
+ms-vscode-remote.remote-ssh-edit@0.87.0
+ms-vscode-remote.remote-wsl@0.104.3
+ms-vscode-remote.vscode-remote-extensionpack@0.26.0
+ms-vscode.remote-explorer@0.5.0
+ms-vscode.remote-server@1.5.4
+sianglim.slim@0.1.2
+vscodevim.vim@1.32.4
