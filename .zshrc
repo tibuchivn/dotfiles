@@ -1,3 +1,10 @@
+# Chặn footgun: nếu file này bị `source` từ bash (post-reset $SHELL lạ), đừng đổ một tràng lỗi
+# zsh-only syntax — báo một câu rồi thoát.
+if [ -n "${BASH_VERSION:-}" ]; then
+  printf 'Đây là ~/.zshrc (chỉ dùng cho zsh). Bạn đang ở bash — gõ `zsh` rồi hãy source.\n' >&2
+  return 0 2>/dev/null || exit 0
+fi
+
 # zmodload zsh/zprof
 # Homebrew prefix — change this when moving to a new machine (e.g. /usr/local on Intel Mac)
 BREW_PREFIX="/opt/homebrew"
