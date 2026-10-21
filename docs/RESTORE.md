@@ -15,6 +15,13 @@ CLI/editor khác: Codex, Gemini CLI, Copilot CLI, Continue, Aider, `.agents/skil
 Ghostty/fish/htop/coc, VS Code `settings.json` + `mcp.json` + prompts, plist của Ice,
 và `.zsh_history`. `restore.sh --step state` giải nén tất cả `*.tar.zst` nên không cần lệnh thêm.
 
+`20-state/vscode-config.tar.zst` (40K) là bản đầy đủ hơn cho VS Code:
+`User/{settings.json,mcp.json,prompts,snippets,chatLanguageModels.json}` +
+`globalStorage/{storage.json,agent-host-config.json,agent-host.db,vscodevim.vim,github.copilot-chat,remote-*}`.
+**Cố tình loại**: `state.vscdb` (82MB, chứa key `secret://` như `github.auth`),
+`workspaceStorage` (state theo từng workspace), `History` — đều là state máy-specific hoặc chứa secret.
+Extension: cài lại theo `docs/manifests/vscode-extensions-versions.txt` (13 ext kèm version).
+
 Trước khi reset máy, đọc hết mục **Checklist trước reset** ở cuối.
 
 ---
@@ -116,8 +123,10 @@ nvim --headless "+Lazy! check" +qa 2>/dev/null || true
 - **Đăng nhập**: Bitwarden, iCloud, Google, Slack/Teams, VPN (FortiClient/Azure VPN),
   Ollama, Claude/Codex/Gemini CLI. OAuth token của các CLI (`~/.gemini/oauth_creds.json`,
   `~/.copilot/data.db`) **không** backup — login lại là xong.
-- **VS Code extension**: `docs/manifests/vscode-extensions.txt`
-  → `cat docs/manifests/vscode-extensions.txt | xargs -n1 code --install-extension`
+- **VS Code extension**: `docs/manifests/vscode-extensions-versions.txt` (kèm version)
+  → `awk -F@ '{print $1"@"$2}' docs/manifests/vscode-extensions-versions.txt | xargs -n1 code --install-extension`
+  Config VS Code đã có trong `20-state/vscode-config.tar.zst`; `state.vscdb` không backup nên
+  chat history/UI state của workspace sẽ mất (không ảnh hưởng settings/extension).
 - **Font**: so `docs/manifests/user-fonts.txt` với `~/Library/Fonts`; cask font đã cài qua Brewfile.
 - **macOS defaults**: `docs/manifests/macos-defaults.txt` để tham khảo (không auto-apply).
 - **Hermes gateway**: `cp ~/backup-2026-10-20/40-apps/launchagents/*.plist ~/Library/LaunchAgents/`
