@@ -42,7 +42,7 @@ x = 0
 y = 2
 
 [font.normal]
-family = "CommitMono3007105 Nerd Font"
+family = "CommitMono"
 # family = "Noto Sans Mono CJK JP"
 # style = "Black"
 
