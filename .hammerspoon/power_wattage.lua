@@ -30,8 +30,12 @@ local menubarItem, timer, lastTitle
 -- ioreg parsing helpers
 -------------------------------------------------------------------------------
 
+local function raw(blob, name)
+    return blob and blob:match('"' .. name .. '"%s*=%s*(-?%d+)') or nil
+end
+
 local function num(blob, name)
-    local v = blob and blob:match('"' .. name .. '"%s*=%s*(-?%d+)')
+    local v = raw(blob, name)
     return v and tonumber(v) or nil
 end
 
@@ -44,16 +48,44 @@ local function flag(value)
     return value == "Yes"
 end
 
-local function number(value)
-    if not value then return nil end
-    return tonumber(value:match("^(-?%d+)"))
+local function digits(value)
+    return value and value:match("^(-?%d+)") or nil
 end
 
--- ioreg prints some amperages as unsigned 64 bit values while discharging.
-local function signed(v)
+-- ioreg prints negative 64 bit values as their unsigned two's complement, e.g.
+-- -9259 mW comes out as 18446744073709542357. tonumber() converts such a value
+-- to a float and drops the low bits (18446744073709550918 - 2^64 evaluates to
+-- 0 instead of -698), so the wrap is undone on the decimal string itself.
+local TWO_POW_64 = "18446744073709551616"
+local MAX_INT64 = 9223372036854775807
+
+-- a - b for non-negative decimal strings with a >= b, exact at any length.
+local function decimalSubtract(a, b)
+    b = string.rep("0", #a - #b) .. b
+    local out, borrow = {}, 0
+    for i = #a, 1, -1 do
+        local d = tonumber(a:sub(i, i)) - tonumber(b:sub(i, i)) - borrow
+        if d < 0 then d, borrow = d + 10, 1 else borrow = 0 end
+        out[i] = d
+    end
+    local result = table.concat(out):gsub("^0+", "")
+    return result == "" and "0" or result
+end
+
+--- Exact signed number from a decimal string that may hold a 64 bit wrap-around.
+local function signed(text)
+    if not text then return nil end
+    local negative = text:sub(1, 1) == "-"
+    local body = negative and text:sub(2) or text
+    if #body > 20 then return nil end
+
+    local v = tonumber(body)
     if not v then return nil end
-    if v > 9223372036854775807 then return v - 18446744073709551616 end
-    return v
+    if v > MAX_INT64 then                      -- unsigned wrap: v - 2^64
+        local magnitude = tonumber(decimalSubtract(TWO_POW_64, body))
+        return magnitude and -magnitude or nil
+    end
+    return negative and -v or v
 end
 
 -------------------------------------------------------------------------------
@@ -87,19 +119,20 @@ function M.read()
         adapterName = str(adapter, "Description"),
         inputVoltage = num(tel, "SystemVoltageIn"),      -- mV
         inputCurrent = num(tel, "SystemCurrentIn"),      -- mA
-        packVoltage = number(top.Voltage),               -- mV
-        packAmperage = signed(number(top.InstantAmperage) or number(top.Amperage)),
+        packVoltage = tonumber(digits(top.Voltage)),       -- mV
+        packAmperage = signed(digits(top.InstantAmperage) or digits(top.Amperage)),
     }
 
     local pin = num(tel, "SystemPowerIn")
     if pin then info.inputPower = pin / 1000 end
     local load = num(tel, "SystemLoad")
     if load then info.systemLoad = load / 1000 end
-    local bp = num(tel, "BatteryPower")
+    local bp = signed(raw(tel, "BatteryPower"))
     if bp then info.batteryPower = bp / 1000 end
 
-    -- Fallback for machines without PowerTelemetryData (older Intel Macs).
-    if not info.batteryPower and info.packVoltage and info.packAmperage then
+    -- Fallback: no telemetry block at all (older Intel Macs), or the controller
+    -- reports 0 while it has nothing measured yet.
+    if (not info.batteryPower or info.batteryPower == 0) and info.packVoltage and info.packAmperage then
         info.batteryPower = (info.packVoltage * info.packAmperage) / 1000000
     end
 
