@@ -621,7 +621,7 @@ unset GITHUB_TOKEN
 # Add the following to the end of ~/.zshrc
 # eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
-# eval "$(mise activate zsh)"
+eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 # ~/.local/bin/env do installer sinh ra (pipx/uv); máy mới chưa có → chỉ source khi tồn tại
