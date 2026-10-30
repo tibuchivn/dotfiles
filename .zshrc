@@ -146,8 +146,6 @@ ZSH_TMUX_AUTOSTART=false
 ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
-source $BREW_PREFIX/opt/chruby/share/chruby/chruby.sh
-source $BREW_PREFIX/opt/chruby/share/chruby/auto.sh
 # chruby ruby-2.6.10
 
 # fortune -s | cowsay -f ${$(cowsay -l | cut -f2 -d:)[($(gshuf -i 0-${#$(cowsay -l | cut -f2 -d:)[@]} -n 1))]}
@@ -307,7 +305,7 @@ alias create_release_mr='/Users/ttram/create-release-mr.sh -d "$(pwd)"'
 
 export SKIM_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 
-export FZF_BASE="/Users/ttram/.fzf/bin/fzf"
+export FZF_BASE="/opt/homebrew/bin/fzf"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g "!.git/*" -g "!node_modules" -g "!tmp/*" -g "!**/*.min.js" -g "!**/*.min.css"'
 _gen_fzf_default_opts() {
   local base03="234"
@@ -434,13 +432,8 @@ bind-git-helper() {
 bind-git-helper f b t r g
 unset -f bind-git-helper
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# workaround to disable bold promt for spaceship theme
-# () {
-  # local z=$'\0'
-  # PROMPT='${${${$(spaceship_prompt)//\%\%/'$z'}//\%B}//'$z'/%%}'
-# }
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 aws_force_deploy() {
   aws ecs update-service --cluster $1 --service $2 --force-new-deployment
