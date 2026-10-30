@@ -48,6 +48,14 @@ local function flag(value)
     return value == "Yes"
 end
 
+-- Current macOS keeps the charge flag inside ChargerData as a number instead of
+-- a top level "IsCharging" = Yes/No.
+local function chargingState(top)
+    if top.IsCharging then return flag(top.IsCharging) end
+    local charger = top.ChargerData
+    return charger ~= nil and charger:match('"IsCharging"%s*=%s*1') ~= nil
+end
+
 local function digits(value)
     return value and value:match("^(-?%d+)") or nil
 end
@@ -98,21 +106,28 @@ function M.read()
     local out = hs.execute(IOREG .. " -rn AppleSmartBattery -w0")
     if not out or out == "" then return nil end
 
-    -- Only keep top level keys: nested dicts are printed inline on one line, so
-    -- their keys never start a line.
+    -- Every property line starts with the tree text ioreg draws ("  |   " on
+    -- current macOS, plain indentation on older releases), so the marker belongs
+    -- to the prefix. Nested dicts are printed inline on one line, which is why
+    -- only top level keys ever start a line.
     local top = {}
     for line in out:gmatch("[^\r\n]+") do
-        local key, value = line:match('^%s+"([%w_]+)"%s*=%s*(.*)$')
+        local key, value = line:match('^[%s|]*"([%w_]+)"%s*=%s*(.*)$')
         if key and value and not top[key] then top[key] = value end
     end
-    if not top.ExternalConnected then return nil end
+
+    -- AppleRawExternalConnected is the older spelling; prefer the plain key.
+    local external = top.ExternalConnected or top.AppleRawExternalConnected
+    if not external then return nil end
 
     local tel, adapter = top.PowerTelemetryData, top.AdapterDetails
 
+    local percent = hs.battery.percentage() or tonumber(digits(top.CurrentCapacity))
+
     local info = {
-        external = flag(top.ExternalConnected),
-        charging = flag(top.IsCharging),
-        percent = hs.battery.percentage(),
+        external = flag(external),
+        charging = chargingState(top),
+        percent = percent,
         adapterWatts = num(adapter, "Watts"),
         adapterVoltage = num(adapter, "AdapterVoltage"), -- mV
         adapterCurrent = num(adapter, "Current"),        -- mA
