@@ -8,3 +8,4 @@ story_log.json
 *.backup-*
 *.bak
 .claude/settings.local.json
+fvpn/fvpn.local.sh

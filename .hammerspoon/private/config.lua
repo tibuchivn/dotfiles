@@ -217,12 +217,55 @@ function ping()
 end
 hs.hotkey.bind(mash, "p", ping)
 
--- Show date time and battery
+-- Show date time, battery and VPN state
+local function formatVpn(code, stdout, gw)
+  if code ~= 0 then
+    return "VPN: unavailable (exit " .. tostring(code) .. ")"
+  end
+  stdout = stdout or ""
+  if stdout:find("^connected") then
+    local s = "VPN: connected"
+    if gw and gw ~= "" then s = s .. " " .. gw end
+    return s
+  end
+  return "VPN: disconnected"
+end
+
+-- which gateway is live? the helper's command line carries its config file:
+--   /usr/local/libexec/fvpn/openfortivpn -c /usr/local/etc/openfortivpn/asia1.conf
+local function vpnGateway()
+  local ok, out = pcall(hs.execute, "/usr/bin/pgrep -fl openfortivpn")
+  if not ok or not out then return nil end
+  return out:match("openfortivpn/([%w_]+)%.conf")
+end
+
+-- hs.execute is synchronous but fvpn status returns in ~30ms, and it avoids the
+-- hs.task.new argument-order trap entirely (a misplaced args table silently runs the
+-- command with no arguments, which is exactly what produced "unavailable" before).
+local function vpnStatus()
+  local ok, out, status = pcall(hs.execute, "/usr/local/bin/fvpn status")
+  if not ok then return "VPN: unavailable" end
+  local code
+  if type(status) == "boolean" then
+    code = status and 0 or 1
+  elseif type(status) == "number" then
+    code = status
+  else
+    code = 0
+  end
+  local out_s = out or ""
+  local gw = nil
+  if code == 0 and out_s:find("^connected") then gw = vpnGateway() end
+  return formatVpn(code, out_s, gw)
+end
+
 hs.hotkey.bind("alt", "T", function()
-  local seconds = 3
+  local seconds = 4
   local message = os.date("%I:%M%p") .. "\n" .. os.date("%a %b %d") .. "\nBattery: " ..
      hs.battery.percentage() .. "%"
-  hs.alert.show(message, seconds)
+  local text = vpnStatus()
+  hs.alert.closeAll()   -- one window only, even if the hotkey was mashed twice
+  hs.alert.show(message .. "\n" .. text, seconds)
 end)
 
 --------------------------------
