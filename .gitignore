@@ -9,3 +9,4 @@ story_log.json
 *.bak
 .claude/settings.local.json
 fvpn/fvpn.local.sh
+.config/*/lua/corp_local.lua

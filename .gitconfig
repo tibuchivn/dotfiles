@@ -1,3 +1,5 @@
+[include]
+	path = ~/.gitconfig.local
 [core]
 	excludesfile = ~/.gitignore_global
   editor = nvim
@@ -20,7 +22,6 @@
   ; tool = diffconflicts
 [user]
 	name = Tung Tram
-	email = tibuchivn@users.noreply.github.com
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -43,8 +44,5 @@
 	keepBackup = false
 [pull]
 	rebase = false
-[url "ssh://git@git.example.com/"]
-	insteadOf = https://git.example.com/
 [trace2]
-	eventTarget = af_unix:stream:/Users/ttram/.corp-tool/internal/daemon/trace2.sock
 	eventNesting = 0

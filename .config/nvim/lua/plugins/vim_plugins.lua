@@ -12,7 +12,9 @@ return {
   {
     "shumphrey/fugitive-gitlab.vim",
     init = function()
-      vim.g.fugitive_gitlab_domains = { "git.example.com" }
+      -- corporate GitLab host lives in lua/corp_local.lua (untracked)
+        local ok, corp = pcall(require, "corp_local")
+        vim.g.fugitive_gitlab_domains = (ok and corp.gitlab_domains) or {}
     end
   },
   { "tpope/vim-rhubarb" },
