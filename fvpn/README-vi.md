@@ -15,6 +15,8 @@ Các lệnh:
 | `fvpn list` | liệt kê gateway đã cài, đánh dấu cái đang kết nối |
 | `fvpn logs <gateway> [dòng]` | xem `/var/log/fvpn-<gateway>.log` |
 
+Thuộc tính bảo mật, mô hình mối đe doạ và rủi ro chấp nhận: xem [SECURITY.md](SECURITY.md).
+
 Hai phần phụ (không bắt buộc):
 
 * `fvpn-watch.sh` + `ai.fvpn.watch.plist` — launchd agent bắn notification macOS khi

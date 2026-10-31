@@ -16,6 +16,8 @@ What you get:
 | `fvpn list` | gateways installed here, marking the connected one |
 | `fvpn logs <gateway> [lines]` | tail `/var/log/fvpn-<gateway>.log` |
 
+Security properties, threat model and accepted risks: see [SECURITY.md](SECURITY.md).
+
 Two optional extras:
 
 * `fvpn-watch.sh` + `ai.fvpn.watch.plist` — a launchd agent that posts a macOS
