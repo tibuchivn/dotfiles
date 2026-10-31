@@ -5,7 +5,6 @@ Amazon Kindle.app
 Anki.app
 Antigravity IDE.app
 Antigravity.app
-Asterix.app
 Azure VPN Client.app
 Bazecor.app
 BetterDisplay.app

@@ -1,4 +1,3 @@
-corp-tool.corp-tool-vscode@0.1.22
 bung87.rails@0.22.0
 bung87.vscode-gemfile@0.4.2
 cucumberopen.cucumber-official@1.11.0

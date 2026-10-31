@@ -634,8 +634,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Added by Antigravity IDE
 export PATH="/Users/ttram/.antigravity-ide/antigravity-ide/bin:$PATH"
 
-# Added by corp-tool installer on Thu Oct  1 14:51:09 +07 2026
-export PATH="/Users/ttram/.corp-tool/bin:$PATH"
 
 # ── Secrets (không track trong git) ──────────────────────────────────
 # Copy .zsh_secrets.example -> ~/.zsh_secrets rồi điền giá trị.

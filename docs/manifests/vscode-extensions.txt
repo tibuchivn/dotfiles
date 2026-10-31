@@ -1,4 +1,3 @@
-corp-tool.corp-tool-vscode
 bung87.rails
 bung87.vscode-gemfile
 cucumberopen.cucumber-official

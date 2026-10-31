@@ -186,9 +186,7 @@ So `docs/manifests/` với máy thật: `brew-leaves.txt`, `vscode-extensions.tx
   keychain thay người dùng — bảo họ export từ app (File → Export Tunnels…, cần Touch ID) và
   đóng gói bằng `encrypt-wireguard.sh`. Keychain nói chung (Wi-Fi, cert, app password) không
   backup được.
-- **`~/.gitconfig` trong repo có `trace2.eventTarget` trỏ socket của Asterix.app**
-  (`/Users/ttram/.corp-tool/...`). Máy mới chưa có app đó → git vẫn chạy, chỉ mất trace.
-  Nếu git phàn nàn: `git config --global --unset trace2.eventtarget`.
+- `trace2.eventTarget` và email công ty nằm trong `~/.gitconfig.local` (không track).
 - **Đừng giải nén `hermes-state.tar.zst` đè lên bản Hermes vừa cài.** Hermes có lệnh native:
   `hermes backup` (zip, không gồm codebase) và `hermes import --force <zip>`.
   `hermes import` an toàn cả khi Hermes đang chạy: nó ghi `.db` qua SQLite backup API (không thay
