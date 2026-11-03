@@ -20,3 +20,12 @@ DNS_PROBE=''
 
 # Login keychain item holding the VPN password.
 KEYCHAIN_ITEM='fvpn-vpn-password'
+
+# Watcher tuning (fvpn-watch.sh) -----------------------------------------------
+# Fallback window used when the intent file has no deadline field (older helper):
+# seconds after `fvpn up` during which a down tunnel counts as "still authenticating".
+UP_GRACE=180
+
+# 1 = also banner an `fvpn up` that never produced a tunnel. Default 0: silent,
+# because `fvpn up` already printed the error and nothing was lost.
+UP_FAIL_NOTIFY=0

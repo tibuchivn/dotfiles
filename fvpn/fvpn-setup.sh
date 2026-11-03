@@ -468,6 +468,9 @@ case "$action" in
           fi
           j=$((j+1)); /bin/sleep 0.5
         done
+        # mark the request as having really connected: the watcher needs this to tell
+        # a drop (banner) from an attempt that never got a tunnel (already reported here)
+        printf 'up %s %s %s ok\n' "$name" "$_now" "$(( _now + wait_s + 15 ))" > "$INTENT" 2>/dev/null || true
         echo "$name: up"; show_status; exit 0
       fi
       if ! /bin/kill -0 "$ofp_pid" 2>/dev/null; then

@@ -75,11 +75,15 @@ launchctl print gui/$(id -u)/ai.fvpn.watch | grep -E 'state|runs|run interval'
 ```
 
 Notifications appear as **Script Editor**; allow them in System Settings → Notifications.
-It fires only when `fvpn up` was requested but the tunnel is not healthy — never for a
-deliberate `fvpn down`, never on a fresh login with no VPN requested, and at most once per
-request. While the FortiToken push is still ringing (or you are typing an OTP) it stays
-silent: the request carries a deadline (`up <gw> <epoch> <deadline>`, typically the `fvpn up`
-timeout plus 15s), and only after that deadline is a still-down tunnel reported.
+One banner per request, and only when a tunnel that had already come up disappears:
+- silent while the FortiToken push is still ringing — the request carries a deadline
+  (`up <gw> <epoch> <deadline>`, typically the `fvpn up` timeout plus 15s);
+- silent for an `fvpn up` that never got a tunnel: `fvpn up` already printed the error and
+  nothing was lost. Set `UP_FAIL_NOTIFY=1` in `fvpn.local.sh` to banner that case too;
+- silent after `fvpn down`, and on a fresh login with no VPN requested.
+
+Nothing has to be acknowledged: once a request is over the watcher goes quiet by itself, so
+you never need to run `fvpn down` just to stop a notification.
 
 ## Usage
 

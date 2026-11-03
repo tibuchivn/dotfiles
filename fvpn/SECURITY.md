@@ -42,9 +42,9 @@ and its values are substituted into the generated helper (`__PREFIX__`,
 artefacts stay tenant-specific while the tracked script does not.
 
 A watcher is optional and runs as the ordinary user: `fvpn-watch.sh` plus
-`ai.fvpn.watch.plist` post a local notification when an `fvpn up` request ends
-up without a healthy tunnel. It reads `/var/log/fvpn-intent` (see §4.10) and it
-never reconnects anything.
+`ai.fvpn.watch.plist` post a local notification when a tunnel that had come up
+disappears. It reads `/var/log/fvpn-intent` (see §4.10) and it never reconnects
+anything.
 
 ---
 

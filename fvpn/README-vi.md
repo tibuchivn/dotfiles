@@ -72,11 +72,15 @@ launchctl print gui/$(id -u)/ai.fvpn.watch | grep -E 'state|runs|run interval'
 ```
 
 Notification hiện dưới tên **Script Editor**; bật trong System Settings → Notifications.
-Nó chỉ bắn khi đã `fvpn up` mà tunnel không khoẻ — không bắn khi bạn chủ động `fvpn down`,
-không bắn khi vừa đăng nhập máy mà chưa yêu cầu VPN, và mỗi lần yêu cầu tối đa một banner.
-Trong lúc FortiToken còn đang rung chờ approve (hoặc bạn đang gõ OTP) thì nó im lặng: mỗi
-request có kèm deadline (`up <gw> <epoch> <deadline>`, thường là timeout của `fvpn up` + 15s),
-qua deadline đó mà tunnel vẫn chưa lên thì mới báo.
+Mỗi request tối đa một banner, và chỉ khi tunnel **đã lên rồi mất**:
+- im lặng trong lúc FortiToken còn rung chờ approve — request có kèm deadline
+  (`up <gw> <epoch> <deadline>`, thường là timeout của `fvpn up` + 15s);
+- im lặng với `fvpn up` mà tunnel không lên: `fvpn up` đã in lỗi ra terminal và không mất
+  gì cả. Muốn báo cả trường hợp này thì đặt `UP_FAIL_NOTIFY=1` trong `fvpn.local.sh`;
+- im lặng sau `fvpn down`, và khi vừa đăng nhập máy mà chưa yêu cầu VPN.
+
+Không cần "ack" gì cả: request kết thúc là watcher tự im, nên không phải chạy `fvpn down`
+chỉ để tắt thông báo.
 
 ## Sử dụng
 
