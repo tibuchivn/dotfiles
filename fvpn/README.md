@@ -77,7 +77,9 @@ launchctl print gui/$(id -u)/ai.fvpn.watch | grep -E 'state|runs|run interval'
 Notifications appear as **Script Editor**; allow them in System Settings → Notifications.
 It fires only when `fvpn up` was requested but the tunnel is not healthy — never for a
 deliberate `fvpn down`, never on a fresh login with no VPN requested, and at most once per
-request.
+request. While the FortiToken push is still ringing (or you are typing an OTP) it stays
+silent: the request carries a deadline (`up <gw> <epoch> <deadline>`, typically the `fvpn up`
+timeout plus 15s), and only after that deadline is a still-down tunnel reported.
 
 ## Usage
 

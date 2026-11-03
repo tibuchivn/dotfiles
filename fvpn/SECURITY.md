@@ -266,7 +266,7 @@ revokes the capability.
 
 ### 4.10 `/var/log/fvpn-intent` is world-readable
 
-The root helper records the last request as `up <gateway> <epoch>` or
+The root helper records the last request as `up <gateway> <epoch> <deadline>` or
 `down - <epoch>` in `/var/log/fvpn-intent` with mode `0644`, because the watcher
 that reads it runs as the unprivileged user. It therefore reveals which gateway
 was last requested and when, to any local user — but carries no credential. If

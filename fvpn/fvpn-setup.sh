@@ -445,8 +445,11 @@ case "$action" in
     # whatever the reason, so a stale keychain password would hammer the gateway every
     # few seconds and trip an AD lockout. One attempt per invocation is the safe default.
     echo "waiting up to ${wait_s}s: approve the FortiToken push on your phone (or type the OTP with: fvpn manual $name)"
-    # record intent so the user-level watcher knows a connection was requested
-    printf 'up %s %s\n' "$name" "$(/bin/date +%s)" > "$INTENT" 2>/dev/null || true
+    # record intent so the user-level watcher knows a connection was requested,
+    # plus the moment after which a still-down tunnel counts as a failure (the
+    # FortiToken push can ring for a while: the watcher must stay quiet until then)
+    _now=$(/bin/date +%s)
+    printf 'up %s %s %s\n' "$name" "$_now" "$(( _now + wait_s + 15 ))" > "$INTENT" 2>/dev/null || true
     /bin/chmod 644 "$INTENT" 2>/dev/null || true
     /usr/bin/nohup "$OFP" -c "$CONF" --pinentry="$PINENTRY" >>"$LOG" 2>&1 &
     ofp_pid=$!
@@ -518,7 +521,9 @@ case "$action" in
       echo "ERROR: ppp0 already exists; run: fvpn down $name" >&2; exit 1
     fi
     echo "interactive: VPN password first, then the FortiToken code when asked. Ctrl-C aborts."
-    printf 'up %s %s\n' "$name" "$(/bin/date +%s)" > "$INTENT" 2>/dev/null || true
+    # interactive: give the watcher five minutes of silence, not the default window
+    _now=$(/bin/date +%s)
+    printf 'up %s %s %s\n' "$name" "$_now" "$(( _now + 300 ))" > "$INTENT" 2>/dev/null || true
     /bin/chmod 644 "$INTENT" 2>/dev/null || true
     exec "$OFP" -c "$CONF"
     ;;
