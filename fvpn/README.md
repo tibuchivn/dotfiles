@@ -134,11 +134,55 @@ fvpn logs asia1 40
 Logs: `/var/log/fvpn-<gateway>.log` (openfortivpn), `/var/log/fvpn-pinentry.log`
 (which credential prompt arrived), `~/Library/Logs/fvpn-watch.log` (watcher).
 
-## Adding a gateway
+## Maintenance
 
-Add the profile in FortiClient, then re-run `bash fvpn-setup.sh` and check `fvpn list`.
-Only SSL VPN profiles (`VpnType 0`) whose server matches
-`<GATEWAY_PREFIX><name>.<GATEWAY_DOMAIN>` are picked up; IPsec profiles are ignored.
+### Add a gateway
+
+1. Add the SSL VPN profile in FortiClient, with the server set to
+   `<GATEWAY_PREFIX><name>.<GATEWAY_DOMAIN>` (e.g. `vpn-asia2.example.com`).
+2. Re-run `bash fvpn-setup.sh` (your macOS password, no VPN password — the
+   keychain item already exists and is kept). Setup discovers the profiles from
+   FortiClient's own `vpn.plist`, verifies the new gateway's certificate and
+   writes `/usr/local/etc/openfortivpn/<name>.conf`.
+3. Check `fvpn list`, then `fvpn up <name>`.
+
+Only SSL VPN profiles (`VpnType 0`) whose server matches that pattern are picked
+up — IPsec profiles and any other hostname are skipped silently. `FVPN_GATEWAYS`
+in `fvpn.local.sh` is only used when discovery finds nothing at all, so it is not
+the way to add one extra gateway.
+
+### Remove a gateway
+
+Setup only writes configs, it never prunes them, so delete the file yourself —
+otherwise `fvpn list` keeps offering a gateway that no longer exists:
+
+```bash
+fvpn down
+sudo rm /usr/local/etc/openfortivpn/<name>.conf
+```
+
+### Change the VPN password
+
+The password lives only in the login keychain item `fvpn-vpn-password` (no config
+file contains it), so this is one command and no reinstall:
+
+```bash
+bash fvpn-setup.sh --reset-cred
+```
+
+It asks for your macOS password, then for the new VPN password twice (not
+echoed), and rewrites just that item. Configs, the pinned binary and the sudoers
+rule are left alone; a tunnel that is already up keeps working until it drops,
+the new password is used the next time you run `fvpn up`. If you skip this,
+`fvpn up` fails with *Could not authenticate to gateway* — `fvpn logs <name> 40`
+shows the reason, and with the default watcher settings you get no banner for it.
+
+### The gateway certificate was renewed
+
+Each config pins the gateway's SHA-256 fingerprint, so after a renewal the tunnel
+refuses to come up. Re-run `bash fvpn-setup.sh`: it re-verifies every gateway
+(platform trust + exact hostname) and re-pins. Setup warns when a certificate
+expires within 21 days, which is the moment to plan that run.
 
 ## Uninstall
 

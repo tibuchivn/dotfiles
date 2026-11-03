@@ -129,11 +129,52 @@ fvpn logs asia1 40
 Log: `/var/log/fvpn-<gateway>.log` (openfortivpn), `/var/log/fvpn-pinentry.log` (nó hỏi
 credential gì), `~/Library/Logs/fvpn-watch.log` (watcher).
 
-## Thêm gateway
+## Bảo trì
 
-Thêm profile trong FortiClient, rồi chạy lại `bash fvpn-setup.sh` và kiểm `fvpn list`.
-Chỉ nhận profile SSL VPN (`VpnType 0`) có server đúng dạng
-`<GATEWAY_PREFIX><tên>.<GATEWAY_DOMAIN>`; profile IPsec bị bỏ qua.
+### Thêm gateway
+
+1. Thêm profile SSL VPN trong FortiClient, server đặt đúng dạng
+   `<GATEWAY_PREFIX><tên>.<GATEWAY_DOMAIN>` (ví dụ `vpn-asia2.example.com`).
+2. Chạy lại `bash fvpn-setup.sh` (hỏi mật khẩu macOS; **không** hỏi lại mật khẩu VPN
+   vì keychain item đã có và được giữ nguyên). Script đọc profile từ `vpn.plist` của
+   FortiClient, verify cert của gateway mới rồi ghi `/usr/local/etc/openfortivpn/<tên>.conf`.
+3. Kiểm bằng `fvpn list`, rồi `fvpn up <tên>`.
+
+Chỉ nhận profile SSL VPN (`VpnType 0`) có server khớp đúng dạng trên — profile IPsec và
+hostname khác bị bỏ qua (im lặng). `FVPN_GATEWAYS` trong `fvpn.local.sh` chỉ dùng khi
+không discover được gateway nào, nên không phải cách để thêm một gateway lẻ.
+
+### Xoá gateway
+
+Setup chỉ ghi config, không bao giờ dọn bớt, nên phải xoá file bằng tay — nếu không
+`fvpn list` vẫn hiện gateway không còn tồn tại:
+
+```bash
+fvpn down
+sudo rm /usr/local/etc/openfortivpn/<tên>.conf
+```
+
+### Đổi mật khẩu VPN
+
+Mật khẩu chỉ nằm trong keychain item `fvpn-vpn-password` (không file config nào chứa),
+nên chỉ cần một lệnh, không phải cài lại:
+
+```bash
+bash fvpn-setup.sh --reset-cred
+```
+
+Script hỏi mật khẩu macOS, rồi hỏi mật khẩu VPN mới hai lần (không hiện ra màn hình) và
+chỉ ghi lại đúng item đó. Config, binary đã pin và rule sudoers giữ nguyên; tunnel đang
+lên vẫn chạy tới khi rớt, lần `fvpn up` sau mới dùng mật khẩu mới. Nếu bỏ qua bước này,
+`fvpn up` sẽ báo *Could not authenticate to gateway* — xem `fvpn logs <tên> 40` để biết
+lý do (với cấu hình watcher mặc định, trường hợp này không bắn banner).
+
+### Gateway gia hạn certificate
+
+Mỗi config pin SHA-256 fingerprint của gateway, nên sau khi gateway đổi cert thì tunnel
+không lên được. Chạy lại `bash fvpn-setup.sh`: script verify lại toàn bộ gateway (trust
+của hệ thống + đúng hostname) và pin lại. Setup in cảnh báo khi cert còn hạn dưới 21 ngày
+— đó là lúc nên sắp xếp chạy lại.
 
 ## Gỡ cài đặt
 
