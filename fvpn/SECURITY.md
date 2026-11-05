@@ -44,7 +44,10 @@ artefacts stay tenant-specific while the tracked script does not.
 A watcher is optional and runs as the ordinary user: `fvpn-watch.sh` plus
 `ai.fvpn.watch.plist` post a local notification when a tunnel that had come up
 disappears. It reads `/var/log/fvpn-intent` (see §4.10) and it never reconnects
-anything.
+anything — retrying blindly is how AD accounts get locked out. Its only
+privileged action is `fvpn down`, through the same NOPASSWD rule the wrapper
+uses, and only after the DNS probe has failed `DNS_FAIL_MAX` consecutive checks;
+`DNS_AUTODOWN=0` disables it.
 
 ---
 

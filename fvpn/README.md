@@ -85,6 +85,14 @@ One banner per request, and only when a tunnel that had already come up disappea
 Nothing has to be acknowledged: once a request is over the watcher goes quiet by itself, so
 you never need to run `fvpn down` just to stop a notification.
 
+A tunnel that is up but passes no traffic is handled separately: when `ppp0` exists and no
+`DNS_PROBE` address answers for `DNS_FAIL_MAX` consecutive checks (default 3, i.e. about
+three minutes), the watcher posts **VPN dead** and then runs `fvpn down` itself, so the dead
+tunnel stops holding the default route and your normal connection comes back. `DNS_PROBE`
+may list several addresses — the tunnel is only considered dead when none of them answer, so
+one filtered host cannot kill a working tunnel. Set `DNS_AUTODOWN=0` in `fvpn.local.sh` to
+keep the banner but leave the tunnel alone.
+
 ## Usage
 
 ```bash

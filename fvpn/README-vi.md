@@ -82,6 +82,14 @@ Mỗi request tối đa một banner, và chỉ khi tunnel **đã lên rồi m�
 Không cần "ack" gì cả: request kết thúc là watcher tự im, nên không phải chạy `fvpn down`
 chỉ để tắt thông báo.
 
+Tunnel còn "up" nhưng không đi được packet nào thì xử lý riêng: khi `ppp0` vẫn tồn tại mà
+không địa chỉ `DNS_PROBE` nào trả lời trong `DNS_FAIL_MAX` lần kiểm liên tiếp (mặc định 3,
+tức khoảng 3 phút), watcher bắn **VPN dead** rồi tự chạy `fvpn down` — tunnel chết không
+còn giữ default route nữa và mạng thường tự trở lại. `DNS_PROBE` có thể liệt kê nhiều địa
+chỉ: chỉ coi là chết khi **tất cả** đều không trả lời, nên một host chặn ICMP không thể kéo
+sập tunnel đang tốt. Đặt `DNS_AUTODOWN=0` trong `fvpn.local.sh` nếu chỉ muốn báo mà không
+ngắt.
+
 ## Sử dụng
 
 ```bash

@@ -14,8 +14,9 @@ GATEWAY_PREFIX='vpn-'
 FVPN_GATEWAYS=''
 
 # Optional overrides -----------------------------------------------------------
-# IP pinged by the watcher to tell "connected" from "connected but dead".
-# Leave empty to skip that check.
+# Address(es) pinged by the watcher to tell "connected" from "connected but dead".
+# Space-separated: the tunnel counts as healthy when *any* of them answers.
+# Leave empty to skip the check.
 DNS_PROBE=''
 
 # Login keychain item holding the VPN password.
@@ -29,3 +30,10 @@ UP_GRACE=180
 # 1 = also banner an `fvpn up` that never produced a tunnel. Default 0: silent,
 # because `fvpn up` already printed the error and nothing was lost.
 UP_FAIL_NOTIFY=0
+
+# How many consecutive 60s checks with no reply from any DNS_PROBE address before
+# the tunnel is declared dead: banner, then `fvpn down` to release the default route.
+DNS_FAIL_MAX=3
+
+# 1 = tear the dead tunnel down automatically; 0 = banner only, leave it up.
+DNS_AUTODOWN=1
