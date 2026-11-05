@@ -218,7 +218,7 @@ end
 hs.hotkey.bind(mash, "p", ping)
 
 -- Show date time, battery and VPN state
-local function formatVpn(code, stdout, gw)
+local function formatVpn(code, stdout, gw, up)
   if code ~= 0 then
     return "VPN: unavailable (exit " .. tostring(code) .. ")"
   end
@@ -226,9 +226,52 @@ local function formatVpn(code, stdout, gw)
   if stdout:find("^connected") then
     local s = "VPN: connected"
     if gw and gw ~= "" then s = s .. " " .. gw end
+    if up and up ~= "" then s = s .. " (up " .. up .. ")" end
     return s
   end
   return "VPN: disconnected"
+end
+
+-- "[[dd-]hh:]mm:ss" (macOS ps -o etime; there is no etimes on BSD) -> seconds
+local function parseEtime(str)
+  if not str then return nil end
+  str = str:gsub("%s", "")
+  if str == "" then return nil end
+  local days = 0
+  local d, rest = str:match("^(%d+)%-(.+)$")
+  if d then days = tonumber(d); str = rest end
+  local parts = {}
+  for p in str:gmatch("%d+") do parts[#parts + 1] = tonumber(p) end
+  if #parts == 3 then
+    return days * 86400 + parts[1] * 3600 + parts[2] * 60 + parts[3]
+  elseif #parts == 2 then
+    return days * 86400 + parts[1] * 60 + parts[2]
+  end
+  return nil
+end
+
+local function formatUptime(sec)
+  if not sec or sec < 0 then return nil end
+  if sec < 60 then return "<1m" end
+  local d = math.floor(sec / 86400)
+  local h = math.floor((sec % 86400) / 3600)
+  local m = math.floor((sec % 3600) / 60)
+  if d > 0 then return string.format("%dd %dh", d, h) end
+  if h > 0 then return string.format("%dh %02dm", h, m) end
+  return string.format("%dm", m)
+end
+
+-- how long the tunnel has been up: the age of the openfortivpn process, which is
+-- started by `fvpn up` and dies with the tunnel (one process per tunnel).
+-- The pattern is anchored on the pinned binary path: an unanchored "openfortivpn"
+-- also matches the /bin/sh -c wrapper that hs.execute spawns (its command line
+-- quotes this very pattern), which reports an age of ~0s.
+local function vpnUptime()
+  local ok, out = pcall(hs.execute,
+    "/bin/sh -c 'p=$(/usr/bin/pgrep -f \"^/usr/local/libexec/fvpn/openfortivpn\" | /usr/bin/head -1); " ..
+    "[ -n \"$p\" ] && /bin/ps -o etime= -p \"$p\"'")
+  if not ok or not out or out == "" then return nil end
+  return formatUptime(parseEtime(out))
 end
 
 -- which gateway is live? the helper's command line carries its config file:
@@ -254,9 +297,12 @@ local function vpnStatus()
     code = 0
   end
   local out_s = out or ""
-  local gw = nil
-  if code == 0 and out_s:find("^connected") then gw = vpnGateway() end
-  return formatVpn(code, out_s, gw)
+  local gw, up = nil, nil
+  if code == 0 and out_s:find("^connected") then
+    gw = vpnGateway()
+    up = vpnUptime()
+  end
+  return formatVpn(code, out_s, gw, up)
 end
 
 hs.hotkey.bind("alt", "T", function()
